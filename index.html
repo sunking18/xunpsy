@@ -56,11 +56,7 @@ body{
 .hero-content{position:relative;z-index:1}
 .hero-logo{width:88px;height:88px;margin:0 auto 24px;animation:float 3s ease-in-out infinite}
 @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
-.brand-name{font-size:clamp(52px,8vw,80px);font-weight:900;color:#fff;letter-spacing:10px;line-height:1.2;margin-bottom:4px;display:flex;justify-content:center;gap:12px;font-family:"Songti SC","STSong","SimSun","KaiTi",serif}
-.brand-name span{animation:fadeIn .8s ease forwards;opacity:0}
-.brand-name span:nth-child(1){animation-delay:.1s}
-.brand-name span:nth-child(2){animation-delay:.3s}
-.brand-name span:nth-child(3){animation-delay:.5s}
+.brand-name{font-size:clamp(52px,8vw,80px);font-weight:900;color:#fff;letter-spacing:10px;line-height:1.2;margin-bottom:4px;font-family:"Songti SC","STSong","SimSun","KaiTi",serif;animation:fadeIn .8s ease forwards}
 @keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .hero-en{font-family:"Georgia","Times New Roman",serif;font-size:22px;color:var(--gold-light);letter-spacing:6px;margin-bottom:28px;font-style:italic}
 .hero-tagline{font-size:18px;color:rgba(255,255,255,.75);letter-spacing:6px;font-weight:500}
@@ -154,11 +150,13 @@ body{
 
 /* 故事结尾 */
 .story-close{
-  text-align:center;font-size:17px;color:var(--text-light);margin-top:40px;line-height:2;
+  text-align:center;font-size:18px;color:var(--text-light);margin-top:40px;line-height:2;
   font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:1px;
+  background:linear-gradient(135deg,var(--green-dark),var(--green));
+  border-radius:var(--radius);padding:40px 32px;color:#fff
 }
-.story-close strong{color:var(--green);font-weight:700}
-.story-close .leaf{color:var(--green);font-size:18px;margin-left:4px}
+.story-close strong{color:var(--gold-light);font-weight:700}
+.story-close .leaf{color:var(--gold-light);font-size:18px;margin-left:4px}
 
 /* 产品服务 — 按截图风格 */
 .product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
@@ -188,7 +186,9 @@ body{
 .product-list-item{
   font-size:13px;color:var(--text-light);line-height:1.6;
   display:flex;align-items:flex-start;gap:8px;
+  border-bottom:1px dashed var(--border);padding-bottom:8px
 }
+.product-list-item:last-child{border-bottom:none;padding-bottom:0}
 .product-list-item::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;line-height:1.6}
 .product-btn{display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:600;color:var(--green);transition:var(--transition);margin-top:4px}
 .product-btn::after{content:'→';transition:var(--transition)}
@@ -255,13 +255,7 @@ body{
 <!-- 导航栏 -->
 <nav class="navbar" id="navbar">
   <a href="#" class="nav-brand">
-    <svg class="nav-logo" viewBox="0 0 40 40" fill="none">
-      <circle cx="20" cy="20" r="18" stroke="#4A7C6F" stroke-width="2"/>
-      <circle cx="20" cy="20" r="6" fill="#4A7C6F" opacity="0.3"/>
-      <path d="M20 14 Q20 6 24 3 Q22 5 23 8 Q25 4 28 5 Q25 8 26 14" stroke="#4A7C6F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-      <circle cx="19" cy="25" r="2" fill="#D4A574"/>
-      <text x="20" y="37" text-anchor="middle" font-size="10" font-weight="900" fill="#4A7C6F" font-family="serif">寻</text>
-    </svg>
+    <img src="logo.png" class="nav-logo" alt="寻心理">
     <span class="nav-name">寻心理</span>
   </a>
   <ul class="nav-links">
@@ -276,14 +270,17 @@ body{
 <section class="hero">
   <div class="hero-content">
     <svg class="hero-logo" viewBox="0 0 100 100" fill="none">
-      <circle cx="50" cy="55" r="20" stroke="#fff" stroke-width="2" fill="none" opacity="0.6"/>
-      <circle cx="50" cy="55" r="6" fill="#F0E0CC" opacity="0.8"/>
-      <path d="M50 50 Q50 28 44 18" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
-      <path d="M50 50 Q50 25 58 16" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
-      <path d="M50 50 Q50 28 50 18" stroke="#D4A574" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.9"/>
-      <circle cx="50" cy="15" r="3" fill="#D4A574"/>
+      <!-- 种子圆 -->
+      <circle cx="50" cy="55" r="20" stroke="#fff" stroke-width="2" fill="none" opacity="0.6"></circle>
+      <circle cx="50" cy="55" r="6" fill="#F0E0CC" opacity="0.8"></circle>
+      <!-- 嫩芽 -->
+      <path d="M50 50 Q50 28 44 18" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"></path>
+      <path d="M50 50 Q50 25 58 16" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"></path>
+      <path d="M50 50 Q50 28 50 18" stroke="#D4A574" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.9"></path>
+      <!-- 金色圆点（种子/希望） -->
+      <circle cx="50" cy="15" r="3" fill="#D4A574"></circle>
     </svg>
-    <div class="brand-name"><span>寻</span><span>心</span><span>理</span></div>
+    <div class="brand-name">寻心理</div>
     <div class="hero-en">InnerSeed</div>
     <div class="hero-tagline">向内寻&nbsp;&nbsp;·&nbsp;&nbsp;向外生</div>
   </div>
@@ -301,12 +298,12 @@ body{
       <div class="tagline-card inward">
         <div class="tagline-icon">🔍</div>
         <h3>向内寻</h3>
-        <p>用心理学的工具，探索自己的内心世界。</p>
+        <p>用心理学的工具，找到你心里那颗种子。</p>
       </div>
       <div class="tagline-card outward">
         <div class="tagline-icon">🌱</div>
         <h3>向外生</h3>
-        <p>把找到的力量，变成生活中的具体行动。</p>
+        <p>给它阳光和土壤，让种子在生活中发芽。</p>
       </div>
     </div>
     <div class="origin-quote">
@@ -359,24 +356,24 @@ body{
         <div class="meaning-card">
           <div class="meaning-card-icon">🔍</div>
           <h4>向内寻</h4>
-          <p>用心理学的工具，探索自己的内心世界。</p>
+          <p>用心理学的工具，找到你心里那颗种子。</p>
         </div>
         <div class="meaning-card">
           <div class="meaning-card-icon">🌱</div>
           <h4>向外生</h4>
-          <p>把找到的力量，变成生活中的具体行动。</p>
+          <p>给它阳光和土壤，让种子在生活中发芽。</p>
         </div>
       </div>
 
       <!-- 服务对象 -->
-      <h3 class="service-title">我们服务的对象</h3>
+      <h3 class="service-title">我们的服务项目</h3>
       <div class="service-grid">
-        <div class="service-item"><span class="emoji">🧒</span>青少年儿童</div>
-        <div class="service-item"><span class="emoji">👩‍💼</span>职场人士</div>
-        <div class="service-item"><span class="emoji">👨‍👩‍👧</span>家庭成员</div>
-        <div class="service-item"><span class="emoji">🏫</span>学校教师</div>
-        <div class="service-item"><span class="emoji">👵</span>老年人群</div>
-        <div class="service-item"><span class="emoji">💑</span>情侣/伴侣</div>
+        <div class="service-item"><span class="emoji">🧒</span>青少年心理团辅</div>
+        <div class="service-item"><span class="emoji">💼</span>职场心理团辅</div>
+        <div class="service-item"><span class="emoji">👨‍👩‍👧</span>家庭关系团辅</div>
+        <div class="service-item"><span class="emoji">🏫</span>教师心理培训</div>
+        <div class="service-item"><span class="emoji">👵</span>老年心理关怀</div>
+        <div class="service-item"><span class="emoji">💑</span>亲密关系团体</div>
       </div>
       <p style="text-align:center; font-size:14px; color:var(--text-muted); max-width:600px; margin:0 auto 32px; line-height:1.8;">
         不同的人群，不同的主题，但都有一个共同点——<strong>在团体中找到力量，在连接中获得成长</strong>。通过结构化的教育成长团体辅导，让参与者在团体中被看见、被支持、被赋能。
@@ -432,9 +429,9 @@ body{
       <a href="peixun.html" class="product-card">
         <div class="product-img train">📚</div>
         <div class="product-body">
-          <div class="product-title-line"><h3>课程培训</h3></div>
-          <div class="product-subtitle">专业可信赖，温暖不晦涩</div>
-          <p>基于硕博团队的专业背景，为学校、企业、社区提供定制化心理学培训方案。</p>
+          <div class="product-title-line"><h3>培训者培训</h3></div>
+          <div class="product-subtitle">Train the Trainer · 专业可信赖，温暖不晦涩</div>
+          <p>基于硕博团队的专业背景，为学校、企业、社区提供定制化心理学培训方案，培养能独立带领的培训者。</p>
           <div class="product-list">
             <div class="product-list-item">教师心理素养与沟通技巧培训</div>
             <div class="product-list-item">企业员工心理关怀计划（EAP）</div>
@@ -496,14 +493,14 @@ body{
       </div>
     </div>
     <div class="contact-desc">
-      如需进一步了解服务方案详情，或希望进行项目合作洽谈，<br>
-      欢迎通过<strong>微信</strong>与我们取得联系。
+      如需进一步了解服务方案详情，或希望进行项目合作洽谈，欢迎通过<strong>微信</strong>与我们取得联系。
     </div>
   </div>
 </section>
 
 <!-- 页脚 -->
 <footer class="footer">
+  <img src="logo-white.png" alt="寻心理" style="width:48px;height:48px;margin-bottom:12px;opacity:0.9">
   <div class="footer-brand">寻心理</div>
   <div class="footer-tagline">向内寻 · 向外生</div>
   <div class="footer-en">InnerSeed</div>
