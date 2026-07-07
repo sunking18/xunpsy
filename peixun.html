@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>课程培训 | 寻心理 · InnerSeed</title>
+<!-- 无外部字体依赖，使用系统原生字体，加载零延迟 -->
+<style>
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --white: #FAFAF8;
+  --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-svg { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-link { font-size: 14px; color: var(--text-light); text-decoration: none; transition: var(--transition); position: relative; padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+.nav-back { font-size: 14px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
+.nav-back:hover { background: var(--green); color: #fff; }
+
+.sub-hero {
+  background: linear-gradient(165deg, #3A5A6E 0%, #4A7A8E 40%, #5C9AAE 100%);
+  padding: 120px 24px 60px; text-align: center; position: relative; overflow: hidden;
+}
+.sub-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(232,240,237,0.12) 0%, transparent 60%);
+}
+.sub-hero-icon { font-size: 48px; margin-bottom: 16px; position: relative; }
+.sub-hero-title { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: clamp(28px, 5vw, 40px); font-weight: 900; color: #fff; letter-spacing: 0.06em; position: relative; margin-bottom: 12px; }
+.sub-hero-tagline { font-size: clamp(16px, 3vw, 20px); color: rgba(255,255,255,0.85); position: relative; }
+.sub-hero-divider { width: 40px; height: 2px; background: var(--gold); margin: 16px auto; border-radius: 1px; }
+
+.content-section { padding: 80px 0; }
+.content-section-alt { padding: 80px 0; background: var(--warm-light); }
+.section-intro { max-width: 700px; margin: 0 auto 56px; text-align: center; }
+.section-intro h2 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 24px; color: var(--green-dark); font-weight: 700; margin-bottom: 12px; }
+.section-intro p { font-size: 15px; color: var(--text-light); line-height: 1.9; }
+
+/* 培训场景 */
+.scene-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+.scene-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition); border-top: 4px solid var(--green-light); }
+.scene-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.scene-icon { font-size: 36px; margin-bottom: 10px; }
+.scene-name { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; }
+.scene-items { list-style: none; }
+.scene-items li { padding: 6px 0; font-size: 13px; color: var(--text-light); line-height: 1.6; }
+.scene-items li::before { content: '· '; color: var(--green); font-weight: 700; }
+
+/* 优势 */
+.advantage-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 800px; margin: 0 auto; }
+.advantage-card { background: #fff; border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); border-left: 4px solid var(--green); }
+.advantage-card h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; color: var(--green-dark); margin-bottom: 8px; }
+.advantage-card p { font-size: 14px; color: var(--text-light); line-height: 1.8; }
+
+/* 客户 */
+.client-logos { text-align: center; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; max-width: 700px; margin: 0 auto; }
+.client-tag { padding: 10px 20px; background: var(--green-bg); border-radius: 20px; font-size: 13px; color: var(--green-dark); font-weight: 600; }
+
+.cta-block { text-align: center; padding: 56px 24px; background: linear-gradient(135deg, #3A5A6E, #4A7A8E); border-radius: var(--radius-lg); max-width: 700px; margin: 0 auto; }
+.cta-block h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 22px; color: #fff; margin-bottom: 10px; }
+.cta-block p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+.cta-btn { display: inline-block; padding: 12px 32px; background: #fff; color: #3A5A6E; border-radius: 24px; font-size: 15px; text-decoration: none; font-weight: 600; transition: var(--transition); }
+.cta-btn:hover { background: var(--warm-light); transform: translateY(-2px); }
+
+.footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
+.footer-brand { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
+.footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+@media (max-width: 768px) {
+  .scene-grid { grid-template-columns: 1fr; }
+  .advantage-row { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-logo-svg" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#4A7C6F" stroke-width="3"/>
+        <text x="50" y="62" text-anchor="middle" fill="#4A7C6F" font-family="'Noto Serif SC',serif" font-size="36" font-weight="900">寻</text>
+        <path d="M 62 52 Q 70 45 78 40 Q 82 42 80 48 Q 76 52 68 52" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="nav-logo-text">寻心理</div>
+        <div class="nav-logo-sub">MINDSEEK</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#story" class="nav-link">品牌故事</a>
+      <a href="index.html#products" class="nav-link">产品服务</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+      <a href="index.html" class="nav-back">← 返回首页</a>
+    </div>
+  </div>
+</nav>
+
+<header class="sub-hero">
+  <div class="sub-hero-icon">📚</div>
+  <h1 class="sub-hero-title">课程培训</h1>
+  <div class="sub-hero-divider"></div>
+  <p class="sub-hero-tagline">专业可信赖，温暖不晦涩</p>
+</header>
+
+<section class="content-section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>把心理学讲成人话</h2>
+      <p>
+        基于硕博团队的专业背景，为学校、企业、社区提供定制化的心理学培训方案。<strong>不说学术黑话，不堆砌术语，用场景和效果说话</strong>。我们相信，最好的培训不是让人"记住"知识，而是让人"体验"到改变。
+      </p>
+    </div>
+
+    <div class="section-intro" style="margin-bottom:40px;">
+      <h2>培训场景</h2>
+      <p>针对不同场景定制内容，让心理学真正落地</p>
+    </div>
+
+    <div class="scene-grid">
+      <div class="scene-card">
+        <div class="scene-icon">🏫</div>
+        <div class="scene-name">学校培训</div>
+        <ul class="scene-items">
+          <li>教师心理素养提升</li>
+          <li>师生沟通技巧工作坊</li>
+          <li>教师情绪调节与减压</li>
+          <li>学生心理危机识别与干预</li>
+          <li>校园心理健康体系建设</li>
+        </ul>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">🏢</div>
+        <div class="scene-name">企业培训</div>
+        <ul class="scene-items">
+          <li>员工心理关怀计划（EAP）</li>
+          <li>职场压力管理与韧性训练</li>
+          <li>高效沟通与冲突化解</li>
+          <li>团队凝聚力与心理安全</li>
+          <li>管理者情绪领导力</li>
+        </ul>
+      </div>
+      <div class="scene-card">
+        <div class="scene-icon">🏘️</div>
+        <div class="scene-name">社区 / 家长培训</div>
+        <ul class="scene-items">
+          <li>家长心理养育工作坊</li>
+          <li>亲子沟通与情绪教练</li>
+          <li>老年人心理健康讲座</li>
+          <li>社区心理健康服务体系建设</li>
+          <li>心理健康科普系列</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <h2>为什么选择寻心理的培训？</h2>
+      <p>不只是"上课"，而是真正让改变发生</p>
+    </div>
+    <div class="advantage-row">
+      <div class="advantage-card">
+        <h3>🎓 硕博学术团队</h3>
+        <p>培训讲师均具有心理学硕士或博士学历，学术根基扎实，能将前沿理论与一线实践结合，讲得深入、说得清楚。</p>
+      </div>
+      <div class="advantage-card">
+        <h3>📋 定制化方案</h3>
+        <p>不做"通用课件"。每一场培训都基于前期需求调研，为合作方量身设计内容、案例和互动环节，确保与实际情况紧密贴合。</p>
+      </div>
+      <div class="advantage-card">
+        <h3>💡 场景化教学</h3>
+        <p>大量使用真实案例、角色扮演和情景模拟，让参与者在"做"中学习、在"体验"中领悟，告别纯理论的枯燥感。</p>
+      </div>
+      <div class="advantage-card">
+        <h3>📊 效果可衡量</h3>
+        <p>培训前后提供效果评估，用数据说话。持续跟踪和优化，确保每一次投入都产生真实的改变。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>合作客户</h2>
+      <p>我们的培训已经走进了这些地方</p>
+    </div>
+    <div class="client-logos">
+      <span class="client-tag">🏫 明天小学</span>
+      <span class="client-tag">🏫 北师大东门社区</span>
+      <span class="client-tag">🏢 教师沟通训练平台</span>
+      <span class="client-tag">🏘️ 社区心理服务站</span>
+      <span class="client-tag">👨‍👩‍👧 家长成长工作坊</span>
+      <span class="client-tag">💼 企业EAP合作</span>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="cta-block">
+      <h3>定制属于你的培训方案</h3>
+      <p>无论你是学校管理者、企业HR还是社区负责人，我们都可以根据你的需求，设计一场有温度的心理学培训。</p>
+      <a href="index.html#contact" class="cta-btn">定制培训方案 →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">MINDSEEK</div>
+  <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
+</footer>
+
+</body>
+</html>

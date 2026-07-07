@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理学文创产品 | 寻心理 · InnerSeed</title>
+<!-- 无外部字体依赖，使用系统原生字体，加载零延迟 -->
+<style>
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --white: #FAFAF8;
+  --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-svg { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-link { font-size: 14px; color: var(--text-light); text-decoration: none; transition: var(--transition); position: relative; padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+.nav-back { font-size: 14px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
+.nav-back:hover { background: var(--green); color: #fff; }
+
+.sub-hero {
+  background: linear-gradient(165deg, #4A3A2E 0%, #7A5C3E 40%, #A07A54 100%);
+  padding: 120px 24px 60px; text-align: center; position: relative; overflow: hidden;
+}
+.sub-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(245,230,211,0.15) 0%, transparent 60%);
+}
+.sub-hero-icon { font-size: 48px; margin-bottom: 16px; position: relative; }
+.sub-hero-title { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: clamp(28px, 5vw, 40px); font-weight: 900; color: #fff; letter-spacing: 0.06em; position: relative; margin-bottom: 12px; }
+.sub-hero-tagline { font-size: clamp(16px, 3vw, 20px); color: rgba(255,255,255,0.85); position: relative; }
+.sub-hero-divider { width: 40px; height: 2px; background: #D4A574; margin: 16px auto; border-radius: 1px; }
+
+.content-section { padding: 80px 0; }
+.content-section-alt { padding: 80px 0; background: var(--warm-light); }
+.section-intro { max-width: 700px; margin: 0 auto 56px; text-align: center; }
+.section-intro h2 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 24px; color: var(--green-dark); font-weight: 700; margin-bottom: 12px; }
+.section-intro p { font-size: 15px; color: var(--text-light); line-height: 1.9; }
+
+/* 明星产品 */
+.star-product { max-width: 800px; margin: 0 auto; background: #fff; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md); }
+.star-banner { background: linear-gradient(135deg, var(--gold), #C4915C); padding: 48px 40px; text-align: center; color: #fff; }
+.star-banner h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 24px; margin-bottom: 8px; }
+.star-banner p { font-size: 15px; opacity: 0.9; }
+.star-body { padding: 40px; }
+.star-body p { font-size: 15px; color: var(--text); line-height: 2; margin-bottom: 16px; }
+.star-features { list-style: none; margin-top: 24px; }
+.star-features li { padding: 10px 0; padding-left: 24px; position: relative; font-size: 14px; color: var(--text-light); line-height: 1.8; }
+.star-features li::before { content: '✦'; position: absolute; left: 0; color: var(--gold); font-size: 12px; }
+
+/* 产品网格 */
+.product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+.product-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition); border-top: 4px solid var(--gold); }
+.product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.product-icon { font-size: 40px; margin-bottom: 12px; }
+.product-name { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 16px; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; }
+.product-desc { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+
+/* 联动 */
+.linkage-block { max-width: 700px; margin: 0 auto; background: var(--green-bg); border-radius: var(--radius-lg); padding: 36px 40px; text-align: center; }
+.linkage-block h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 20px; color: var(--green-dark); margin-bottom: 8px; }
+.linkage-block p { font-size: 15px; color: var(--text-light); line-height: 1.9; }
+
+.cta-block { text-align: center; padding: 56px 24px; background: linear-gradient(135deg, #7A5C3E, #4A3A2E); border-radius: var(--radius-lg); max-width: 700px; margin: 0 auto; }
+.cta-block h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 22px; color: #fff; margin-bottom: 10px; }
+.cta-block p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+.cta-btn { display: inline-block; padding: 12px 32px; background: #fff; color: #7A5C3E; border-radius: 24px; font-size: 15px; text-decoration: none; font-weight: 600; transition: var(--transition); }
+.cta-btn:hover { background: var(--warm-light); transform: translateY(-2px); }
+
+.footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
+.footer-brand { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
+.footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+@media (max-width: 768px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-logo-svg" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#7A5C3E" stroke-width="3"/>
+        <text x="50" y="62" text-anchor="middle" fill="#7A5C3E" font-family="'Noto Serif SC',serif" font-size="36" font-weight="900">寻</text>
+        <path d="M 62 52 Q 70 45 78 40 Q 82 42 80 48 Q 76 52 68 52" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="nav-logo-text">寻心理</div>
+        <div class="nav-logo-sub">MINDSEEK</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#story" class="nav-link">品牌故事</a>
+      <a href="index.html#products" class="nav-link">产品服务</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+      <a href="index.html" class="nav-back">← 返回首页</a>
+    </div>
+  </div>
+</nav>
+
+<header class="sub-hero">
+  <div class="sub-hero-icon">🎁</div>
+  <h1 class="sub-hero-title">心理学文创产品</h1>
+  <div class="sub-hero-divider"></div>
+  <p class="sub-hero-tagline">把心理学的温柔，藏进日常好物里</p>
+</header>
+
+<section class="content-section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>不止是好看，更是可用的心理学</h2>
+      <p>
+        与其说我们是「文创品牌」，不如说我们在做「心理学的翻译工作」——<strong>把那些晦涩的心理学概念，翻译成你可以触摸、可以使用、可以放在桌上、可以送给朋友的好物</strong>。每一件产品背后，都藏着一个心理学理念。用得越多，懂得越深。
+      </p>
+    </div>
+
+    <!-- 明星产品 -->
+    <div class="star-product">
+      <div class="star-banner">
+        <h3>💝 亲密关系卡牌</h3>
+        <p>明星产品 · 搭配专属团体课程</p>
+      </div>
+      <div class="star-body">
+        <p>
+          一副卡牌，一场对话。亲密关系卡牌是寻心理的第一款明星产品——它不是心理测评，不是答题考试，而是一套<strong>促进深度沟通的游戏工具</strong>。每张卡牌上都有一个精心设计的问题或情境，让情侣在轻松的氛围中说出一句"原来你是这样想的"。
+        </p>
+        <p>
+          卡牌搭配<strong>专属亲密关系团体课程</strong>，由心理学硕博团队带领。在团体中，情侣们不只是玩卡牌，更是在带领者的引导下，学会<strong>倾听、表达、理解与连接</strong>。卡牌是入口，课程是深度——两者结合，帮助伴侣在关系中走得更近、走得更远。
+        </p>
+        <ul class="star-features">
+          <li><strong>3大主题模块：</strong>自我探索、关系模式、共同愿景</li>
+          <li><strong>60+ 精心设计的问题：</strong>覆盖沟通、边界、冲突、亲密等核心议题</li>
+          <li><strong>专业设计理念：</strong>融合依恋理论、非暴力沟通（NVC）、积极心理学</li>
+          <li><strong>课程联动模式：</strong>卡牌可独立使用，也可参加配套团体课程深化体验</li>
+          <li><strong>适合人群：</strong>恋爱中情侣、新婚夫妻、关系遇到瓶颈的伴侣、心理咨询师辅助工具</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <h2>更多文创好物</h2>
+      <p>把心理学理念变成日常的温暖陪伴</p>
+    </div>
+    <div class="product-grid">
+      <div class="product-card">
+        <div class="product-icon">📓</div>
+        <div class="product-name">情绪记录手账</div>
+        <div class="product-desc">不是普通的笔记本。每一页都设计了情绪觉察引导与书写提示，帮你看见那些一闪而过的感受，与自己建立更深的关系。</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">💌</div>
+        <div class="product-name">心理治愈明信片</div>
+        <div class="product-desc">每张明信片都来自一个真实的心理学洞察。可以寄给朋友，也可以贴在墙上——温暖的话语，总在最需要的时候出现。</div>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">🪴</div>
+        <div class="product-name">正念呼吸摆件</div>
+        <div class="product-desc">一个小小的桌面摆件，用柔和的节奏提醒你停下来、深呼吸。在忙碌中，给自己三分钟的喘息。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="linkage-block">
+      <h3>🔗 课程 + 文创联动体验</h3>
+      <p>
+        我们不把产品和课程分开。购买亲密关系卡牌的用户，可以参加配套的团体课程深化体验；参与团辅课程的学员，也会获得文创产品作为日常练习的延续工具。<strong>课上学到的，课下继续用；产品启发的思考，课程帮你深化</strong>——这才是完整的成长闭环。
+      </p>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="cta-block">
+      <h3>让心理学变成看得见的陪伴</h3>
+      <p>无论是想体验亲密关系卡牌，还是希望定制专属文创产品，欢迎随时与我们联系。</p>
+      <a href="index.html#contact" class="cta-btn">咨询文创产品 →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">MINDSEEK</div>
+  <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
+</footer>
+
+</body>
+</html>

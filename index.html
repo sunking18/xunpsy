@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寻心理 · InnerSeed — 向内寻，向外生</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-dark:#2D4A42;--green:#4A7C6F;--green-light:#6B9E8A;
+  --gold:#D4A574;--gold-light:#F0E0CC;--cream:#FDF8F2;
+  --bg:#FFFBF5;--text:#3D3028;--text-light:#6B5E52;--text-muted:#9B8D80;
+  --border:#E8DDD0;--card-bg:#fff;
+  --radius:16px;--radius-sm:10px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);--shadow-md:0 4px 24px rgba(0,0,0,.08);
+  --transition:all .3s ease;--max-w:1080px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",sans-serif;
+  color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased
+}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+.section{padding:80px 0}
+.section-alt{background:var(--cream)}
+.section-header{text-align:center;margin-bottom:48px}
+.section-label{font-size:12px;letter-spacing:4px;color:var(--green);text-transform:uppercase;margin-bottom:8px;font-weight:600}
+.section-title{font-size:36px;font-weight:900;color:var(--green-dark);margin-bottom:12px;font-family:"Songti SC","STSong","SimSun","KaiTi",serif;letter-spacing:2px}
+.section-subtitle{font-size:16px;color:var(--text-muted);max-width:560px;margin:0 auto}
+
+/* 导航栏 */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 32px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  transition:var(--transition);border-bottom:1px solid transparent;
+}
+.navbar.scrolled{border-bottom-color:var(--border);box-shadow:var(--shadow-sm)}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{width:38px;height:38px}
+.nav-name{font-size:18px;font-weight:700;color:var(--green-dark);font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:2px}
+.nav-links{display:flex;list-style:none;gap:32px}
+.nav-links a{text-decoration:none;color:var(--text-light);font-size:15px;font-weight:500;transition:var(--transition);padding-bottom:4px;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--green);border-bottom-color:var(--green)}
+.nav-cta{text-decoration:none;background:var(--green);color:#fff;padding:10px 24px;border-radius:24px;font-size:14px;font-weight:600;transition:var(--transition)}
+.nav-cta:hover{background:var(--green-dark);box-shadow:0 4px 16px rgba(74,124,111,.3)}
+
+/* Hero */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;background:linear-gradient(160deg,var(--green-dark) 0%,var(--green) 50%,var(--green-light) 100%);
+  padding:120px 24px 80px;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:360px;height:360px;background:radial-gradient(circle,rgba(212,165,116,.15) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(107,158,138,.12) 0%,transparent 70%);border-radius:50%}
+.hero-content{position:relative;z-index:1}
+.hero-logo{width:88px;height:88px;margin:0 auto 24px;animation:float 3s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.brand-name{font-size:clamp(52px,8vw,80px);font-weight:900;color:#fff;letter-spacing:10px;line-height:1.2;margin-bottom:4px;display:flex;justify-content:center;gap:12px;font-family:"Songti SC","STSong","SimSun","KaiTi",serif}
+.brand-name span{animation:fadeIn .8s ease forwards;opacity:0}
+.brand-name span:nth-child(1){animation-delay:.1s}
+.brand-name span:nth-child(2){animation-delay:.3s}
+.brand-name span:nth-child(3){animation-delay:.5s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.hero-en{font-family:"Georgia","Times New Roman",serif;font-size:22px;color:var(--gold-light);letter-spacing:6px;margin-bottom:28px;font-style:italic}
+.hero-tagline{font-size:18px;color:rgba(255,255,255,.75);letter-spacing:6px;font-weight:500}
+.hero-scroll{font-size:28px;color:rgba(255,255,255,.5);animation:bounce 2s infinite;cursor:pointer;margin-top:40px}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+/* 标语含义 — 简洁卡片 */
+.tagline-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;max-width:720px;margin-left:auto;margin-right:auto}
+.tagline-card{
+  background:var(--card-bg);border-radius:var(--radius);padding:36px 28px;
+  text-align:center;box-shadow:var(--shadow-sm);transition:var(--transition)
+}
+.tagline-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.tagline-icon{font-size:36px;margin-bottom:16px}
+.tagline-card h3{font-size:22px;font-weight:800;color:var(--green-dark);margin-bottom:14px;font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:2px}
+.tagline-card p{font-size:14px;color:var(--text-muted);line-height:1.8}
+
+.origin-quote{
+  max-width:680px;margin:0 auto;background:var(--card-bg);border-radius:var(--radius);
+  padding:28px 32px;text-align:center;box-shadow:var(--shadow-sm);
+  border-left:4px solid var(--gold)
+}
+.origin-quote p{font-size:15px;color:var(--text-light);line-height:1.9;font-family:"Songti SC","STSong","SimSun",serif}
+.origin-quote .highlight{color:var(--green);font-weight:700}
+
+/* 品牌故事 — 按截图风格 */
+.story-content{max-width:700px;margin:0 auto}
+
+/* 金句框 */
+.story-quote-box{
+  background:linear-gradient(135deg,var(--green-dark),var(--green));
+  border-radius:var(--radius);padding:40px 32px;margin-bottom:40px;text-align:center;
+  color:#fff;position:relative;overflow:hidden;
+}
+.story-quote-box::before{
+  content:'"';position:absolute;top:12px;left:20px;font-size:60px;line-height:1;color:rgba(255,255,255,.15);font-family:Georgia,serif;
+}
+.story-quote-box::after{
+  content:'"';position:absolute;bottom:4px;right:24px;font-size:60px;line-height:1;color:rgba(255,255,255,.15);font-family:Georgia,serif;
+}
+.story-quote-box p{
+  font-size:18px;font-weight:600;line-height:2;position:relative;z-index:1;
+  font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:1px;
+}
+
+/* 故事叙述块 — 带左侧竖线 */
+.story-narrative{display:flex;flex-direction:column;gap:28px;margin-bottom:40px}
+
+.story-block{
+  position:relative;padding:22px 28px 22px 32px;border-radius:var(--radius);
+  background:var(--card-bg);box-shadow:var(--shadow-sm);margin-left:12px;
+}
+.story-block::before{
+  content:'';position:absolute;left:-12px;top:0;bottom:0;width:4px;
+  border-radius:4px;background:var(--green);
+}
+.story-block p{font-size:15px;line-height:2.2;color:var(--text-light)}
+.story-block strong{color:var(--green-dark);font-weight:700}
+.story-block em{font-style:normal;color:var(--green);font-weight:600}
+
+/* 心理学不该正襟危坐 */
+.story-highlight{
+  background:linear-gradient(135deg,var(--green-dark),var(--green));
+  border-radius:var(--radius);padding:40px 32px;margin-bottom:40px;text-align:center;
+  color:#fff;font-size:16px;line-height:2.4;
+}
+.story-highlight strong{color:var(--gold-light);font-weight:700}
+.story-highlight em{font-style:normal;color:var(--gold-light)}
+
+/* 向内寻·向外生 双含义 */
+.meaning-cards{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px}
+.meaning-card{
+  background:var(--card-bg);border-radius:var(--radius);padding:28px;
+  box-shadow:var(--shadow-sm);transition:var(--transition);text-align:center
+}
+.meaning-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.meaning-card-icon{font-size:32px;margin-bottom:10px}
+.meaning-card h4{font-size:18px;font-weight:700;color:var(--green-dark);margin-bottom:10px;font-family:"Songti SC","STSong","SimSun",serif}
+.meaning-card p{font-size:14px;color:var(--text-muted);line-height:1.8}
+
+/* 服务对象 */
+.service-title{text-align:center;font-size:20px;font-weight:800;color:var(--green-dark);margin:40px 0 20px;font-family:"Songti SC","STSong","SimSun",serif}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:660px;margin:0 auto 20px}
+.service-item{
+  background:var(--card-bg);border-radius:var(--radius-sm);padding:16px 12px;
+  text-align:center;font-size:14px;font-weight:600;color:var(--text-light);
+  box-shadow:var(--shadow-sm);transition:var(--transition)
+}
+.service-item:hover{box-shadow:var(--shadow-md);color:var(--green)}
+.emoji{font-size:22px;margin-right:4px;vertical-align:middle}
+
+/* 故事结尾 */
+.story-close{
+  text-align:center;font-size:17px;color:var(--text-light);margin-top:40px;line-height:2;
+  font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:1px;
+}
+.story-close strong{color:var(--green);font-weight:700}
+.story-close .leaf{color:var(--green);font-size:18px;margin-left:4px}
+
+/* 产品服务 — 按截图风格 */
+.product-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.product-card{
+  background:var(--card-bg);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:var(--transition);text-decoration:none;color:inherit
+}
+.product-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.product-img{
+  height:120px;display:flex;align-items:center;justify-content:center;font-size:48px
+}
+.product-img.course{background:linear-gradient(135deg,#E8F0ED,#D4E5DD)}
+.product-img.goods{background:linear-gradient(135deg,#FBF5ED,#F0E0CC)}
+.product-img.train{background:linear-gradient(135deg,#E8EDF2,#D0DAE5)}
+.product-body{padding:28px 24px 32px}
+
+/* 标题装饰线 */
+.product-title-line{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.product-title-line h3{font-size:18px;font-weight:700;color:var(--green-dark);flex-shrink:0}
+.product-title-line::after{
+  content:'';flex:1;height:1px;background:linear-gradient(to right,var(--green),transparent);
+  opacity:0.3;
+}
+.product-subtitle{font-size:13px;color:var(--green);margin-bottom:14px;font-weight:500}
+.product-body>p{font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:16px}
+.product-list{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.product-list-item{
+  font-size:13px;color:var(--text-light);line-height:1.6;
+  display:flex;align-items:flex-start;gap:8px;
+}
+.product-list-item::before{content:'·';color:var(--green);font-weight:700;flex-shrink:0;line-height:1.6}
+.product-btn{display:inline-flex;align-items:center;gap:4px;font-size:14px;font-weight:600;color:var(--green);transition:var(--transition);margin-top:4px}
+.product-btn::after{content:'→';transition:var(--transition)}
+.product-card:hover .product-btn{color:var(--green-dark)}
+.product-card:hover .product-btn::after{transform:translateX(4px)}
+
+/* 联系我们 — 按截图风格 */
+.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:760px;margin:0 auto}
+.contact-box{background:var(--card-bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
+.contact-box-header{background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;padding:16px 24px;font-size:16px;font-weight:700;letter-spacing:1px;text-align:center}
+.contact-box-body{padding:24px}
+.contact-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
+.contact-item:last-child{margin-bottom:0}
+.contact-item-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
+.contact-item-icon.phone{background:#E8F0ED}
+.contact-item-icon.email{background:#FBF5ED}
+.contact-item-icon.person{background:#E8EDF2}
+.contact-item-label{font-size:12px;color:var(--text-muted);margin-bottom:2px}
+.contact-item-value{font-size:15px;font-weight:600;color:var(--text);letter-spacing:.5px}
+.contact-item-value.phone{font-family:"SF Mono","Menlo","Consolas",monospace;font-size:14px}
+
+.weixin-area{display:flex;align-items:center;justify-content:center;padding:16px 0}
+.weixin-qr{width:200px;height:200px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.weixin-text{text-align:center;font-size:14px;color:var(--text-muted);margin-top:8px}
+.weixin-text strong{color:var(--green-dark);font-weight:600}
+
+.contact-desc{
+  text-align:center;font-size:14px;color:var(--text-muted);max-width:600px;margin:32px auto 0;line-height:2;
+  font-family:"Songti SC","STSong","SimSun",serif;
+}
+.contact-desc strong{color:var(--green-dark);font-weight:700}
+
+/* 页脚 */
+.footer{background:var(--green-dark);color:rgba(255,255,255,.7);text-align:center;padding:40px 24px}
+.footer-brand{font-size:22px;font-weight:800;color:#fff;font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:4px;margin-bottom:8px}
+.footer-tagline{font-size:14px;color:var(--gold-light);letter-spacing:4px;margin-bottom:8px}
+.footer-en{font-family:"Georgia","Times New Roman",serif;font-size:13px;color:rgba(255,255,255,.4);margin-bottom:20px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3)}
+
+/* 响应式 */
+@media(max-width:768px){
+  .nav-links{gap:16px}
+  .nav-links a{font-size:13px}
+  .nav-cta{padding:8px 16px;font-size:13px}
+  .section{padding:56px 0}
+  .section-title{font-size:28px}
+  .tagline-cards{grid-template-columns:1fr}
+  .meaning-cards{grid-template-columns:1fr}
+  .product-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
+  .contact-layout{grid-template-columns:1fr}
+  .service-grid{grid-template-columns:repeat(2,1fr)}
+  .hero-logo{width:64px;height:64px}
+  .hero-tagline{font-size:15px;letter-spacing:4px}
+  .story-block{padding:20px 20px 20px 28px}
+  .story-block p{line-height:2}
+  .story-quote-box{padding:32px 24px}
+  .story-quote-box p{font-size:16px}
+  .story-highlight{padding:32px 24px}
+}
+</style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar" id="navbar">
+  <a href="#" class="nav-brand">
+    <svg class="nav-logo" viewBox="0 0 40 40" fill="none">
+      <circle cx="20" cy="20" r="18" stroke="#4A7C6F" stroke-width="2"/>
+      <circle cx="20" cy="20" r="6" fill="#4A7C6F" opacity="0.3"/>
+      <path d="M20 14 Q20 6 24 3 Q22 5 23 8 Q25 4 28 5 Q25 8 26 14" stroke="#4A7C6F" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <circle cx="19" cy="25" r="2" fill="#D4A574"/>
+      <text x="20" y="37" text-anchor="middle" font-size="10" font-weight="900" fill="#4A7C6F" font-family="serif">寻</text>
+    </svg>
+    <span class="nav-name">寻心理</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#story">品牌故事</a></li>
+    <li><a href="#products">产品服务</a></li>
+    <li><a href="#contact">联系我们</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">预约咨询</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <svg class="hero-logo" viewBox="0 0 100 100" fill="none">
+      <circle cx="50" cy="55" r="20" stroke="#fff" stroke-width="2" fill="none" opacity="0.6"/>
+      <circle cx="50" cy="55" r="6" fill="#F0E0CC" opacity="0.8"/>
+      <path d="M50 50 Q50 28 44 18" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <path d="M50 50 Q50 25 58 16" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.8"/>
+      <path d="M50 50 Q50 28 50 18" stroke="#D4A574" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.9"/>
+      <circle cx="50" cy="15" r="3" fill="#D4A574"/>
+    </svg>
+    <div class="brand-name"><span>寻</span><span>心</span><span>理</span></div>
+    <div class="hero-en">InnerSeed</div>
+    <div class="hero-tagline">向内寻&nbsp;&nbsp;·&nbsp;&nbsp;向外生</div>
+  </div>
+  <div class="hero-scroll" onclick="document.getElementById('tagline').scrollIntoView({behavior:'smooth'})">↓</div>
+</section>
+
+<!-- 标语含义 -->
+<section class="section section-alt" id="tagline">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">品牌主张</div>
+      <h2 class="section-title">向内寻，向外生</h2>
+    </div>
+    <div class="tagline-cards">
+      <div class="tagline-card inward">
+        <div class="tagline-icon">🔍</div>
+        <h3>向内寻</h3>
+        <p>用心理学的工具，探索自己的内心世界。</p>
+      </div>
+      <div class="tagline-card outward">
+        <div class="tagline-icon">🌱</div>
+        <h3>向外生</h3>
+        <p>把找到的力量，变成生活中的具体行动。</p>
+      </div>
+    </div>
+    <div class="origin-quote">
+      <p>「寻」是寻找的寻。我们取名寻心理，是因为我们相信——<span class="highlight">每个人心里都有一颗种子</span>，向内寻是找到它，向外生是让它发芽。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 品牌故事 -->
+<section class="section" id="story">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">我们的故事</div>
+    </div>
+
+    <div class="story-content">
+
+      <!-- 金句框 -->
+      <div class="story-quote-box">
+        <p>「你不需要完美，你正在被爱着——<br>这本身就是生长的力量。」</p>
+      </div>
+
+      <!-- 故事叙述 -->
+      <div class="story-narrative">
+        <div class="story-block">
+          <p>我们是一群学心理学的人。见多了那些<strong>没说出口的情绪</strong>、<strong>没被听懂的委屈</strong>，索性就想做个能陪你唠会嗑的人。</p>
+        </div>
+
+        <div class="story-block">
+          <p>专业书本里明明藏着治愈人生的智慧，却那么沉默。所以我们创办了<strong>「寻心理」</strong>——只因笃定，真正的治愈，从来都藏在那些看似琐碎的日常里。</p>
+        </div>
+
+        <div class="story-block">
+          <p>心理学的本质，从来不是给人贴标签、下诊断。它是教我们——<strong>如何与自己好好相处，如何与他人温柔连接</strong>。</p>
+        </div>
+      </div>
+
+      <!-- 心理学不该正襟危坐 -->
+      <div class="story-highlight">
+        <div>
+          我们还认为心理学<strong>不应该正襟危坐</strong>。<br>
+          它能陪你挤地铁，能放在你的办公桌上，<br>
+          能在你失眠时被你攥在手里——<br>
+          在你需要时，<em>恰好出现</em>。
+        </div>
+      </div>
+
+      <!-- 向内寻·向外生 -->
+      <div class="meaning-cards">
+        <div class="meaning-card">
+          <div class="meaning-card-icon">🔍</div>
+          <h4>向内寻</h4>
+          <p>用心理学的工具，探索自己的内心世界。</p>
+        </div>
+        <div class="meaning-card">
+          <div class="meaning-card-icon">🌱</div>
+          <h4>向外生</h4>
+          <p>把找到的力量，变成生活中的具体行动。</p>
+        </div>
+      </div>
+
+      <!-- 服务对象 -->
+      <h3 class="service-title">我们服务的对象</h3>
+      <div class="service-grid">
+        <div class="service-item"><span class="emoji">🧒</span>青少年儿童</div>
+        <div class="service-item"><span class="emoji">👩‍💼</span>职场人士</div>
+        <div class="service-item"><span class="emoji">👨‍👩‍👧</span>家庭成员</div>
+        <div class="service-item"><span class="emoji">🏫</span>学校教师</div>
+        <div class="service-item"><span class="emoji">👵</span>老年人群</div>
+        <div class="service-item"><span class="emoji">💑</span>情侣/伴侣</div>
+      </div>
+      <p style="text-align:center; font-size:14px; color:var(--text-muted); max-width:600px; margin:0 auto 32px; line-height:1.8;">
+        不同的人群，不同的主题，但都有一个共同点——<strong>在团体中找到力量，在连接中获得成长</strong>。通过结构化的教育成长团体辅导，让参与者在团体中被看见、被支持、被赋能。
+      </p>
+
+      <!-- 结尾 -->
+      <div class="story-close">
+        在寻心理，我们不急着给你答案。<br>
+        我们陪你，一起向内寻，向外生。<span class="leaf">🌱</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 产品服务 -->
+<section class="section section-alt" id="products">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">产品服务</div>
+      <h2 class="section-title">我们做什么</h2>
+      <p class="section-subtitle">把心理学变成可以触摸、可以使用、可以陪伴的成长力量</p>
+    </div>
+    <div class="product-grid">
+      <a href="tuanfu.html" class="product-card">
+        <div class="product-img course">💞</div>
+        <div class="product-body">
+          <div class="product-title-line"><h3>心理团辅课程</h3></div>
+          <div class="product-subtitle">在团体中，被看见，被支持，被赋能</div>
+          <p>结构化、有温度的教育成长团体。面向全人群设计不同主题方案，在安全的空间里找到力量、获得成长。</p>
+          <div class="product-list">
+            <div class="product-list-item">青少年社会情感学习与心理韧性培养</div>
+            <div class="product-list-item">成人情绪调节与压力缓解团体</div>
+            <div class="product-list-item">亲密关系卡牌 + 沟通成长团体</div>
+          </div>
+          <div class="product-btn">了解详情</div>
+        </div>
+      </a>
+      <a href="wenchuang.html" class="product-card">
+        <div class="product-img goods">🎁</div>
+        <div class="product-body">
+          <div class="product-title-line"><h3>心理学文创产品</h3></div>
+          <div class="product-subtitle">把心理学的温柔，藏进日常好物里</div>
+          <p>不只是好看的产品，更是可以使用的心理学工具。每一件文创都承载着一个心理学理念，在你需要时，恰好出现。</p>
+          <div class="product-list">
+            <div class="product-list-item">亲密关系卡牌 · 明星产品</div>
+            <div class="product-list-item">情绪记录手账 · 与自己对话</div>
+            <div class="product-list-item">心理治愈明信片 · 温暖传递</div>
+          </div>
+          <div class="product-btn">了解详情</div>
+        </div>
+      </a>
+      <a href="peixun.html" class="product-card">
+        <div class="product-img train">📚</div>
+        <div class="product-body">
+          <div class="product-title-line"><h3>课程培训</h3></div>
+          <div class="product-subtitle">专业可信赖，温暖不晦涩</div>
+          <p>基于硕博团队的专业背景，为学校、企业、社区提供定制化心理学培训方案。</p>
+          <div class="product-list">
+            <div class="product-list-item">教师心理素养与沟通技巧培训</div>
+            <div class="product-list-item">企业员工心理关怀计划（EAP）</div>
+            <div class="product-list-item">家长心理养育与社区心理健康</div>
+          </div>
+          <div class="product-btn">了解详情</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 联系我们 -->
+<section class="section" id="contact">
+  <div class="container">
+    <div class="section-header">
+      <div class="section-label">联系我们</div>
+      <h2 class="section-title">期待与你相遇</h2>
+      <p class="section-subtitle">无论是课程咨询、产品合作，还是想聊聊心理学，都欢迎找到我们</p>
+    </div>
+    <div class="contact-layout">
+      <div class="contact-box">
+        <div class="contact-box-header">联系方式</div>
+        <div class="contact-box-body">
+          <div class="contact-item">
+            <div class="contact-item-icon phone">📞</div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">咨询热线</div>
+              <div class="contact-item-value phone">17710721070 / 17310917890</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon email">✉️</div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">电子邮箱</div>
+              <div class="contact-item-value">jinnan000@126.com</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon person">👤</div>
+            <div class="contact-item-text">
+              <div class="contact-item-label">项目对接联系人</div>
+              <div class="contact-item-value">姚老师</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-box">
+        <div class="contact-box-header">微信咨询</div>
+        <div class="contact-box-body">
+          <div class="weixin-area">
+            <img src="weixin-qr.png" class="weixin-qr" alt="微信二维码">
+          </div>
+          <div class="weixin-text">
+            <strong>微信扫码咨询</strong><br>
+            添加客服 · 一对一沟通
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="contact-desc">
+      如需进一步了解服务方案详情，或希望进行项目合作洽谈，<br>
+      欢迎通过<strong>微信</strong>与我们取得联系。
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻 · 向外生</div>
+  <div class="footer-en">InnerSeed</div>
+  <div class="footer-copy">© 寻心理 InnerSeed · 向内寻，向外生</div>
+</footer>
+
+<script>
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{if(window.scrollY>50)navbar.classList.add('scrolled');else navbar.classList.remove('scrolled')});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',function(e){const t=document.querySelector(this.getAttribute('href'));if(t){e.preventDefault();window.scrollTo({top:t.getBoundingClientRect().top+window.pageYOffset-80,behavior:'smooth'})}})});
+</script>
+
+</body>
+</html>

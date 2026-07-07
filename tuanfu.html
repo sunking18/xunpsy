@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理团辅课程 | 寻心理 · InnerSeed</title>
+<!-- 无外部字体依赖，使用系统原生字体，加载零延迟 -->
+<style>
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --white: #FAFAF8;
+  --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+/* 导航栏（与首页一致） */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-svg { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-link { font-size: 14px; color: var(--text-light); text-decoration: none; transition: var(--transition); position: relative; padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+.nav-back { font-size: 14px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
+.nav-back:hover { background: var(--green); color: #fff; }
+
+/* Hero banner */
+.sub-hero {
+  background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%);
+  padding: 120px 24px 60px; text-align: center; position: relative; overflow: hidden;
+}
+.sub-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.12) 0%, transparent 60%);
+}
+.sub-hero-icon { font-size: 48px; margin-bottom: 16px; position: relative; }
+.sub-hero-title { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: clamp(28px, 5vw, 40px); font-weight: 900; color: #fff; letter-spacing: 0.06em; position: relative; margin-bottom: 12px; }
+.sub-hero-tagline { font-size: clamp(16px, 3vw, 20px); color: rgba(255,255,255,0.85); position: relative; }
+.sub-hero-divider { width: 40px; height: 2px; background: var(--gold); margin: 16px auto; border-radius: 1px; }
+
+/* 内容区 */
+.content-section { padding: 80px 0; }
+.content-section-alt { padding: 80px 0; background: var(--warm-light); }
+.section-intro { max-width: 700px; margin: 0 auto 56px; text-align: center; }
+.section-intro h2 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 24px; color: var(--green-dark); font-weight: 700; margin-bottom: 12px; }
+.section-intro p { font-size: 15px; color: var(--text-light); line-height: 1.9; }
+
+/* 人群网格 */
+.audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
+.audience-card { background: #fff; border-radius: var(--radius-lg); padding: 28px 24px; text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition); }
+.audience-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.audience-icon { font-size: 32px; margin-bottom: 10px; }
+.audience-name { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 16px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
+.audience-themes { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+
+/* 特色区块 */
+.feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px; margin: 0 auto; }
+.feature-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 28px; box-shadow: var(--shadow-sm); border-left: 4px solid var(--green); }
+.feature-card h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 18px; color: var(--green-dark); margin-bottom: 10px; }
+.feature-card p { font-size: 14px; color: var(--text-light); line-height: 1.8; }
+
+/* 流程 */
+.process-list { max-width: 700px; margin: 0 auto; }
+.process-item { display: flex; gap: 20px; padding: 20px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
+.process-item:last-child { border-bottom: none; }
+.process-num { width: 36px; height: 36px; background: var(--green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; flex-shrink: 0; font-family: Georgia,serif; }
+.process-text h4 { font-size: 16px; color: var(--green-dark); margin-bottom: 4px; font-family: "Songti SC", "STSong", "SimSun", serif; }
+.process-text p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
+
+/* CTA */
+.cta-block { text-align: center; padding: 56px 24px; background: linear-gradient(135deg, var(--green-dark), var(--green)); border-radius: var(--radius-lg); max-width: 700px; margin: 0 auto; }
+.cta-block h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 22px; color: #fff; margin-bottom: 10px; }
+.cta-block p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+.cta-btn { display: inline-block; padding: 12px 32px; background: #fff; color: var(--green-dark); border-radius: 24px; font-size: 15px; text-decoration: none; font-weight: 600; transition: var(--transition); }
+.cta-btn:hover { background: var(--warm-light); transform: translateY(-2px); }
+
+/* 页脚 */
+.footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
+.footer-brand { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
+.footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+@media (max-width: 768px) {
+  .audience-grid { grid-template-columns: 1fr; }
+  .feature-row { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-logo-svg" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="48" fill="none" stroke="#4A7C6F" stroke-width="3"/>
+        <text x="50" y="62" text-anchor="middle" fill="#4A7C6F" font-family="'Songti SC','STSong',serif" font-size="36" font-weight="900">寻</text>
+        <path d="M 62 52 Q 70 45 78 40 Q 82 42 80 48 Q 76 52 68 52" fill="none" stroke="#D4A574" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div>
+        <div class="nav-logo-text">寻心理</div>
+        <div class="nav-logo-sub">MINDSEEK</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#story" class="nav-link">品牌故事</a>
+      <a href="index.html#products" class="nav-link">产品服务</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+      <a href="index.html" class="nav-back">← 返回首页</a>
+    </div>
+  </div>
+</nav>
+
+<header class="sub-hero">
+  <div class="sub-hero-icon">🧠</div>
+  <h1 class="sub-hero-title">心理团辅课程</h1>
+  <div class="sub-hero-divider"></div>
+  <p class="sub-hero-tagline">在团体中，被看见，被支持，被赋能</p>
+</header>
+
+<section class="content-section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>什么是心理团辅？</h2>
+      <p>
+        心理团辅（团体心理辅导）是一种<strong>结构化、有温度的教育成长团体</strong>。不是冷冰冰的讲座，不是一对一的咨询，而是让一群有相似需求的人围坐在一起，在专业带领者的引导下，通过精心设计的活动与对话，<strong>在安全的空间里被看见、被支持、被赋能</strong>。它相信——治愈不只发生在咨询室里，也发生在人与人真实的连接中。
+      </p>
+    </div>
+
+    <div class="section-intro" style="margin-bottom:40px;">
+      <h2>我们服务的人群</h2>
+      <p>不同的人群，不同的主题，同一个核心——在团体中找到力量，在连接中获得成长。</p>
+    </div>
+
+    <div class="audience-grid">
+      <div class="audience-card">
+        <div class="audience-icon">🧒</div>
+        <div class="audience-name">青少年儿童</div>
+        <div class="audience-themes">社会情感学习（SEL）、心理韧性培养、同伴关系建立、自我认知探索</div>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">👩‍💼</div>
+        <div class="audience-name">职场人士</div>
+        <div class="audience-themes">压力缓解、情绪调节、沟通边界建立、职业倦怠应对</div>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">👨‍👩‍👧</div>
+        <div class="audience-name">家庭成员</div>
+        <div class="audience-themes">亲子沟通、夫妻关系修复、代际理解、家庭互动模式优化</div>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">🏫</div>
+        <div class="audience-name">学校教师</div>
+        <div class="audience-themes">教师沟通技巧情景模拟、情绪调节、职业倦怠应对、心理素养提升</div>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">👵</div>
+        <div class="audience-name">老年人群</div>
+        <div class="audience-themes">价值感重塑、生命回顾与整合、获得希望赋能、社会支持系统构建</div>
+      </div>
+      <div class="audience-card">
+        <div class="audience-icon">💑</div>
+        <div class="audience-name">情侣 / 伴侣</div>
+        <div class="audience-themes">亲密关系沟通、冲突化解、情感连接加深、共同成长规划</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <h2>为什么选择我们的团辅课程？</h2>
+      <p>不只是"一群人聊天"，而是科学设计、有温度带领的成长体验。</p>
+    </div>
+    <div class="feature-row">
+      <div class="feature-card">
+        <h3>🎓 硕博团队带领</h3>
+        <p>所有团辅课程由心理学硕博团队设计并带领，理论基础扎实，实操经验丰富，确保专业性和安全性。</p>
+      </div>
+      <div class="feature-card">
+        <h3>📋 结构化设计</h3>
+        <p>每一场团辅都有清晰的目标、流程和活动设计，从破冰到深入、从体验到总结，环环相扣，确保效果落地。</p>
+      </div>
+      <div class="feature-card">
+        <h3>💬 体验式学习</h3>
+        <p>不是"听课"，而是"体验"。通过角色扮演、情景模拟、小组讨论、艺术表达等多元方式，让参与者在做中学、在感受中成长。</p>
+      </div>
+      <div class="feature-card">
+        <h3>🛡️ 安全与保密</h3>
+        <p>建立清晰的团体契约，营造安全、尊重、保密的空间。每个参与者都可以按照自己的节奏，选择分享的程度。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>合作流程</h2>
+      <p>从需求沟通到课程交付，每一步我们都认真对待。</p>
+    </div>
+    <div class="process-list">
+      <div class="process-item">
+        <div class="process-num">1</div>
+        <div class="process-text">
+          <h4>需求沟通</h4>
+          <p>了解目标人群、核心需求、预期目标和场地条件，共同确定团辅主题与方向。</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">2</div>
+        <div class="process-text">
+          <h4>方案设计</h4>
+          <p>硕博团队根据需求定制团辅方案，包括活动流程、带领者配置、时长和所需物料。</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">3</div>
+        <div class="process-text">
+          <h4>方案确认</h4>
+          <p>向合作方提交详细方案，根据反馈进行优化调整，确保双方达成一致。</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">4</div>
+        <div class="process-text">
+          <h4>课程实施</h4>
+          <p>专业带领者依照方案开展团辅活动，在安全温暖的氛围中带领参与者完成成长之旅。</p>
+        </div>
+      </div>
+      <div class="process-item">
+        <div class="process-num">5</div>
+        <div class="process-text">
+          <h4>效果反馈</h4>
+          <p>收集参与者反馈与带领者观察记录，提供效果评估报告，为后续合作提供数据支持。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="cta-block">
+      <h3>让改变，在一群人中间发生</h3>
+      <p>无论你是学校、企业、社区还是个人，如果你想为某个群体定制一场有温度的团辅课程，欢迎联系我们。</p>
+      <a href="index.html#contact" class="cta-btn">立即咨询团辅方案 →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">MINDSEEK</div>
+  <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
+</footer>
+
+</body>
+</html>
