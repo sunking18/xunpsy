@@ -83,6 +83,7 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
 .leader-card { display: flex; gap: 20px; padding: 28px; background: var(--warm-light); border-radius: var(--radius-lg); margin-bottom: 16px; border-left: 3px solid var(--gold); align-items: flex-start; }
 .leader-card:last-child { margin-bottom: 0; }
 .leader-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; color: #fff; }
+.leader-avatar-img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: 55% 35%; flex-shrink: 0; border: 2px solid var(--gold-light); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 .leader-info { flex: 1; }
 .leader-info .name { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
 .leader-info .title { font-size: 12px; color: var(--text-lighter); letter-spacing: 0.04em; margin-bottom: 10px; }
@@ -169,8 +170,6 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
     <span>⏱ <strong>约3小时</strong></span>
     <span>📍 <strong>寻心理线下空间</strong></span>
   </div>
-  <img src="images/activity-slowdown/photo_1.jpg" alt="活动现场" class="activity-img" style="max-width:640px; margin-top:36px;">
-  <p class="activity-img-caption">7月5日，压力管理团辅活动正式开启</p>
 </section>
 
 <!-- 正文 -->
@@ -182,6 +181,9 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
     <p>之所以做这件事，是因为我们发现，太多人不是不想把生活过好，而是被压力压得喘不过气来。<strong>当一个人长期处于高压状态，他的注意力会收窄，情绪会变得易激惹，甚至连基本的耐心都会被磨损。</strong></p>
     <p>所以，在谈任何方法论之前，我们先谈一件更基础的事：<strong>你还好吗？</strong></p>
     <p>由此，来自不同行业、不同年龄段的伙伴，从觉察到行动——我们一起做了一次向内的探索。</p>
+
+    <img src="images/activity-slowdown/photo_1.jpg" alt="活动现场：带领者在投影前介绍活动" class="activity-img" style="max-width:640px;">
+    <p class="activity-img-caption">7月5日，压力管理团辅活动正式开启——带领者金楠在介绍活动框架</p>
 
     <!-- 团体目标 -->
     <div class="highlight" style="text-align:left;">
@@ -408,7 +410,7 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
       <div class="leaders-title">本场活动带领者</div>
       <!-- 金楠 -->
       <div class="leader-card">
-        <div class="leader-avatar">👩‍🏫</div>
+        <img src="images/activity-slowdown/photo_1.jpg" alt="金楠" class="leader-avatar-img" style="object-position: 55% 35%;">
         <div class="leader-info">
           <div class="name">金楠</div>
           <div class="title">带导者 · 受训团体带领者 · 北京师范大学应用心理博士</div>
@@ -430,7 +432,7 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
       </div>
       <!-- 秦齐 -->
       <div class="leader-card">
-        <div class="leader-avatar">💼</div>
+        <img src="images/activity-slowdown/photo_1.jpg" alt="秦齐" class="leader-avatar-img" style="object-position: 45% 55%;">
         <div class="leader-info">
           <div class="name">秦齐</div>
           <div class="title">协同带领 · 信息管理、心理学双硕士</div>
