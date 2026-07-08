@@ -173,19 +173,25 @@ body{
 }
 .psy-card-header{
   font-family:"Songti SC","STSong","SimSun",serif;font-size:16px;
-  color:var(--green-dark);font-weight:700;margin-bottom:20px;line-height:2.2
+  color:var(--green-dark);font-weight:700;margin-bottom:28px;line-height:2.2
 }
 .psy-card-header .greek{
   font-family:"Georgia","Times New Roman",serif;font-size:22px;font-weight:700;
   color:var(--green);margin-right:4px
 }
+.psy-card-slogan{
+  display:block;font-size:15px;color:var(--green-dark);font-weight:700;
+  letter-spacing:1px;margin-top:4px
+}
+.psy-card-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:28px
+}
 .psy-card-item{
-  margin-bottom:16px;line-height:2.2;font-size:15px;color:var(--text-light);
+  line-height:2.2;font-size:15px;color:var(--text-light);
   font-family:"Songti SC","STSong","SimSun",serif
 }
-.psy-card-item:last-child{margin-bottom:0}
 .psy-card-item .label{
-  font-weight:700;color:var(--green-dark);display:block;margin-bottom:4px
+  font-weight:700;color:var(--green-dark);display:block;margin-bottom:6px;font-size:16px
 }
 .psy-card-item .desc{
   color:var(--text-light)
@@ -306,6 +312,8 @@ body{
   .psy-card{padding:32px 24px}
   .psy-card-header{font-size:14px}
   .psy-card-header .greek{font-size:18px}
+  .psy-card-slogan{font-size:14px}
+  .psy-card-grid{grid-template-columns:1fr;gap:20px}
   .psy-card-item{font-size:14px}
 }
 </style>
@@ -415,16 +423,17 @@ body{
       <div class="psy-card">
         <div class="psy-card-header">
           <span class="greek">ψυχή</span>（Psyche，灵魂）<br>
-          心理学，是一场寻找灵魂的旅程<br>
-          向内探索内心，向外生长力量
+          <span class="psy-card-slogan">心理学，是一场寻找灵魂的旅程　　向内探索内心，向外生长力量</span>
         </div>
-        <div class="psy-card-item">
-          <span class="label">⬇ 向内寻</span>
-          <span class="desc">用心理学的工具，探索自己的内心世界。那些说不清的情绪、解不开的心结，其实都有迹可循。</span>
-        </div>
-        <div class="psy-card-item">
-          <span class="label">⬆ 向外生</span>
-          <span class="desc">将向内收获的内心力量落地生活。一场温暖团辅、一件治愈文创、一段走心文字，都是我们想陪你走的路。</span>
+        <div class="psy-card-grid">
+          <div class="psy-card-item">
+            <span class="label">⬇ 向内寻</span>
+            <span class="desc">用心理学的工具，探索自己的内心世界。那些说不清的情绪、解不开的心结，其实都有迹可循。</span>
+          </div>
+          <div class="psy-card-item">
+            <span class="label">⬆ 向外生</span>
+            <span class="desc">将向内收获的内心力量落地生活。一场温暖团辅、一件治愈文创、一段走心文字，都是我们想陪你走的路。</span>
+          </div>
         </div>
       </div>
 
