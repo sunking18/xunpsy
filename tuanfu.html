@@ -101,7 +101,7 @@ body {
 .teacher-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 28px; box-shadow: var(--shadow-sm); transition: var(--transition); border-top: 3px solid var(--gold); }
 .teacher-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
 .teacher-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-.teacher-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; color: #fff; }
+.teacher-avatar-img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; flex-shrink: 0; border: 2px solid var(--gold-light); box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
 .teacher-name { font-size: 18px; font-weight: 700; color: var(--text); }
 .teacher-degree { font-size: 12px; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; }
 .teacher-bio { font-size: 13px; color: var(--text-light); line-height: 1.8; margin-bottom: 12px; }
@@ -311,7 +311,7 @@ body {
       <!-- 金楠 -->
       <div class="teacher-card">
         <div class="teacher-header">
-          <div class="teacher-avatar">👩‍🏫</div>
+          <img src="images/teacher-jinnan.png" alt="金楠" class="teacher-avatar-img" style="object-position: 55% 35%;">
           <div>
             <div class="teacher-name">金楠</div>
             <div class="teacher-degree">应用心理博士 · 受训团体带领者</div>
@@ -368,7 +368,7 @@ body {
       <!-- 秦齐 -->
       <div class="teacher-card">
         <div class="teacher-header">
-          <div class="teacher-avatar">💼</div>
+          <img src="images/teacher-qinqi.png" alt="秦齐" class="teacher-avatar-img" style="object-position: 45% 55%;">
           <div>
             <div class="teacher-name">秦齐</div>
             <div class="teacher-degree">协同带领 · 信息管理、心理学双硕士</div>
