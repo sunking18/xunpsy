@@ -77,12 +77,22 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
 .flow-list li { position: relative; padding: 10px 0 10px 24px; font-size: 14px; color: var(--text-light); line-height: 1.7; }
 .flow-list li::before { content: ''; position: absolute; left: 0; top: 17px; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
 
-/* 带领者卡片 */
-.leaders { margin: 48px 0 0; padding: 36px; background: var(--warm-light); border-radius: var(--radius-lg); text-align: center; border-top: 3px solid var(--gold); }
-.leaders h3 { font-family: "Songti SC",serif; font-size: 18px; color: var(--green-dark); font-weight: 700; margin-bottom: 16px; }
-.leaders .names { font-size: 16px; color: var(--text); margin-bottom: 8px; }
-.leaders .role { font-size: 13px; color: var(--text-lighter); }
-.leaders .role strong { color: var(--green); }
+/* 带领者卡片 - 新版 */
+.leaders-section { margin: 48px 0 0; }
+.leaders-title { font-family: "Songti SC",serif; font-size: 20px; color: var(--green-dark); font-weight: 700; margin-bottom: 24px; text-align: center; letter-spacing: 0.06em; }
+.leader-card { display: flex; gap: 20px; padding: 28px; background: var(--warm-light); border-radius: var(--radius-lg); margin-bottom: 16px; border-left: 3px solid var(--gold); align-items: flex-start; }
+.leader-card:last-child { margin-bottom: 0; }
+.leader-avatar { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 26px; flex-shrink: 0; color: #fff; }
+.leader-info { flex: 1; }
+.leader-info .name { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.leader-info .title { font-size: 12px; color: var(--text-lighter); letter-spacing: 0.04em; margin-bottom: 10px; }
+.leader-info .bio { font-size: 14px; color: var(--text-light); line-height: 1.8; }
+.leader-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+.leader-tag { font-size: 11px; padding: 3px 10px; background: rgba(74,124,111,0.08); color: var(--green); border-radius: 12px; white-space: nowrap; }
+@media (max-width:480px){
+  .leader-card { flex-direction: column; align-items: center; text-align: center; }
+  .leader-tags { justify-content: center; }
+}
 
 /* 底部 CTA */
 .cta-section { text-align: center; padding: 48px 24px; background: var(--green-bg); border-radius: var(--radius-lg); margin-bottom: 64px; }
@@ -122,7 +132,7 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
   .knowledge-card .kc-title { font-size: 15px; }
   .highlight p { font-size: 16px; }
   .blockquote { padding: 18px 20px; }
-  .leaders { padding: 24px; }
+  .leader-card { padding: 20px; }
   .float-back { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 18px; }
 }
 </style>
@@ -393,11 +403,47 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
       </div>
     </div>
 
-    <!-- 带领者卡片 -->
-    <div class="leaders">
-      <h3>本场活动带领者</h3>
-      <div class="names">金楠 &amp; 秦齐</div>
-      <div class="role"><strong>金楠</strong> · 带导者 &nbsp;|&nbsp; <strong>秦齐</strong> · 协同带领</div>
+    <!-- 带领者介绍 -->
+    <div class="leaders-section">
+      <div class="leaders-title">本场活动带领者</div>
+      <!-- 金楠 -->
+      <div class="leader-card">
+        <div class="leader-avatar">👩‍🏫</div>
+        <div class="leader-info">
+          <div class="name">金楠</div>
+          <div class="title">带导者 · 受训团体带领者 · 北京师范大学应用心理博士</div>
+          <div class="bio">
+            师从樊富珉教授，研究方向为教育心理与技术在心理学中的应用研究。深耕儿童青少年心理，对儿童社会情感发展、心理健康知识普及有深入研究。先后带领过自我探索团体、情绪管理团体、儿童社会情感学习团体及教师心理团体活动等多类团体。
+          </div>
+          <div class="bio" style="margin-top:8px;">
+            具备十余年一线大厂技术研发经验，善于将结构化思维融入团体辅导方案设计与执行。长期担任宋庆龄基金会社会情感团辅合作带领老师，与慈弘基金会合作开展线下亲子沟通、社区儿童SEL及教师心理赋能活动。
+          </div>
+          <div class="leader-tags">
+            <span class="leader-tag">温暖接纳</span>
+            <span class="leader-tag">结构清晰</span>
+            <span class="leader-tag">资源取向</span>
+            <span class="leader-tag">体验先行</span>
+            <span class="leader-tag">CMAU全国特等奖</span>
+            <span class="leader-tag">应用心理实践技能大赛特等奖</span>
+          </div>
+        </div>
+      </div>
+      <!-- 秦齐 -->
+      <div class="leader-card">
+        <div class="leader-avatar">💼</div>
+        <div class="leader-info">
+          <div class="name">秦齐</div>
+          <div class="title">协同带领 · 团体辅导协同带领者</div>
+          <div class="bio">
+            负责协助团体流程推进、活动复盘与参与者状态观察。在本次活动中，协同带领确保了热身环节的节奏把控和小组分享环节的流畅衔接，尤其在各组创意命名的即兴互动中，营造了轻松投入的氛围。
+          </div>
+          <div class="leader-tags">
+            <span class="leader-tag">流程管理</span>
+            <span class="leader-tag">团体观察</span>
+            <span class="leader-tag">氛围催化</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- CTA -->

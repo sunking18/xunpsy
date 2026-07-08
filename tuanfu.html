@@ -94,6 +94,20 @@ body {
 .cta-btn { display: inline-block; padding: 12px 32px; background: #fff; color: var(--green-dark); border-radius: 24px; font-size: 15px; text-decoration: none; font-weight: 600; transition: var(--transition); }
 .cta-btn:hover { background: var(--warm-light); transform: translateY(-2px); }
 
+/* 带领老师 */
+.teachers-section { padding: 80px 0; }
+.teachers-section .section-intro { margin-bottom: 48px; }
+.teacher-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; max-width: 900px; margin: 0 auto; }
+.teacher-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 28px; box-shadow: var(--shadow-sm); transition: var(--transition); border-top: 3px solid var(--gold); }
+.teacher-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.teacher-header { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
+.teacher-avatar { width: 52px; height: 52px; border-radius: 50%; background: linear-gradient(135deg, var(--gold-light), var(--gold)); display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; color: #fff; }
+.teacher-name { font-size: 18px; font-weight: 700; color: var(--text); }
+.teacher-degree { font-size: 12px; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; }
+.teacher-bio { font-size: 13px; color: var(--text-light); line-height: 1.8; margin-bottom: 12px; }
+.teacher-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.teacher-tag { font-size: 11px; padding: 2px 8px; background: rgba(74,124,111,0.08); color: var(--green); border-radius: 10px; white-space: nowrap; }
+
 /* 页脚 */
 .footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
 .footer-brand { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
@@ -104,6 +118,7 @@ body {
 @media (max-width: 768px) {
   .audience-grid { grid-template-columns: 1fr; }
   .feature-row { grid-template-columns: 1fr; }
+  .teacher-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
 }
 @media (max-width: 480px) {
@@ -283,6 +298,92 @@ body {
     <h2 style="font-family:'Songti SC',serif;font-size:22px;color:#385F55;margin-bottom:8px">过往活动回顾</h2>
     <p style="font-size:14px;color:#5C5C5C;margin-bottom:24px">看看我们已经做过什么——每一次相遇，都是一次向内的探索</p>
     <a href="tuanfu-gallery.html" style="display:inline-block;padding:10px 28px;background:transparent;color:#4A7C6F;border:1.5px solid #4A7C6F;border-radius:24px;font-size:14px;text-decoration:none;font-weight:600;transition:all 0.3s">浏览全部过往活动 &rarr;</a>
+  </div>
+</section>
+
+<section class="teachers-section content-section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <h2>主要带领老师</h2>
+      <p>硕博团队设计并带领，每一场团辅都有专业保证。</p>
+    </div>
+    <div class="teacher-grid">
+      <!-- 金楠 -->
+      <div class="teacher-card">
+        <div class="teacher-header">
+          <div class="teacher-avatar">👩‍🏫</div>
+          <div>
+            <div class="teacher-name">金楠</div>
+            <div class="teacher-degree">应用心理博士 · 受训团体带领者</div>
+          </div>
+        </div>
+        <div class="teacher-bio">
+          北京师范大学应用心理博士，师从樊富珉教授。研究方向为教育心理与技术在心理学中的应用。深耕儿童青少年心理，先后带领自我探索、情绪管理、儿童社会情感学习及教师心理团体等多类团辅。长期担任宋庆龄基金会社会情感团辅合作带领老师，与慈弘基金会合作开展亲子沟通、社区儿童SEL及教师心理赋能活动。具备十余年技术研发经验，善于将结构化思维融入团体辅导方案。
+        </div>
+        <div class="teacher-tags">
+          <span class="teacher-tag">温暖接纳</span>
+          <span class="teacher-tag">结构清晰</span>
+          <span class="teacher-tag">SEL专家</span>
+          <span class="teacher-tag">CMAU特等奖</span>
+        </div>
+      </div>
+      <!-- 姚伟伟 -->
+      <div class="teacher-card">
+        <div class="teacher-header">
+          <div class="teacher-avatar">📚</div>
+          <div>
+            <div class="teacher-name">姚伟伟</div>
+            <div class="teacher-degree">应用心理博士 · 北师大心理学部课程运营主管</div>
+          </div>
+        </div>
+        <div class="teacher-bio">
+          北京师范大学心理学部课程运营主管，从事教育教学与管理12年，参与国家自然科学基金项目，成果发表于《教师教育研究》和《Frontiers in Psychology》。擅长青少年社会情感学习、成人自我意识、情绪管理、压力缓释、亲密关系、养育倦怠、工作倦怠等领域。参编《教师的六节心理课》系列丛书，2023-2025连续三年担任全国应用心理实践技能大赛北师大领队教师。
+        </div>
+        <div class="teacher-tags">
+          <span class="teacher-tag">课程运营</span>
+          <span class="teacher-tag">教育心理学</span>
+          <span class="teacher-tag">SEL体系</span>
+          <span class="teacher-tag">数字药研发</span>
+        </div>
+      </div>
+      <!-- 马卉媛 -->
+      <div class="teacher-card">
+        <div class="teacher-header">
+          <div class="teacher-avatar">🌟</div>
+          <div>
+            <div class="teacher-name">马卉媛</div>
+            <div class="teacher-degree">应用心理硕士 · 专业受训团体带领者</div>
+          </div>
+        </div>
+        <div class="teacher-bio">
+          唠里唠叨心理运营负责人，专注教育心理学研究与青少年心理健康实践。拥有6年少儿教学与一线心理团辅经验，深度参与区域心理服务体系搭建。深耕SEL体系，精准把握青少年心理发展规律。同时聚焦家庭教育全场景支持，将家长自我成长、亲密关系经营、科学亲子沟通及养育倦怠调适融入专业课程，兼顾青少年心理健康与家庭心理生态建设。
+        </div>
+        <div class="teacher-tags">
+          <span class="teacher-tag">SEL体系</span>
+          <span class="teacher-tag">家庭教育</span>
+          <span class="teacher-tag">少儿心理</span>
+          <span class="teacher-tag">6年线经验</span>
+        </div>
+      </div>
+      <!-- 秦齐 -->
+      <div class="teacher-card">
+        <div class="teacher-header">
+          <div class="teacher-avatar">💼</div>
+          <div>
+            <div class="teacher-name">秦齐</div>
+            <div class="teacher-degree">协同带领 · 团体辅导协同带领者</div>
+          </div>
+        </div>
+        <div class="teacher-bio">
+          负责团体辅导流程推进、活动复盘与参与者状态观察。在团体活动中确保热身环节节奏把控与各环节流畅衔接，通过即兴互动与氛围催化，帮助参与者快速融入团体，营造轻松、投入的团辅体验。
+        </div>
+        <div class="teacher-tags">
+          <span class="teacher-tag">流程管理</span>
+          <span class="teacher-tag">团体观察</span>
+          <span class="teacher-tag">氛围催化</span>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
