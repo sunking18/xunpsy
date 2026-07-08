@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>慢下来，自在行——压力管理团辅 | 寻心理 · InnerSeed</title>
+<link rel="icon" href="favicon.png">
+<style>
+:root { --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55; --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED; --gold: #D4A574; --gold-light: #F0E0CC; --text: #2C2C2C; --text-light: #5C5C5C; --text-lighter: #888; --white: #FAFAF8; --border: #E8E4DF; --shadow-sm: 0 2px 8px rgba(44,44,44,0.06); --shadow-md: 0 4px 20px rgba(44,44,44,0.10); --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --transition: all 0.3s ease; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; background: var(--white); color: var(--text); line-height: 1.8; -webkit-font-smoothing: antialiased; }
+.container { max-width: 800px; margin: 0 auto; padding: 0 24px; }
+
+/* 导航栏 */
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(250,250,248,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.navbar-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo img { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC","STSong","SimSun",serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-links { display: flex; gap: 20px; align-items: center; white-space: nowrap; }
+.nav-link { font-size: 13px; color: var(--text-light); text-decoration: none; transition: var(--transition); padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+.nav-back { font-size: 13px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
+.nav-back:hover { background: var(--green); color: #fff; }
+
+/* 返回顶部浮动入口 */
+.float-back { position: fixed; bottom: 32px; right: 32px; width: 48px; height: 48px; background: var(--green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; text-decoration: none; box-shadow: var(--shadow-md); transition: var(--transition); z-index: 100; }
+.float-back:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+/* Hero */
+.activity-hero {
+  background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%);
+  padding: 120px 24px 64px; text-align: center; position: relative; overflow: hidden;
+}
+.activity-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.15) 0%, transparent 60%);
+}
+.activity-hero .tag { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--gold-light); border: 1px solid rgba(212,165,116,0.4); border-radius: 20px; padding: 4px 16px; margin-bottom: 20px; position: relative; }
+.activity-hero h1 { font-family: "Songti SC",serif; font-size: clamp(28px,5vw,40px); font-weight: 900; color: #fff; letter-spacing: 0.08em; position: relative; margin-bottom: 12px; line-height: 1.4; }
+.activity-hero .subtitle { font-size: clamp(15px,2.5vw,20px); color: rgba(255,255,255,0.8); font-style: italic; position: relative; margin-bottom: 24px; }
+.activity-hero .meta { display: flex; flex-wrap: wrap; justify-content: center; gap: 24px; position: relative; }
+.activity-hero .meta span { font-size: 13px; color: rgba(255,255,255,0.7); }
+.activity-hero .meta span strong { color: var(--gold-light); font-weight: 600; }
+
+/* 文章内容区 */
+.article-body { padding: 48px 0 80px; }
+
+/* 段落文字 */
+.article-body p { font-size: 15px; color: var(--text-light); margin-bottom: 20px; line-height: 2; }
+.article-body p.lead { font-size: 17px; color: var(--text); font-weight: 500; margin-bottom: 28px; }
+
+/* 引用块 */
+.blockquote { margin: 28px 0; padding: 24px 28px; background: var(--warm-light); border-left: 4px solid var(--gold); border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+.blockquote p { font-size: 15px; color: var(--text); font-style: italic; margin-bottom: 0; line-height: 1.9; }
+.blockquote .by { font-size: 12px; color: var(--text-lighter); margin-top: 8px; font-style: normal; }
+
+/* 心理学知识卡片 */
+.knowledge-card { margin: 28px 0; padding: 28px; background: linear-gradient(135deg, var(--green-bg), #e2f0ec); border-radius: var(--radius-lg); border: 1px solid rgba(74,124,111,0.12); }
+.knowledge-card .kc-tag { display: inline-block; font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--green); background: rgba(74,124,111,0.1); border-radius: 4px; padding: 2px 10px; margin-bottom: 12px; font-weight: 600; }
+.knowledge-card .kc-title { font-family: "Songti SC",serif; font-size: 17px; color: var(--green-dark); font-weight: 700; margin-bottom: 10px; }
+.knowledge-card p { font-size: 14px; color: var(--text-light); line-height: 1.8; margin-bottom: 0; }
+
+/* 金句高亮 */
+.highlight { margin: 28px 0; padding: 20px 24px; background: linear-gradient(135deg, rgba(212,165,116,0.1), rgba(240,224,204,0.2)); border-radius: var(--radius-md); text-align: center; }
+.highlight p { font-family: "Songti SC",serif; font-size: 18px; color: var(--green-dark); font-weight: 600; margin-bottom: 0; line-height: 1.8; letter-spacing: 0.03em; }
+
+/* 环节分隔 */
+.segment { margin: 48px 0; }
+.segment-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+.segment-num { width: 42px; height: 42px; background: var(--green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; font-family: Georgia,serif; flex-shrink: 0; }
+.segment-header h2 { font-family: "Songti SC",serif; font-size: 22px; color: var(--green-dark); font-weight: 700; letter-spacing: 0.04em; }
+
+/* 环节列表 */
+.flow-list { margin: 16px 0; padding-left: 0; list-style: none; }
+.flow-list li { position: relative; padding: 10px 0 10px 24px; font-size: 14px; color: var(--text-light); line-height: 1.7; }
+.flow-list li::before { content: ''; position: absolute; left: 0; top: 17px; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+
+/* 带领者卡片 */
+.leaders { margin: 48px 0 0; padding: 36px; background: var(--warm-light); border-radius: var(--radius-lg); text-align: center; border-top: 3px solid var(--gold); }
+.leaders h3 { font-family: "Songti SC",serif; font-size: 18px; color: var(--green-dark); font-weight: 700; margin-bottom: 16px; }
+.leaders .names { font-size: 16px; color: var(--text); margin-bottom: 8px; }
+.leaders .role { font-size: 13px; color: var(--text-lighter); }
+.leaders .role strong { color: var(--green); }
+
+/* 底部 CTA */
+.cta-section { text-align: center; padding: 48px 24px; background: var(--green-bg); border-radius: var(--radius-lg); margin-bottom: 64px; }
+.cta-section h3 { font-family: "Songti SC",serif; font-size: 20px; color: var(--green-dark); font-weight: 700; margin-bottom: 12px; }
+.cta-section p { font-size: 14px; color: var(--text-light); margin-bottom: 24px; }
+.cta-btn { display: inline-block; padding: 12px 32px; background: var(--green); color: #fff; border-radius: 30px; text-decoration: none; font-size: 15px; font-weight: 600; transition: var(--transition); }
+.cta-btn:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.cta-secondary { display: inline-block; margin-top: 16px; padding: 10px 28px; color: var(--green); border: 1.5px solid var(--green); border-radius: 30px; text-decoration: none; font-size: 14px; transition: var(--transition); }
+.cta-secondary:hover { background: var(--green); color: #fff; }
+
+/* 中间分隔线 */
+.divider { text-align: center; margin: 32px 0; font-size: 24px; color: var(--gold-light); letter-spacing: 8px; }
+
+/* 页脚 */
+.footer { background: var(--green-dark); padding: 40px 24px; text-align: center; }
+.footer-logo { width: 40px; height: 40px; margin-bottom: 12px; opacity: 0.9; }
+.footer-text { font-size: 13px; color: rgba(255,255,255,0.7); }
+.footer-text strong { color: var(--gold-light); }
+
+/* 响应式 */
+@media (max-width: 640px) {
+  .navbar-inner { padding: 0 16px; }
+  .nav-links { gap: 12px; }
+  .nav-links a { font-size: 12px; }
+  .activity-hero { padding: 100px 20px 48px; }
+  .activity-hero h1 { font-size: 24px; }
+  .activity-hero .meta { gap: 14px; }
+  .activity-hero .meta span { font-size: 12px; }
+  .article-body { padding: 32px 0 60px; }
+  .article-body p { font-size: 14px; }
+  .segment-header h2 { font-size: 19px; }
+  .knowledge-card { padding: 20px; }
+  .knowledge-card .kc-title { font-size: 15px; }
+  .highlight p { font-size: 16px; }
+  .blockquote { padding: 18px 20px; }
+  .leaders { padding: 24px; }
+  .float-back { bottom: 20px; right: 20px; width: 40px; height: 40px; font-size: 18px; }
+}
+</style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="寻心理">
+      <div>
+        <div class="nav-logo-text">寻心理</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link">首页</a>
+      <a href="tuanfu.html" class="nav-link">团辅课程</a>
+      <a href="tuanfu-gallery.html" class="nav-link">往期活动</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+      <a href="tuanfu-gallery.html" class="nav-back">&larr; 活动列表</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section class="activity-hero">
+  <div class="tag">公益团体辅导 · 压力管理</div>
+  <h1>慢下来，自在行</h1>
+  <p class="subtitle">不是因为路不远，而是因为走得太急，<br>会错过路上的风景，也会弄丢自己。</p>
+  <div class="meta">
+    <span>📅 <strong>2026年7月5日</strong></span>
+    <span>👥 <strong>公益招募 · 不限职业年龄</strong></span>
+    <span>⏱ <strong>约3小时</strong></span>
+    <span>📍 <strong>寻心理线下空间</strong></span>
+  </div>
+</section>
+
+<!-- 正文 -->
+<div class="container">
+  <div class="article-body">
+
+    <!-- 开篇 -->
+    <p class="lead">7月5日的一个午后，我们的压力管理团体辅导正式开启。这是一次面向社会的公益招募——不限职业，不限年龄，只要你觉得自己需要，就可以来。</p>
+    <p>之所以做这件事，是因为我们发现，太多人不是不想把生活过好，而是被压力压得喘不过气来。<strong>当一个人长期处于高压状态，他的注意力会收窄，情绪会变得易激惹，甚至连基本的耐心都会被磨损。</strong></p>
+    <p>所以，在谈任何方法论之前，我们先谈一件更基础的事：<strong>你还好吗？</strong></p>
+    <p>由此，来自不同行业、不同年龄段的伙伴，从觉察到行动——我们一起做了一次向内的探索。</p>
+
+    <!-- 团体目标 -->
+    <div class="highlight" style="text-align:left;">
+      <p style="font-size:15px; margin-bottom:12px; text-align:center;">🎯 团体目标</p>
+      <ul class="flow-list">
+        <li>把模糊的压力感变成清晰可见的压力事件</li>
+        <li>厘清压力来源</li>
+        <li>发现你已经拥有但未曾注意的力量与支持</li>
+        <li>在团体智慧中拓展属于自己的压力工具箱</li>
+      </ul>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 第1环节 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num">1</div>
+        <h2>建立安全框架</h2>
+      </div>
+      <p>活动正式开始前，带领者特别强调了三条原则：<strong>真诚倾听、参与投入、保密原则</strong>。</p>
+      <div class="blockquote">
+        <p>"我们每个人都会在这里分享一些真实的想法或者故事，但这些想法或者故事可能并不想让除了咱们团体外的其他人知道。所以请您一定保密——在团体结束后，我们可以把感受带走，把故事留下。"</p>
+        <div class="by">——带领者开场白</div>
+      </div>
+      <div class="knowledge-card">
+        <div class="kc-tag">心理学理论</div>
+        <div class="kc-title">团体动力学 · 安全框架</div>
+        <p>团体动力学里有一个概念叫"安全框架"——当成员确信自己说的话不会被带出这个房间，防御才会真正放下。这三条原则，就是为接下来的探索搭建的安全地基。</p>
+      </div>
+      <p>这句话说完，带领者注意到有好几位伙伴轻轻点了点头。<strong>当安全框架被清晰地建立起来，团体才有了真正对话的可能。</strong></p>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 第2环节 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num">2</div>
+        <h2>快乐拍拍操：让身体先开口</h2>
+      </div>
+      <p>热身环节，带领者带大家做了"单人拍拍操"。规则很简单：跟随带领者的指令，拍自己的头、肩、腿。</p>
+      <div class="blockquote">
+        <p>"头头拍拍，肩肩拍拍——头拍肩拍，头肩拍拍——"</p>
+      </div>
+      <p>一开始还有人放不开，动作小心翼翼。但节奏一快起来，笑声就止不住了。左右肩交替、左右腿交替，到后面根本跟不上，手忙脚乱，<strong>整个房间笑成一片</strong>。</p>
+      <div class="knowledge-card">
+        <div class="kc-tag">心理学理论</div>
+        <div class="kc-title">接地技术（Grounding）— 正念减压疗法 MBSR</div>
+        <p>现代人的日常生活高度依赖大脑——回消息、做决策、处理一件接一件的待办事项，几乎全在"脑力"频道。但压力不仅存在于认知层面，它首先储存在身体里。肩颈的僵硬、胃部的不适、说不清来源的疲惫——这些都是身体替我们记住的压力。</p>
+        <p style="margin-top:10px;">拍拍操的本质，是用身体动作把人从"脑子"拉回"身体"。当你专注于"左手拍左肩，右手拍右肩"的时候，你没有余力去想今天还有几件事没做完。身体先动起来，注意力就回来了。</p>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 第3环节 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num">3</div>
+        <h2>光谱测量：看见自己的节奏</h2>
+      </div>
+      <p>热身之后，带领者做了一个"光谱测量"。在教室用5把椅子代表1分至10分，请大家根据自己的真实状态站到相应的位置。</p>
+      <p><strong>三个维度：</strong></p>
+      <ul class="flow-list">
+        <li>工作生活压力指数（1 几乎无压 → 10 几乎崩溃）</li>
+        <li>压力的负面影响（1 几乎不影响 → 10 影响非常大）</li>
+        <li>压力的管理信心（1 完全没把握 → 10 很有方法）</li>
+      </ul>
+      <p>第一个维度站出来，差距就很明显。有人站在3分的位置，有人直接走到了8分。旁边有伙伴露出惊讶的表情："<strong>我以为只有我压力这么大。</strong>"</p>
+      <div class="knowledge-card">
+        <div class="kc-tag">心理学理论</div>
+        <div class="kc-title">普同感（Universality）</div>
+        <p>在团体辅导中，"普同感"是一个核心治疗因子——当一个人发现自己不是唯一有某种困扰的人，他的孤独感会显著下降。很多人长期独自承受压力，以为"就我最难"。但当你在光谱上看到，原来身边的人也都站在差不多的位置，那种"只有我"的孤立感就开始松动。</p>
+      </div>
+      <p>有些伙伴压力指数不高，但受压力的影响很大，甚至没什么信心去管理它。当被问到有什么管理方法时，回答是——<strong>"硬扛"</strong>。</p>
+      <div class="highlight">
+        <p>"硬扛"这个词让我心里一动。<br>它太真实了。不是不想管，<br>是不知道除了扛着，还能做什么。</p>
+      </div>
+      <p>而这，正是接下来要做的事——<strong>把"硬扛"变成"有方法"</strong>。</p>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 第4环节 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num">4</div>
+        <h2>找到彼此的相似</h2>
+      </div>
+      <p>手心手背随机确定第一位开始者，顺时针转两圈，每人说出自己的一个特点，其他人如果有相同的就举手——<strong>找出彼此的相似之处</strong>。</p>
+      <div class="blockquote">
+        <p>"我也在互联网行业。""我也是北漂。""我也有一个上幼儿园的孩子。"</p>
+      </div>
+      <p>相似点被一个一个找出来的时候，你能感觉到空气中的温度在上升。原本不太熟的几个人，因为一句"我也是"，忽然就近了。</p>
+      <p>分组完成后，每组要完成四项任务：<strong>选组长、起组名、定组规、签组约</strong>。起名字的时候创意满天飞，"0糖0卡0脂"现在还深深萦绕在带领者脑海中——很多人压力大的时候可能选择大吃大喝，放纵完后，这便是最朴素的愿望了吧。</p>
+      <div class="knowledge-card">
+        <div class="kc-tag">心理学理论</div>
+        <div class="kc-title">团体动力学 · 共同制定规则</div>
+        <p>在团体动力学里，成员共同制定的规则，比带领者单方面宣布的规则更有约束力，也更能营造安全感。因为那是他们自己说出来的话。当一个人亲手写下"不评判"并签上自己的名字，这条规则就不只是墙上的字，而是他给自己的承诺。</p>
+      </div>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 第5环节 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num">5</div>
+        <h2>压力圈图：把模糊变成清晰</h2>
+      </div>
+      <p>带领者给每位伙伴发了一张纸，上面画着空白的圆圈。请在圆圈里写下近期生活、工作、学习中的压力事件——不用写名字，写完就好。</p>
+      <p><strong>两三分钟的安静，笔尖在纸上沙沙作响。</strong></p>
+      <p>写完之后，每人2-3分钟在小组内分享自己的压力来源。第二圈，再分享做这个练习的觉察和启发。</p>
+      <div class="knowledge-card">
+        <div class="kc-tag">心理学理论</div>
+        <div class="kc-title">外化技术（Externalization）— 叙事疗法</div>
+        <p>叙事疗法认为，问题才是问题，人不是问题。当压力是一团模糊的、说不清的感受时，它像一个巨大的阴影笼罩着你，你不知道它有多大、从哪来、怎么对付。但当你把它一个一个写进圆圈里——"项目 deadline""父母身体""经济压力""亲密关系""自我发展"——它就从一团迷雾变成了一个个具体的、可以被看见的事件。</p>
+        <p style="margin-top:10px;"><strong>看见，是改变的第一步。</strong></p>
+      </div>
+      <div class="blockquote">
+        <p>"写下来才发现，其实我并不知道我到底在焦虑什么，或者原来让我焦虑的不是一件事，是好多件事叠在一起。但是写出来之后，好像也没那么可怕了。每一件，好像都能想到办法。"</p>
+        <div class="by">——参与者分享</div>
+      </div>
+      <p>这就是外化的力量。<strong>当压力从"我感觉快撑不住了"变成"我目前面临这五件事"，你就从被情绪淹没的状态，回到了可以思考、可以行动的状态。</strong></p>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 第6环节 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num">6</div>
+        <h2>同样的风，不同的感受</h2>
+      </div>
+      <p>在大家分享完压力圈图之后，带领者引入了一个心理学知识点：<strong>压力因人而异——什么在影响我。</strong></p>
+      <p>同样是面对项目截止日期，有的人觉得是天大的事，有的人觉得按部就班就好。同样是家人的一句催促，有的人一整天都缓不过来，有的人听完就放下了。</p>
+      <p>差异在哪里？<strong>不在事件本身，而在事件和我们之间那个"过滤器"——我们对事件的认知评估。</strong></p>
+      <div class="knowledge-card">
+        <div class="kc-tag">心理学理论</div>
+        <div class="kc-title">拉扎鲁斯（Lazarus）压力评估理论</div>
+        <p>压力不是事件的属性，而是人对事件的评估结果。当你评估一件事"超出我的应对资源且对我的福祉有威胁"，压力就产生了；当你评估"我有能力应对"，同样的事就不构成压力。</p>
+      </div>
+      <p>带领者请大家回去看自己的压力圈图，试着想一想：这些压力事件里，有哪些是"真的超出能力范围"，有哪些是"我把它评估得比实际更严重"？</p>
+      <div class="highlight">
+        <p>当你意识到"让我痛苦的不全是事件本身，<br>还有我看待它的方式"，你就获得了一个新的自由度——<br>你改变不了事件，但你可以调整看待它的角度。</p>
+      </div>
+      <p>有伙伴沉默了一会儿，说："有些事写的时候觉得天要塌了，但现在看……好像也没那么大。"<strong>这个觉察本身就是减压。</strong></p>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 第7环节 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num">7</div>
+        <h2>头脑风暴：我们的压力工具箱</h2>
+      </div>
+      <p><strong>这是今天最热闹的环节。</strong></p>
+      <p>规则很简单：规定时间内，每个小组头脑风暴尽可能多的压力管理方法，写在白纸上。方法最多的小组优胜。</p>
+      <div class="knowledge-card">
+        <div class="kc-tag">设计逻辑</div>
+        <div class="kc-title">集体智慧的叠加效应</div>
+        <p>依靠集体智慧，收集更多有效方法。一个人能想到的方法是有限的，但几个人的智慧叠加在一起，工具箱一下就丰满了。让每个人意识到：方法一直都在，只是你一个人的时候想不起来。</p>
+      </div>
+      <p>各小组的成果展示环节，每个组都贡献出了令人眼前一亮的方法——有的很实用，有的很创意，<strong>更重要的是，每个方法背后都站着一个真实的人在说："这个对我有用"</strong>。</p>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 第8环节 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num">8</div>
+        <h2>感言与承诺：带走方法，留下故事</h2>
+      </div>
+      <p>最后，我们做了一个简单的收尾。每个人用一句话总结今天的感受。可以是一句感谢，也可以是一个新的发现。</p>
+      <div class="blockquote">
+        <p>"今天最大的收获是发现，原来身边有这么多人和我一样。"</p>
+      </div>
+      <div class="blockquote">
+        <p>"写下来之后才发现，我扛的东西其实没有想象中那么重。"</p>
+      </div>
+      <div class="blockquote">
+        <p>"谢谢你们听我说，平时这些话没有地方讲。"</p>
+      </div>
+      <p>然后，所有人手牵手，一起念出承诺：</p>
+      <div class="highlight" style="text-align:left;">
+        <p style="font-size:15px; line-height:2;">"感谢你我小组的伙伴，感谢你们的聆听——让我感受到被理解被尊重；感谢你们的分享——开阔了我的视野，丰富了我的经验。<br><br>我承诺：遵守组规，保守秘密，留下每个人的故事，带走压力管理的有效方法和信心，用积极心态迎接每一天。"</p>
+      </div>
+      <p>一个一个说出自己的名字。声音不大，但很坚定。</p>
+    </div>
+
+    <div class="divider">✦ ✦ ✦</div>
+
+    <!-- 尾声 -->
+    <div class="segment">
+      <div class="segment-header">
+        <div class="segment-num" style="background:var(--gold);">✿</div>
+        <h2>写在最后</h2>
+      </div>
+      <p>这次相聚，时间不长。但从"硬扛"到"有方法"，从"只有我"到"原来你也一样"，这条路已经走出了第一步。</p>
+      <div class="highlight">
+        <p>压力不会消失。它是生活的一部分，也是成长的信号。<br>我们做的不是消灭压力，而是学会与它共处——<br>看见它，理解它，然后用自己选的方式去回应它。</p>
+      </div>
+      <div class="blockquote">
+        <p>"你比昨天更懂得照顾自己，这已是一种胜利。"</p>
+        <div class="by">——带领者在课程结束时送给大家的话</div>
+      </div>
+    </div>
+
+    <!-- 带领者卡片 -->
+    <div class="leaders">
+      <h3>本场活动带领者</h3>
+      <div class="names">金楠 &amp; 秦齐</div>
+      <div class="role"><strong>金楠</strong> · 带导者 &nbsp;|&nbsp; <strong>秦齐</strong> · 协同带领</div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section" style="margin-top:48px;">
+      <h3>也想体验这样的团体辅导？</h3>
+      <p>无论是个人参与还是企业定制，我们都有适合你的团辅方案。</p>
+      <a href="index.html#contact" class="cta-btn">咨询团辅方案 &rarr;</a>
+      <br>
+      <a href="tuanfu-gallery.html" class="cta-secondary">&larr; 浏览更多往期活动</a>
+    </div>
+
+  </div>
+</div>
+
+<!-- 返回顶部 -->
+<a href="#" class="float-back" title="返回顶部">↑</a>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <img src="logo-white.png" alt="寻心理" class="footer-logo">
+  <div class="footer-text">
+    <strong>寻心理 · InnerSeed</strong> — 向内寻，向外生
+  </div>
+</footer>
+
+</body>
+</html>

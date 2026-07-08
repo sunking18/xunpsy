@@ -346,7 +346,8 @@ const activities = [
       "头脑风暴：小组共创压力工具箱，挖掘集体智慧"
     ],
     images: ["拍拍操热身","光谱测量","压力圈图","小组讨论","感言时刻"],
-    url: "https://mp.weixin.qq.com/s/3eQX2eI3viDX4xY8BaiMDw"
+    url: "https://mp.weixin.qq.com/s/3eQX2eI3viDX4xY8BaiMDw",
+    page: "tuanfu-activity-slowdown.html"
   },
   {
     id: 2,
@@ -583,7 +584,8 @@ function openDetail(id) {
       <ul>${a.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
       <h3>活动掠影</h3>
       <div class="modal-gallery">${a.images.map(i => `<div class="modal-gallery-item">📸</div>`).join('')}</div>
-      ${a.url ? `<div style="text-align:center;margin-top:24px"><a href="${a.url}" target="_blank" style="display:inline-block;padding:10px 24px;background:var(--green);color:#fff;border-radius:20px;text-decoration:none;font-size:14px">阅读完整活动文章 &rarr;</a></div>` : ''}
+      ${a.page ? `<div style="text-align:center;margin-top:24px"><a href="${a.page}" style="display:inline-block;padding:10px 24px;background:var(--green);color:#fff;border-radius:20px;text-decoration:none;font-size:14px">查看完整活动回顾 &rarr;</a></div>` : ''}
+      ${a.url && !a.page ? `<div style="text-align:center;margin-top:24px"><a href="${a.url}" target="_blank" style="display:inline-block;padding:10px 24px;background:var(--green);color:#fff;border-radius:20px;text-decoration:none;font-size:14px">阅读完整活动文章 &rarr;</a></div>` : ''}
     </div>
   `;
   document.getElementById('modalOverlay').classList.add('active');
