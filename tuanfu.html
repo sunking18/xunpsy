@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>心理团辅课程 | 寻心理 · InnerSeed</title>
 <link rel="icon" href="favicon.png">
-<!-- 无外部字体依赖，使用系统原生字体，加载零延迟 -->
 <style>
 :root {
   --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
@@ -27,7 +26,7 @@ body {
 }
 .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
 
-/* 导航栏（与首页一致） */
+/* 导航栏 */
 .navbar {
   position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
   background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
@@ -38,7 +37,7 @@ body {
 .nav-logo-svg { width: 36px; height: 36px; }
 .nav-logo-text { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
 .nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
-.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-links { display: flex; gap: 28px; align-items: center; white-space: nowrap; }
 .nav-link { font-size: 14px; color: var(--text-light); text-decoration: none; transition: var(--transition); position: relative; padding: 4px 0; }
 .nav-link:hover { color: var(--green); }
 .nav-back { font-size: 14px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
@@ -67,11 +66,12 @@ body {
 
 /* 人群网格 */
 .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto; }
-.audience-card { background: #fff; border-radius: var(--radius-lg); padding: 28px 24px; text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition); }
+.audience-card { background: #fff; border-radius: var(--radius-lg); padding: 28px 24px; text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition); text-decoration: none; color: inherit; display: block; }
 .audience-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .audience-icon { font-size: 32px; margin-bottom: 10px; }
 .audience-name { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 16px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
 .audience-themes { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+.audience-course { font-size: 12px; color: var(--green); font-weight: 600; margin-top: 8px; padding-top: 8px; border-top: 1px dashed var(--border); }
 
 /* 特色区块 */
 .feature-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 800px; margin: 0 auto; }
@@ -105,6 +105,15 @@ body {
   .audience-grid { grid-template-columns: 1fr; }
   .feature-row { grid-template-columns: 1fr; }
   .nav-links { display: none; }
+}
+@media (max-width: 480px) {
+  .navbar-inner { padding: 0 16px; height: 52px; }
+  .nav-logo-text { font-size: 15px; }
+  .sub-hero { padding: 100px 20px 48px; }
+  .content-section, .content-section-alt { padding: 56px 0; }
+  .section-intro h2 { font-size: 20px; }
+  .feature-card { padding: 24px 20px; }
+  .cta-block h3 { font-size: 18px; }
 }
 </style>
 </head>
@@ -140,46 +149,58 @@ body {
     <div class="section-intro">
       <h2>什么是心理团辅？</h2>
       <p>
-        心理团辅（团体心理辅导）是一种<strong>结构化、有温度的教育成长团体</strong>。不是冷冰冰的讲座，不是一对一的咨询，而是让一群有相似需求的人围坐在一起，在专业带领者的引导下，通过精心设计的活动与对话，<strong>在安全的空间里被看见、被支持、被赋能</strong>。它相信——治愈不只发生在咨询室里，也发生在人与人真实的连接中。
+        心理团辅（团体心理辅导）是一种<strong>结构化、有温度的教育成长团体</strong>。
+      </p>
+      <p style="margin-top:12px">
+        它不是冷冰冰的讲座，也不是一对一的咨询。在这里，一群有相似需求的人围坐在一起，在专业带领者的引导下，通过精心设计的活动与对话，<strong>在安全的空间里被看见、被支持、被赋能</strong>。
+      </p>
+      <p style="margin-top:12px">
+        我们相信，治愈不只发生在咨询室里，也发生在人与人之间真实的连接中。
       </p>
     </div>
 
     <div class="section-intro" style="margin-bottom:40px;">
-      <h2>我们服务的人群</h2>
-      <p>不同的人群，不同的主题，同一个核心——在团体中找到力量，在连接中获得成长。</p>
+      <h2>我们服务的群体</h2>
+      <p>不同人群，不同主题，同一个核心——在团体中找到力量，在连接中获得成长。</p>
     </div>
 
     <div class="audience-grid">
-      <div class="audience-card">
+      <a href="tuanfu-qing.html" class="audience-card">
         <div class="audience-icon">🧒</div>
-        <div class="audience-name">青少年儿童</div>
+        <div class="audience-name">青少年心理团辅</div>
         <div class="audience-themes">社会情感学习（SEL）、心理韧性培养、同伴关系建立、自我认知探索</div>
-      </div>
-      <div class="audience-card">
-        <div class="audience-icon">👩‍💼</div>
-        <div class="audience-name">职场人士</div>
-        <div class="audience-themes">压力缓解、情绪调节、沟通边界建立、职业倦怠应对</div>
-      </div>
-      <div class="audience-card">
+        <div class="audience-course">自我意识与情绪调节 &rarr;</div>
+      </a>
+      <a href="tuanfu-zhichang.html" class="audience-card">
+        <div class="audience-icon">💼</div>
+        <div class="audience-name">职场心理团辅</div>
+        <div class="audience-themes">职场人际、冲突化解、自我认知、职业成长、压力缓解与情绪调节</div>
+        <div class="audience-course">人际冲突与自我成长 &rarr;</div>
+      </a>
+      <a href="tuanfu-jiating.html" class="audience-card">
         <div class="audience-icon">👨‍👩‍👧</div>
-        <div class="audience-name">家庭成员</div>
-        <div class="audience-themes">亲子沟通、夫妻关系修复、代际理解、家庭互动模式优化</div>
-      </div>
-      <div class="audience-card">
+        <div class="audience-name">家庭关系团辅</div>
+        <div class="audience-themes">亲子沟通、家庭互动模式优化、夫妻关系修复、代际理解</div>
+        <div class="audience-course">亲子沟通与家庭关系 &rarr;</div>
+      </a>
+      <a href="tuanfu-jiaoshi.html" class="audience-card">
         <div class="audience-icon">🏫</div>
-        <div class="audience-name">学校教师</div>
-        <div class="audience-themes">教师沟通技巧情景模拟、情绪调节、职业倦怠应对、心理素养提升</div>
-      </div>
-      <div class="audience-card">
+        <div class="audience-name">教师心理培训</div>
+        <div class="audience-themes">职业倦怠预防、情绪管理、团队协作、沟通效能提升</div>
+        <div class="audience-course">倦怠预防与团队沟通 &rarr;</div>
+      </a>
+      <a href="tuanfu-laonian.html" class="audience-card">
         <div class="audience-icon">👵</div>
-        <div class="audience-name">老年人群</div>
-        <div class="audience-themes">价值感重塑、生命回顾与整合、获得希望赋能、社会支持系统构建</div>
-      </div>
-      <div class="audience-card">
+        <div class="audience-name">老年心理关怀</div>
+        <div class="audience-themes">生命回顾与价值重塑、希望赋能、社会支持系统构建</div>
+        <div class="audience-course">生命回顾与希望赋能 &rarr;</div>
+      </a>
+      <a href="tuanfu-qinmi.html" class="audience-card">
         <div class="audience-icon">💑</div>
-        <div class="audience-name">情侣 / 伴侣</div>
+        <div class="audience-name">亲密关系团体</div>
         <div class="audience-themes">亲密关系沟通、冲突化解、情感连接加深、共同成长规划</div>
-      </div>
+        <div class="audience-course">亲密关系沟通与成长 &rarr;</div>
+      </a>
     </div>
   </div>
 </section>
@@ -262,7 +283,7 @@ body {
     <div class="cta-block">
       <h3>让改变，在一群人中间发生</h3>
       <p>无论你是学校、企业、社区还是个人，如果你想为某个群体定制一场有温度的团辅课程，欢迎联系我们。</p>
-      <a href="index.html#contact" class="cta-btn">立即咨询团辅方案 →</a>
+      <a href="index.html#contact" class="cta-btn">立即咨询团辅方案 &rarr;</a>
     </div>
   </div>
 </section>

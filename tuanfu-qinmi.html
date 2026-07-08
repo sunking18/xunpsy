@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>亲密关系团体 | 沟通与成长 | 寻心理</title>
+<link rel="icon" href="favicon.png">
+<style>
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --white: #FAFAF8;
+  --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; background: var(--white); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(250,250,248,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-svg { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
+.nav-links { display: flex; gap: 28px; align-items: center; white-space: nowrap; }
+.nav-link { font-size: 14px; color: var(--text-light); text-decoration: none; transition: var(--transition); padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+
+.sub-hero { background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%); padding: 120px 24px 60px; text-align: center; position: relative; overflow: hidden; }
+.sub-hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.12) 0%, transparent 60%); }
+.sub-hero-icon { font-size: 48px; margin-bottom: 16px; position: relative; }
+.sub-hero-title { font-family: "Songti SC", serif; font-size: clamp(28px, 5vw, 40px); font-weight: 900; color: #fff; letter-spacing: 0.06em; position: relative; margin-bottom: 12px; }
+.sub-hero-tagline { font-size: clamp(16px, 3vw, 20px); color: rgba(255,255,255,0.85); position: relative; }
+.sub-hero-divider { width: 40px; height: 2px; background: var(--gold); margin: 16px auto; border-radius: 1px; }
+
+.content-section { padding: 60px 0; }
+.content-section-alt { padding: 60px 0; background: var(--warm-light); }
+.section-intro { max-width: 700px; margin: 0 auto 48px; text-align: center; }
+.section-intro h2 { font-family: "Songti SC", serif; font-size: 24px; color: var(--green-dark); font-weight: 700; margin-bottom: 12px; }
+.section-intro p { font-size: 15px; color: var(--text-light); line-height: 1.9; }
+
+.course-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 700px; margin: 0 auto 48px; }
+.info-item { background: #fff; border-radius: var(--radius-lg); padding: 24px; text-align: center; box-shadow: var(--shadow-sm); border-top: 3px solid var(--green); }
+.info-item .num { font-size: 28px; font-weight: 700; color: var(--green-dark); font-family: Georgia,serif; }
+.info-item .label { font-size: 13px; color: var(--text-light); margin-top: 4px; }
+
+.session-list { max-width: 800px; margin: 0 auto; }
+.session-item { background: #fff; border-radius: var(--radius-lg); padding: 28px; margin-bottom: 20px; box-shadow: var(--shadow-sm); }
+.session-header { display: flex; align-items: center; gap: 16px; margin-bottom: 16px; }
+.session-num { width: 40px; height: 40px; background: var(--green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 700; font-family: Georgia,serif; flex-shrink: 0; }
+.session-title { font-family: "Songti SC", serif; font-size: 18px; color: var(--green-dark); font-weight: 700; }
+.session-tag { font-size: 12px; color: var(--gold); background: var(--warm-light); padding: 2px 10px; border-radius: 12px; margin-left: auto; }
+.session-activities { display: flex; flex-wrap: wrap; gap: 8px; }
+.activity-tag { font-size: 13px; color: var(--text-light); background: var(--green-bg); padding: 4px 12px; border-radius: 16px; }
+.session-desc { font-size: 14px; color: var(--text-light); margin-top: 12px; line-height: 1.7; }
+
+.empower-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 700px; margin: 0 auto; }
+.empower-card { background: #fff; border-radius: var(--radius-lg); padding: 28px; box-shadow: var(--shadow-sm); }
+.empower-card h3 { font-family: "Songti SC", serif; font-size: 18px; color: var(--green-dark); margin-bottom: 12px; }
+.empower-card ul { list-style: none; }
+.empower-card li { font-size: 14px; color: var(--text-light); padding: 6px 0; padding-left: 20px; position: relative; }
+.empower-card li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; }
+
+.cta-block { text-align: center; padding: 48px 24px; background: linear-gradient(135deg, var(--green-dark), var(--green)); border-radius: var(--radius-lg); max-width: 700px; margin: 0 auto; }
+.cta-block h3 { font-family: "Songti SC", serif; font-size: 22px; color: #fff; margin-bottom: 10px; }
+.cta-block p { font-size: 15px; color: rgba(255,255,255,0.8); margin-bottom: 24px; }
+.cta-btn { display: inline-block; padding: 12px 32px; background: #fff; color: var(--green-dark); border-radius: 24px; font-size: 15px; text-decoration: none; font-weight: 600; transition: var(--transition); }
+.cta-btn:hover { background: var(--warm-light); transform: translateY(-2px); }
+
+.footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
+.footer-brand { font-family: "Songti SC", serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
+.footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+@media (max-width: 768px) { .course-info { grid-template-columns: 1fr; } .empower-grid { grid-template-columns: 1fr; } .nav-links { display: none; } .session-header { flex-wrap: wrap; } .session-tag { margin-left: 0; } }
+@media (max-width: 480px) { .navbar-inner { padding: 0 16px; height: 52px; } .sub-hero { padding: 100px 20px 48px; } .content-section { padding: 40px 0; } .session-item { padding: 20px; } }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-svg" src="logo.png" alt="寻心理">
+      <div><div class="nav-logo-text">寻心理</div><div class="nav-logo-sub">InnerSeed</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="tuanfu.html" class="nav-link">&larr; 团辅首页</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+    </div>
+  </div>
+</nav>
+
+<header class="sub-hero">
+  <div class="sub-hero-icon">💑</div>
+  <h1 class="sub-hero-title">亲密关系团体</h1>
+  <div class="sub-hero-divider"></div>
+  <p class="sub-hero-tagline">沟通与成长</p>
+</header>
+
+<section class="content-section">
+  <div class="container">
+    <div class="section-intro">
+      <h2>课程概述</h2>
+      <p>面向情侣与伴侣，通过结构化团体活动，增进亲密理解，改善沟通模式，化解冲突，加深情感连接，共同规划成长。</p>
+    </div>
+    <div class="course-info">
+      <div class="info-item"><div class="num">6</div><div class="label">次课程</div></div>
+      <div class="info-item"><div class="num">90</div><div class="label">分钟/次</div></div>
+      <div class="info-item"><div class="num">6-8</div><div class="label">对伴侣</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section-alt">
+  <div class="container">
+    <div class="section-intro">
+      <h2>课程大纲</h2>
+      <p>六次递进式课程，从相识到理解，再到共同成长。</p>
+    </div>
+    <div class="session-list">
+      <div class="session-item">
+        <div class="session-header"><div class="session-num">1</div><div class="session-title">初识彼此</div><div class="session-tag">第1次课</div></div>
+        <div class="session-activities"><span class="activity-tag">相识接龙</span><span class="activity-tag">趣味哈哈镜</span><span class="activity-tag">相似圈</span></div>
+        <div class="session-desc">通过趣味互动重新发现彼此，在轻松氛围中建立信任与安全感。</div>
+      </div>
+      <div class="session-item">
+        <div class="session-header"><div class="session-num">2</div><div class="session-title">爱的地图</div><div class="session-tag">第2次课</div></div>
+        <div class="session-activities"><span class="activity-tag">人物关系网</span><span class="activity-tag">人际舒适圈</span><span class="activity-tag">爱的语言测试</span></div>
+        <div class="session-desc">绘制亲密关系地图，了解彼此感受爱的方式，发现沟通盲点。</div>
+      </div>
+      <div class="session-item">
+        <div class="session-header"><div class="session-num">3</div><div class="session-title">欣赏与肯定</div><div class="session-tag">第3次课</div></div>
+        <div class="session-activities"><span class="activity-tag">优点轰炸</span><span class="activity-tag">我们会夸夸</span><span class="activity-tag">心意诉说</span></div>
+        <div class="session-desc">通过互相欣赏与肯定活动，营造温暖氛围，增进彼此欣赏与接纳。</div>
+      </div>
+      <div class="session-item">
+        <div class="session-header"><div class="session-num">4</div><div class="session-title">冲突与理解</div><div class="session-tag">第4次课</div></div>
+        <div class="session-activities"><span class="activity-tag">冲突情景模拟</span><span class="activity-tag">非暴力沟通</span><span class="activity-tag">情绪猜谜</span></div>
+        <div class="session-desc">学习非暴力沟通技巧，通过情景模拟练习冲突化解，增进相互理解。</div>
+      </div>
+      <div class="session-item">
+        <div class="session-header"><div class="session-num">5</div><div class="session-title">深度连接</div><div class="session-tag">第5次课</div></div>
+        <div class="session-activities"><span class="activity-tag">很高兴认识你</span><span class="activity-tag">我的五样</span><span class="activity-tag">盲行引路</span></div>
+        <div class="session-desc">通过深度对话与信任活动，加深情感连接，体验彼此依赖与支持。</div>
+      </div>
+      <div class="session-item">
+        <div class="session-header"><div class="session-num">6</div><div class="session-title">共同愿景</div><div class="session-tag">第6次课</div></div>
+        <div class="session-activities"><span class="activity-tag">未来名片</span><span class="activity-tag">共同成长画布</span><span class="activity-tag">想要靠近你</span></div>
+        <div class="session-desc">共同绘制关系愿景，规划成长目标，带着承诺与希望携手前行。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section">
+  <div class="container">
+    <div class="section-intro"><h2>能解决什么 · 赋能什么</h2></div>
+    <div class="empower-grid">
+      <div class="empower-card">
+        <h3>🔍 解决的问题</h3>
+        <ul>
+          <li>沟通不畅，误解频发</li>
+          <li>冲突升级，难以化解</li>
+          <li>情感疏离，连接减弱</li>
+          <li>需求表达困难</li>
+          <li>共同方向缺失</li>
+        </ul>
+      </div>
+      <div class="empower-card">
+        <h3>💪 赋能成长</h3>
+        <ul>
+          <li>建立有效的沟通模式</li>
+          <li>掌握冲突化解技巧</li>
+          <li>加深情感连接与理解</li>
+          <li>学会表达爱与需求</li>
+          <li>共同规划成长方向</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="content-section-alt">
+  <div class="container">
+    <div class="cta-block">
+      <h3>让爱成为成长的养分</h3>
+      <p>适合情侣成长工作坊、婚前辅导、婚姻提升等场景。可定制单次或完整6次课程。</p>
+      <a href="index.html#contact" class="cta-btn">咨询课程方案 &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <img src="logo-white.png" alt="寻心理" style="width:48px;height:48px;margin-bottom:12px;opacity:0.9">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">InnerSeed</div>
+  <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
+</footer>
+
+</body>
+</html>
