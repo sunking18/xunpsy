@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>往期活动回顾 | 寻心理 · InnerSeed</title>
+<link rel="icon" href="favicon.png">
+<style>
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --text-lighter: #888;
+  --white: #FAFAF8; --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* 导航栏 */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-svg { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC","STSong","SimSun",serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
+.nav-links { display: flex; gap: 28px; align-items: center; white-space: nowrap; }
+.nav-link { font-size: 14px; color: var(--text-light); text-decoration: none; transition: var(--transition); position: relative; padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+.nav-back { font-size: 14px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
+.nav-back:hover { background: var(--green); color: #fff; }
+
+/* Hero */
+.hero {
+  background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%);
+  padding: 120px 24px 48px; text-align: center; position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.12) 0%, transparent 60%);
+}
+.hero h1 { font-family: "Songti SC",serif; font-size: clamp(28px,5vw,38px); font-weight: 900; color: #fff; letter-spacing: 0.06em; position: relative; margin-bottom: 12px; }
+.hero p { font-size: clamp(15px,2.5vw,18px); color: rgba(255,255,255,0.85); position: relative; }
+
+/* 筛选栏 */
+.filter-bar {
+  background: #fff; border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+  padding: 20px 24px; margin: -28px auto 40px; position: relative; z-index: 10;
+  display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end;
+  max-width: 1100px;
+}
+.filter-group { display: flex; flex-direction: column; gap: 6px; min-width: 140px; }
+.filter-group label { font-size: 12px; color: var(--text-lighter); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+.filter-select {
+  padding: 8px 32px 8px 12px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 14px; color: var(--text); background: var(--white);
+  appearance: none; cursor: pointer; transition: var(--transition);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 10px center;
+}
+.filter-select:focus { border-color: var(--green); outline: none; }
+.filter-search {
+  flex: 1; min-width: 200px;
+}
+.filter-search input {
+  width: 100%; padding: 8px 12px; border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm); font-size: 14px; color: var(--text); transition: var(--transition);
+}
+.filter-search input:focus { border-color: var(--green); outline: none; }
+.filter-search input::placeholder { color: #bbb; }
+.filter-reset {
+  padding: 8px 20px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  font-size: 14px; color: var(--text-light); background: #fff; cursor: pointer; transition: var(--transition);
+  white-space: nowrap;
+}
+.filter-reset:hover { border-color: var(--green); color: var(--green); }
+
+/* 统计 + 布局选择 */
+.toolbar {
+  display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;
+}
+.result-count { font-size: 14px; color: var(--text-lighter); }
+.result-count strong { color: var(--text); }
+.view-toggle { display: flex; gap: 8px; }
+.view-btn {
+  width: 36px; height: 36px; border: 1.5px solid var(--border); border-radius: var(--radius-sm);
+  background: #fff; color: var(--text-lighter); cursor: pointer; display: flex;
+  align-items: center; justify-content: center; transition: var(--transition);
+}
+.view-btn.active { border-color: var(--green); color: var(--green); background: var(--green-bg); }
+.view-btn:hover { border-color: var(--green); }
+
+/* 活动列表（列表视图） */
+.activity-list { display: flex; flex-direction: column; gap: 16px; }
+
+/* 活动列表（网格视图） */
+.activity-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 20px; }
+
+.activity-card {
+  background: #fff; border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer;
+  border: 1px solid transparent;
+}
+.activity-card:hover { box-shadow: var(--shadow-md); border-color: var(--green-light); transform: translateY(-2px); }
+
+/* 列表视图的卡片：横向布局 */
+.activity-list .activity-card { display: flex; }
+.activity-list .card-img { width: 240px; flex-shrink: 0; min-height: 180px; }
+.activity-grid .card-img { width: 100%; height: 200px; }
+
+.card-img {
+  background: linear-gradient(135deg, var(--green-bg), #d4e5dc);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.card-img-placeholder {
+  font-size: 42px; opacity: 0.6;
+}
+.card-img .date-badge {
+  position: absolute; top: 12px; left: 12px;
+  background: rgba(56,95,85,0.85); color: #fff;
+  font-size: 11px; padding: 4px 10px; border-radius: 12px;
+  font-weight: 500;
+}
+
+.card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
+.card-tag {
+  font-size: 11px; padding: 2px 10px; border-radius: 10px; font-weight: 500;
+}
+.tag-group { background: #E8F0ED; color: #4A7C6F; }
+.tag-category { background: #FBF5ED; color: #D4A574; }
+.tag-featured { background: #FFE8E5; color: #E8736A; }
+
+.card-title { font-family: "Songti SC",serif; font-size: 18px; font-weight: 700; color: var(--green-dark); margin-bottom: 8px; line-height: 1.4; }
+.card-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 12px; flex: 1; }
+.card-meta { display: flex; gap: 16px; font-size: 12px; color: var(--text-lighter); }
+.card-meta span { display: flex; align-items: center; gap: 4px; }
+
+/* 无结果 */
+.empty-state { text-align: center; padding: 80px 24px; }
+.empty-state .icon { font-size: 56px; margin-bottom: 16px; }
+.empty-state h3 { font-size: 18px; color: var(--text-light); margin-bottom: 8px; }
+.empty-state p { font-size: 14px; color: var(--text-lighter); }
+
+/* 活动详情弹窗 */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 2000;
+  background: rgba(0,0,0,0.5); display: flex; align-items: center; justify-content: center;
+  padding: 24px; display: none;
+}
+.modal-overlay.active { display: flex; }
+.modal {
+  background: #fff; border-radius: var(--radius-lg); max-width: 800px; width: 100%;
+  max-height: 85vh; overflow-y: auto; box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+}
+.modal-header {
+  background: linear-gradient(165deg, #385F55, #4A7C6F); color: #fff;
+  padding: 28px 32px; position: relative;
+}
+.modal-close {
+  position: absolute; top: 16px; right: 16px; width: 32px; height: 32px;
+  border-radius: 50%; background: rgba(255,255,255,0.2); border: none;
+  color: #fff; font-size: 18px; cursor: pointer; display: flex;
+  align-items: center; justify-content: center; transition: var(--transition);
+}
+.modal-close:hover { background: rgba(255,255,255,0.35); }
+.modal-title { font-family: "Songti SC",serif; font-size: 24px; font-weight: 700; margin-bottom: 8px; }
+.modal-subtitle { font-size: 14px; opacity: 0.85; line-height: 1.6; }
+.modal-body { padding: 32px; }
+.modal-body h3 { font-family: "Songti SC",serif; font-size: 18px; color: var(--green-dark); margin: 24px 0 12px; }
+.modal-body h3:first-child { margin-top: 0; }
+.modal-body p { font-size: 14px; color: var(--text-light); line-height: 1.9; margin-bottom: 12px; }
+.modal-body ul { list-style: none; margin-bottom: 16px; }
+.modal-body ul li { font-size: 14px; color: var(--text-light); padding: 6px 0 6px 20px; position: relative; line-height: 1.7; }
+.modal-body ul li::before { content: "·"; position: absolute; left: 6px; color: var(--green); font-weight: 700; }
+.modal-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; margin: 16px 0; }
+.modal-gallery-item {
+  aspect-ratio: 4/3; background: var(--green-bg); border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 32px; color: var(--green-light);
+}
+
+/* 页脚 */
+.footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; margin-top: 60px; }
+.footer-brand { font-family: "Songti SC",serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
+.footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .filter-bar { padding: 16px; gap: 10px; }
+  .filter-group { min-width: 120px; flex: 1; }
+  .activity-list .activity-card { flex-direction: column; }
+  .activity-list .card-img { width: 100%; height: 180px; min-height: unset; }
+  .activity-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .toolbar { flex-direction: column; gap: 12px; align-items: flex-start; }
+}
+@media (max-width: 480px) {
+  .navbar-inner { height: 52px; }
+  .hero { padding: 100px 20px 40px; }
+  .filter-bar { margin: -20px 12px 24px; }
+  .modal-header { padding: 20px; }
+  .modal-body { padding: 20px; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-svg" src="logo.png" alt="寻心理">
+      <div><div class="nav-logo-text">寻心理</div><div class="nav-logo-sub">InnerSeed</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="tuanfu.html" class="nav-link">&larr; 团辅首页</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <h1>往期活动回顾</h1>
+  <p>每一次相聚，都是一次向内的探索与向外的生长</p>
+</header>
+
+<div class="container">
+  <!-- 筛选栏 -->
+  <div class="filter-bar">
+    <div class="filter-group">
+      <label>服务群体</label>
+      <select class="filter-select" id="filterGroup">
+        <option value="">全部群体</option>
+        <option value="青少年">🧒 青少年</option>
+        <option value="职场">💼 职场人士</option>
+        <option value="家庭">👨‍👩‍👧 家庭</option>
+        <option value="教师">🏫 教师</option>
+        <option value="老年">👵 老年</option>
+        <option value="亲密关系">💑 亲密关系</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>活动分类</label>
+      <select class="filter-select" id="filterCategory">
+        <option value="">全部分类</option>
+        <option value="压力管理">压力管理</option>
+        <option value="情绪调节">情绪调节</option>
+        <option value="沟通效能">沟通效能</option>
+        <option value="自我认知">自我认知</option>
+        <option value="亲子关系">亲子关系</option>
+        <option value="团队协作">团队协作</option>
+        <option value="职业成长">职业成长</option>
+        <option value="心理韧性">心理韧性</option>
+        <option value="社会情感">社会情感学习</option>
+      </select>
+    </div>
+    <div class="filter-group">
+      <label>时间排序</label>
+      <select class="filter-select" id="filterSort">
+        <option value="newest">最新优先</option>
+        <option value="oldest">最早优先</option>
+      </select>
+    </div>
+    <div class="filter-group filter-search">
+      <label>关键词搜索</label>
+      <input type="text" id="filterSearch" placeholder="搜索活动名称、主题...">
+    </div>
+    <button class="filter-reset" id="filterReset">重置筛选</button>
+  </div>
+
+  <!-- 工具栏 -->
+  <div class="toolbar">
+    <div class="result-count" id="resultCount"></div>
+    <div class="view-toggle">
+      <button class="view-btn active" data-view="list" title="列表视图">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <button class="view-btn" data-view="grid" title="网格视图">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- 活动列表容器 -->
+  <div class="activity-list" id="activityContainer"></div>
+  <div class="empty-state" id="emptyState" style="display:none">
+    <div class="icon">🔍</div>
+    <h3>没有找到匹配的活动</h3>
+    <p>试试调整筛选条件或关键词</p>
+  </div>
+</div>
+
+<!-- 活动详情弹窗 -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modalContent"></div>
+</div>
+
+<footer class="footer">
+  <img src="logo-white.png" alt="寻心理" style="width:48px;height:48px;margin-bottom:12px;opacity:0.9">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">InnerSeed</div>
+  <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════
+// 活动数据
+// ═══════════════════════════════════════════════
+const activities = [
+  {
+    id: 1,
+    title: "慢下来，自在行——压力管理团辅",
+    date: "2026-07-05",
+    group: "职场",
+    category: "压力管理",
+    leader: "金楠",
+    coLeader: "秦齐",
+    featured: true,
+    desc: "一次面向社会的公益团辅，不限职业、不限年龄。通过光谱测量、压力圈图、头脑风暴等环节，帮助参与者从"硬扛"到"有方法"，学会与压力共处。",
+    participants: 12,
+    duration: "2.5小时",
+    location: "北京线下",
+    summary: "这次活动围绕"压力管理"展开，采用结构化团辅形式。从热身拍拍操到光谱测量、压力圈图外化、认知评估理论讲解、头脑风暴压力工具箱，最终以感言承诺收尾。参与者来自不同行业和年龄，在团体中找到了"普同感"——原来不只是自己一个人在扛。",
+    highlights: [
+      "快乐拍拍操：用身体动作把人从"脑子"拉回"身体"，实践接地技术（Grounding）",
+      "光谱测量：5把椅子代表1-10分，看见彼此的压力状态，打破"只有我最难"的孤独感",
+      "压力圈图：将模糊的压力感外化为具体事件，实践叙事疗法的外化技术",
+      "认知评估讲解：引入拉扎鲁斯压力评估理论，理解"压力不是事件的属性，而是评估的结果"",
+      "头脑风暴：小组共创压力工具箱，挖掘集体智慧"
+    ],
+    images: ["拍拍操热身","光谱测量","压力圈图","小组讨论","感言时刻"],
+    url: "https://mp.weixin.qq.com/s/3eQX2eI3viDX4xY8BaiMDw"
+  },
+  {
+    id: 2,
+    title: "青少年社会情感学习团辅 · 第一期",
+    date: "2026-06-15",
+    group: "青少年",
+    category: "社会情感",
+    leader: "金楠",
+    featured: false,
+    desc: "面向10-14岁青少年的社会情感学习团体，通过自画像、情绪温度计、人际舒适圈等活动，帮助青少年认识情绪、建立同伴连接。",
+    participants: 10,
+    duration: "90分钟 × 6次",
+    location: "北京",
+    summary: "六次课程围绕"自我认知→情绪觉察→情绪表达→同伴关系→心理韧性→展望未来"的逻辑展开。青少年在安全、接纳的团体氛围中，逐渐打开自己，学会了表达情绪和倾听他人。",
+    highlights: [
+      "情绪炸弹接力赛：音乐中传递球，趣味回答情绪问题，快速活跃气氛",
+      "自画像：用画笔探索"我是谁"，打破外貌评价，关注内在特质",
+      "情绪温度计：学习用数字量化情绪，建立情绪觉察的习惯",
+      "人际舒适圈：画同心圆标注关系亲疏，觉察自己的社交模式"
+    ],
+    images: ["破冰游戏","自画像创作","情绪温度计","团体分享"],
+    url: ""
+  },
+  {
+    id: 3,
+    title: "职场沟通效能提升工作坊",
+    date: "2026-05-22",
+    group: "职场",
+    category: "沟通效能",
+    leader: "金楠",
+    featured: false,
+    desc: "面向企业团队的沟通效能工作坊。通过传声筒、优点轰炸、冲突场景角色扮演等活动，提升团队沟通效率与凝聚力。",
+    participants: 16,
+    duration: "3小时",
+    location: "企业定制 · 北京",
+    summary: "从沟通的基本原理出发，通过体验式活动让参与者切身感受"信息损耗""倾听的重要性"和"积极反馈的力量"。后半程引入冲突化解的角色扮演，将理论转化为实际技能。",
+    highlights: [
+      "传声筒：信息依次传递，直观体验沟通中的损耗与误解来源",
+      "优点轰炸：每人坐在中央接受同事真诚的优点反馈，增强团队信任",
+      "冲突场景模拟：职场常见冲突的角色扮演，练习非暴力沟通四步法",
+      "同理心地图：绘制同事/客户的同理心地图，提升换位思考能力"
+    ],
+    images: ["破冰游戏","传声筒活动","小组共创","合影留念"],
+    url: ""
+  },
+  {
+    id: 4,
+    title: "亲子沟通工作坊——听见彼此的声音",
+    date: "2026-04-10",
+    group: "家庭",
+    category: "亲子关系",
+    leader: "金楠",
+    featured: false,
+    desc: "亲子共同参与的工作坊，通过角色互换、家庭优点日、爱的语言测试等活动，帮助亲子重新听见彼此的声音。",
+    participants: "8组家庭",
+    duration: "2小时",
+    location: "北京",
+    summary: "亲子分开做"我希望你……"的书写练习，然后交换阅读。很多家长第一次看到孩子写下的"希望妈妈少看手机多陪我"，眼眶湿润。通过体验式互动，亲子之间的理解从"知道"走向"感受到"。",
+    highlights: [
+      "角色互换：孩子扮演家长、家长扮演孩子，体验彼此日常",
+      "爱的语言测试：了解彼此感受爱的方式（肯定的言语、精心的时刻等）",
+      "家庭优点日：轮流当主角接受家人真诚的赞美",
+      "心意诉说：互相写下想对对方说的话，交换阅读"
+    ],
+    images: ["亲子互动","角色互换","书写练习","温馨合影"],
+    url: ""
+  },
+  {
+    id: 5,
+    title: "教师职业倦怠预防工作坊",
+    date: "2026-03-18",
+    group: "教师",
+    category: "压力管理",
+    leader: "金楠",
+    featured: false,
+    desc: "面向中小学教师的职业倦怠预防团体。通过情绪垃圾桶、身心充电站、压力气球爆破等活动，帮助教师释放压力、重建职业能量。",
+    participants: 20,
+    duration: "3小时",
+    location: "学校定制 · 北京",
+    summary: "教师群体长期处于高压和情感劳动状态。本次工作坊首先让教师们"被看见"——通过压力光谱和压力圈图，看到彼此的不易。随后引入正念呼吸、肌肉放松和情绪急救包等实用工具。",
+    highlights: [
+      "情绪垃圾桶：写下消耗自己的事，揉团扔掉，完成一次"心理大扫除"",
+      "身心充电站：肌肉收紧放松+海浪冥想，让身体先放松下来",
+      "压力气球爆破：写压力事件装入气球踩爆，释放的不仅是气球",
+      "情绪急救包：每人制作一个"快速恢复能量"的个性化清单"
+    ],
+    images: ["热身活动","压力圈图","放松练习","收获分享"],
+    url: ""
+  },
+  {
+    id: 6,
+    title: "自我认知与成长——实习生团体辅导",
+    date: "2026-02-25",
+    group: "职场",
+    category: "自我认知",
+    leader: "金楠",
+    featured: false,
+    desc: "面向企业实习生的自我认知团体，通过我的五样、SWOT分析、未来名片等活动，帮助年轻职场人明确方向、建立自信。",
+    participants: 14,
+    duration: "90分钟 × 4次",
+    location: "企业定制 · 北京",
+    summary: "实习生群体面临从"学生"到"职场人"的身份转换。四期团体围绕"认识自己→澄清价值观→看见优势→规划未来"的框架展开，帮助他们在踏入职场的第一步时建立清晰的自我定位。",
+    highlights: [
+      "我的五样：价值澄清活动，在取舍中看清什么最重要",
+      "SWOT自我分析：系统梳理个人优势、劣势、机会和挑战",
+      "生命线绘制：回顾成长中的关键节点，发现自己的韧性",
+      "未来名片：设计三年后的名片，具象化职业愿景"
+    ],
+    images: ["破冰互动","SWOT分析","生命线分享","未来名片展示"],
+    url: ""
+  },
+  {
+    id: 7,
+    title: "心理韧性培养——青少年成长营",
+    date: "2026-01-12",
+    group: "青少年",
+    category: "心理韧性",
+    leader: "金楠",
+    featured: false,
+    desc: "寒假青少年成长营，通过挑战任务、团队合作、正念练习等，培养青少年的心理韧性与抗挫折能力。",
+    participants: 16,
+    duration: "全天 × 2天",
+    location: "北京",
+    summary: "两天一夜的成长营设计了"挑战→反思→赋能"的体验闭环。从低空绳索到团队拼图，每次挑战后带领青少年复盘"我是怎么做到的"，将成功经验内化为心理韧性。",
+    highlights: [
+      "团队挑战赛：分组完成多项任务，体验协作与面对失败",
+      "冷静大闯关：学习呼吸定心、十秒刹车等即时冷静技巧",
+      "韧性故事会：每人分享自己"最难但挺过来"的经历",
+      "能量拍拍圈：闭营围圈传递鼓励，彼此赋能"
+    ],
+    images: ["开营破冰","挑战任务","正念时刻","闭营合影"],
+    url: ""
+  },
+  {
+    id: 8,
+    title: "亲密关系深度对话沙龙",
+    date: "2025-12-08",
+    group: "亲密关系",
+    category: "沟通效能",
+    leader: "金楠",
+    featured: false,
+    desc: "面向伴侣的深度对话体验。通过"我们之间"时间线绘制、爱的语言测试、非暴力沟通练习等活动，促进亲密关系中的理解与连接。",
+    participants: "6对伴侣",
+    duration: "3小时",
+    location: "北京",
+    summary: "伴侣们分别绘制"我们之间"的时间线——标注关系中的高光时刻与低谷。然后交换分享，在带领者的引导下彼此回应。这个环节触动最深，很多伴侣发现"我以为你知道的事，其实你不知道"。",
+    highlights: [
+      "关系时间线：共同绘制关系历程，标注重要时刻与转折",
+      "爱的语言测试：了解自己和伴侣"接收爱"的不同方式",
+      "非暴力沟通练习：用观察+感受+需要+请求替换指责",
+      "给未来的信：各自写下对关系未来的期待，约定一年后开启"
+    ],
+    images: ["暖场互动","时间线创作","深度对话","温馨合影"],
+    url: ""
+  }
+];
+
+// ═══════════════════════════════════════════════
+// 渲染逻辑
+// ═══════════════════════════════════════════════
+let currentView = 'list';
+
+function renderActivities() {
+  const group = document.getElementById('filterGroup').value;
+  const category = document.getElementById('filterCategory').value;
+  const sort = document.getElementById('filterSort').value;
+  const search = document.getElementById('filterSearch').value.toLowerCase();
+
+  let filtered = activities.filter(a => {
+    if (group && a.group !== group) return false;
+    if (category && a.category !== category) return false;
+    if (search && !a.title.toLowerCase().includes(search) && !a.desc.toLowerCase().includes(search)) return false;
+    return true;
+  });
+
+  filtered.sort((a, b) => sort === 'newest' ? b.date.localeCompare(a.date) : a.date.localeCompare(b.date));
+
+  const container = document.getElementById('activityContainer');
+  const empty = document.getElementById('emptyState');
+  const count = document.getElementById('resultCount');
+
+  container.className = currentView === 'grid' ? 'activity-grid' : 'activity-list';
+  count.innerHTML = `共 <strong>${filtered.length}</strong> 场活动`;
+
+  if (filtered.length === 0) {
+    container.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  container.innerHTML = filtered.map(a => `
+    <div class="activity-card" onclick="openDetail(${a.id})">
+      <div class="card-img">
+        <div class="card-img-placeholder">${a.group === '青少年' ? '🧒' : a.group === '职场' ? '💼' : a.group === '家庭' ? '👨‍👩‍👧' : a.group === '教师' ? '🏫' : a.group === '老年' ? '👵' : '💑'}</div>
+        <div class="date-badge">${a.date}</div>
+      </div>
+      <div class="card-body">
+        <div class="card-tags">
+          <span class="card-tag tag-group">${a.group}</span>
+          <span class="card-tag tag-category">${a.category}</span>
+          ${a.featured ? '<span class="card-tag tag-featured">精选</span>' : ''}
+        </div>
+        <div class="card-title">${a.title}</div>
+        <div class="card-desc">${a.desc}</div>
+        <div class="card-meta">
+          <span>👤 ${a.leader}</span>
+          <span>⏱ ${a.duration}</span>
+          <span>📍 ${a.location}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function openDetail(id) {
+  const a = activities.find(x => x.id === id);
+  if (!a) return;
+
+  document.getElementById('modalContent').innerHTML = `
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="card-tags" style="margin-bottom:12px">
+        <span class="card-tag tag-group" style="background:rgba(255,255,255,0.2);color:#fff">${a.group}</span>
+        <span class="card-tag tag-category" style="background:rgba(255,255,255,0.2);color:#fff">${a.category}</span>
+      </div>
+      <div class="modal-title">${a.title}</div>
+      <div class="modal-subtitle">${a.date} · ${a.leader}${a.coLeader ? ' & ' + a.coLeader : ''}带领 · ${a.location} · ${a.participants}人参与 · ${a.duration}</div>
+    </div>
+    <div class="modal-body">
+      <h3>活动概要</h3>
+      <p>${a.summary}</p>
+      <h3>精彩环节</h3>
+      <ul>${a.highlights.map(h => `<li>${h}</li>`).join('')}</ul>
+      <h3>活动掠影</h3>
+      <div class="modal-gallery">${a.images.map(i => `<div class="modal-gallery-item">📸</div>`).join('')}</div>
+      ${a.url ? `<div style="text-align:center;margin-top:24px"><a href="${a.url}" target="_blank" style="display:inline-block;padding:10px 24px;background:var(--green);color:#fff;border-radius:20px;text-decoration:none;font-size:14px">阅读完整活动文章 &rarr;</a></div>` : ''}
+    </div>
+  `;
+  document.getElementById('modalOverlay').classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('modalOverlay').classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// 事件绑定
+document.getElementById('modalOverlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeModal();
+});
+
+['filterGroup', 'filterCategory', 'filterSort'].forEach(id => {
+  document.getElementById(id).addEventListener('change', renderActivities);
+});
+document.getElementById('filterSearch').addEventListener('input', renderActivities);
+document.getElementById('filterReset').addEventListener('click', () => {
+  document.getElementById('filterGroup').value = '';
+  document.getElementById('filterCategory').value = '';
+  document.getElementById('filterSort').value = 'newest';
+  document.getElementById('filterSearch').value = '';
+  renderActivities();
+});
+
+document.querySelectorAll('.view-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentView = btn.dataset.view;
+    renderActivities();
+  });
+});
+
+// 初始渲染
+renderActivities();
+</script>
+
+</body>
+</html>
