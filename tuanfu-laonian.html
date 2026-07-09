@@ -6,12 +6,32 @@
 <title>老年心理关怀课程 | 寻心理 · InnerSeed</title>
 <link rel="icon" href="favicon.png">
 <style>
-:root { --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55; --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED; --gold: #D4A574; --gold-light: #F0E0CC; --text: #2C2C2C; --text-light: #5C5C5C; --text-lighter: #888; --white: #FAFAF8; --border: #E8E4DF; --shadow-sm: 0 2px 8px rgba(44,44,44,0.06); --shadow-md: 0 4px 20px rgba(44,44,44,0.10); --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --transition: all 0.3s ease; }
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --text-lighter: #888;
+  --white: #FAFAF8; --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; background: var(--white); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
 .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
-.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(250,250,248,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+
+/* 导航栏 */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
 .navbar-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
 .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
 .nav-logo-svg { width: 36px; height: 36px; }
@@ -20,79 +40,236 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
 .nav-links { display: flex; gap: 20px; align-items: center; white-space: nowrap; }
 .nav-link { font-size: 13px; color: var(--text-light); text-decoration: none; transition: var(--transition); padding: 4px 0; }
 .nav-link:hover { color: var(--green); }
-.nav-back { font-size: 13px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
-.nav-back:hover { background: var(--green); color: #fff; }
-.page-hero { background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%); padding: 110px 24px 48px; text-align: center; position: relative; overflow: hidden; }
-.page-hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.12) 0%, transparent 60%); }
+
+/* 页面标题 Hero */
+.page-hero {
+  background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%);
+  padding: 110px 24px 48px; text-align: center; position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.12) 0%, transparent 60%);
+}
 .page-hero-icon { font-size: 48px; margin-bottom: 12px; position: relative; }
 .page-hero h1 { font-family: "Songti SC",serif; font-size: clamp(26px,5vw,36px); font-weight: 900; color: #fff; letter-spacing: 0.06em; position: relative; margin-bottom: 10px; }
 .page-hero p { font-size: clamp(14px,2.5vw,17px); color: rgba(255,255,255,0.85); position: relative; }
-.course-nav { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; padding: 24px 0 8px; border-bottom: 1px solid var(--border); margin-bottom: 40px; position: sticky; top: 60px; background: var(--white); z-index: 50; }
-.course-nav a { font-size: 13px; padding: 8px 18px; border-radius: 20px; text-decoration: none; color: var(--text-light); background: #f5f5f5; transition: var(--transition); white-space: nowrap; }
+
+/* 课程导航 */
+.course-nav {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; padding: 24px 0 8px;
+  border-bottom: 1px solid var(--border); margin-bottom: 40px; position: sticky; top: 60px;
+  background: var(--white); z-index: 50;
+}
+.course-nav a {
+  font-size: 13px; padding: 8px 18px; border-radius: 20px; text-decoration: none;
+  color: var(--text-light); background: #f5f5f5; transition: var(--transition); white-space: nowrap;
+}
 .course-nav a:hover, .course-nav a.active { background: var(--green); color: #fff; }
-.course-section { padding: 24px 0 64px; }
-.course-section:not(:last-of-type) { border-bottom: 1px solid var(--border); margin-bottom: 32px; }
-.course-banner { background: linear-gradient(135deg, var(--green-bg), #dcedf2); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 32px; display: flex; align-items: center; gap: 24px; }
-.course-banner-icon { font-size: 48px; flex-shrink: 0; }
-.course-banner-text h2 { font-family: "Songti SC",serif; font-size: 22px; color: var(--green-dark); font-weight: 700; margin-bottom: 6px; }
-.course-banner-text .course-theme { font-size: 14px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
-.course-banner-text p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
-.course-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 36px; }
-.info-item { background: #fff; border-radius: var(--radius-md); padding: 20px; text-align: center; box-shadow: var(--shadow-sm); border-top: 3px solid var(--green); }
-.info-item .num { font-size: 26px; font-weight: 700; color: var(--green-dark); font-family: Georgia,serif; }
-.info-item .label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
-.section-title { font-family: "Songti SC",serif; font-size: 20px; color: var(--green-dark); font-weight: 700; text-align: center; margin-bottom: 28px; }
-.session-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
-.session-item { background: #fff; border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); transition: var(--transition); }
-.session-item:hover { box-shadow: var(--shadow-md); }
-.session-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-.session-num { width: 36px; height: 36px; background: var(--green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; font-family: Georgia,serif; flex-shrink: 0; }
-.session-title { font-size: 16px; color: var(--green-dark); font-weight: 700; }
-.session-tag { font-size: 11px; color: var(--gold); background: var(--warm-light); padding: 2px 10px; border-radius: 10px; margin-left: auto; }
-.session-activities { display: flex; flex-wrap: wrap; gap: 6px; }
-.activity-tag { font-size: 12px; color: var(--text-light); background: var(--green-bg); padding: 3px 10px; border-radius: 14px; }
-.session-desc { font-size: 13px; color: var(--text-light); margin-top: 10px; line-height: 1.7; }
-.empower-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
-.empower-card { background: #fff; border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); }
-.empower-card h4 { font-family: "Songti SC",serif; font-size: 16px; color: var(--green-dark); margin-bottom: 12px; }
-.empower-card ul { list-style: none; }
-.empower-card li { font-size: 13px; color: var(--text-light); padding: 5px 0; padding-left: 18px; position: relative; line-height: 1.6; }
-.empower-card li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 12px; }
-.cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ── 课程卡片网格（2×2 紧凑布局）── */
+.course-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 32px 0 24px; }
+
+/* 课程卡片 */
+.course-card {
+  background: #fff; border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: var(--transition);
+  border-top: 4px solid var(--green);
+}
+.course-card:nth-child(2) { border-top-color: #5B9FC7; }
+.course-card:nth-child(3) { border-top-color: #D4A574; }
+.course-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+/* 卡片头部 */
+.course-card-header {
+  padding: 20px 20px 12px; cursor: pointer; display: flex; gap: 14px; align-items: flex-start;
+  user-select: none;
+}
+.course-card-icon { font-size: 36px; flex-shrink: 0; line-height: 1.1; }
+.course-card-info { flex: 1; }
+.course-card-title { font-family: "Songti SC",serif; font-size: 17px; color: var(--green-dark); font-weight: 700; margin-bottom: 3px; letter-spacing: 0.03em; }
+.course-card-theme { font-size: 11px; color: var(--gold); font-weight: 600; margin-bottom: 5px; text-transform: uppercase; }
+.course-card-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 10px; }
+.course-card-meta { display: flex; gap: 14px; flex-wrap: wrap; }
+.course-card-meta span { font-size: 12px; color: var(--text-lighter); display: flex; align-items: center; gap: 3px; }
+
+/* 展开/折叠按钮 */
+.course-card-toggle {
+  text-align: center; padding: 8px 20px 14px; cursor: pointer;
+  font-size: 12px; color: var(--green); transition: var(--transition);
+  border-top: 1px dashed var(--border); margin: 0 20px;
+}
+.course-card-toggle:hover { color: var(--green-dark); }
+.course-card-toggle::after { content: '▾ 展开课程大纲'; }
+.course-card.open .course-card-toggle::after { content: '▴ 收起课程大纲'; }
+
+/* 折叠内容 - 上下流式布局 */
+.course-detail { display: none; padding: 0 20px 20px; }
+.course-detail.open { display: block; }
+
+/* 课程大纲区域：2列×3行 */
+.course-detail .session-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.course-detail .session-grid .session-compact {
+  padding: 12px 14px;
+  background: var(--green-bg);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+}
+.course-detail .session-compact-num {
+  display: inline-block; width: 20px; height: 20px;
+  background: var(--green); color: #fff; border-radius: 50%;
+  text-align: center; line-height: 20px; font-size: 11px; font-weight: 700;
+  font-family: Georgia,serif; margin-right: 6px;
+}
+.course-detail .session-compact strong { color: var(--green-dark); font-size: 12px; }
+.course-detail .session-compact .act-tags { margin: 5px 0 0 26px; display: flex; flex-wrap: wrap; gap: 3px; }
+.course-detail .act-tag { font-size: 10px; color: var(--green); background: rgba(74,124,111,0.08); padding: 1px 6px; border-radius: 8px; }
+.course-detail .session-compact .desc { margin: 3px 0 0 26px; font-size: 11px; color: var(--text-light); line-height: 1.5; }
+
+/* 效果区域：2列并排 */
+.course-detail .empower-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.course-detail .empower-row .empower-compact {
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  border: 1px solid var(--border);
+}
+.course-detail .empower-compact h4 {
+  font-family: "Songti SC",serif; font-size: 14px; color: var(--green-dark);
+  margin-bottom: 8px;
+}
+.course-detail .empower-compact ul { list-style: none; }
+.course-detail .empower-compact li {
+  font-size: 12px; color: var(--text-light); padding: 3px 0;
+  padding-left: 16px; position: relative; line-height: 1.5;
+}
+.course-detail .empower-compact li::before {
+  content: "✓"; position: absolute; left: 0; color: var(--green);
+  font-weight: 700; font-size: 11px;
+}
+.course-detail .cta-row { text-align: center; margin-top: 4px; }
+.course-detail .cta-row .cta-btn { font-size: 13px; padding: 10px 28px; }
+
+/* CTA */
 .cta-btn { display: inline-block; padding: 10px 28px; background: var(--green); color: #fff; border-radius: 24px; font-size: 14px; text-decoration: none; font-weight: 600; transition: var(--transition); border: none; cursor: pointer; }
 .cta-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
 .cta-btn-outline { display: inline-block; padding: 10px 28px; background: transparent; color: var(--green); border: 1.5px solid var(--green); border-radius: 24px; font-size: 14px; text-decoration: none; font-weight: 600; transition: var(--transition); cursor: pointer; }
 .cta-btn-outline:hover { background: var(--green); color: #fff; }
-.custom-cta { text-align: center; padding: 48px 24px; margin-top: 24px; background: linear-gradient(135deg, var(--warm-light), #fff); border-radius: var(--radius-lg); border: 1px dashed var(--gold); }
+
+/* 定制化 CTA */
+.custom-cta {
+  text-align: center; padding: 48px 24px; margin-top: 24px;
+  background: linear-gradient(135deg, var(--warm-light), #fff);
+  border-radius: var(--radius-lg); border: 1px dashed var(--gold);
+}
 .custom-cta h3 { font-family: "Songti SC",serif; font-size: 20px; color: var(--green-dark); margin-bottom: 8px; }
 .custom-cta p { font-size: 14px; color: var(--text-light); margin-bottom: 20px; }
+
+/* 往期活动回顾 */
 .past-section { padding: 48px 0; background: var(--warm-light); margin-top: 24px; }
-.past-carousel { display: flex; gap: 16px; overflow-x: auto; padding: 8px 0 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.past-section .container { position: relative; }
+.past-carousel {
+  display: flex; gap: 16px; overflow-x: auto; padding: 8px 4px 20px;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
 .past-carousel::-webkit-scrollbar { height: 4px; }
-.past-carousel::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
-.past-card { min-width: 280px; max-width: 320px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; text-decoration: none; display: block; color: inherit; }
-.past-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.past-card-img { height: 140px; background: linear-gradient(135deg, var(--green-bg), #d4e5dc); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+.past-carousel::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+.past-carousel::-webkit-scrollbar-track { background: transparent; }
+.past-section .container::before,
+.past-section .container::after {
+  content: ''; position: absolute; top: 8px; bottom: 20px; width: 40px; pointer-events: none; z-index: 2;
+}
+.past-section .container::before { left: 0; background: linear-gradient(90deg, var(--warm-light), transparent); }
+.past-section .container::after { right: 0; background: linear-gradient(-90deg, var(--warm-light), transparent); }
+.past-card {
+  min-width: 280px; max-width: 300px; flex-shrink: 0; scroll-snap-align: start;
+  background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm);
+  transition: var(--transition); cursor: pointer; text-decoration: none; display: block; color: inherit;
+  position: relative;
+}
+.past-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.past-card:hover .past-title-main { color: var(--green); }
+.past-card-img {
+  height: 150px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 20px; text-align: center; position: relative; overflow: hidden;
+}
+.past-card-img::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(135deg, var(--green-bg), #d4e5dc);
+  transition: transform 0.4s ease;
+}
+.past-card:hover .past-card-img::before { transform: scale(1.05); }
+.past-card-img.text-title { position: relative; z-index: 1; width: 100%; }
+.past-title-main {
+  font-family: "Songti SC",serif; font-size: 18px; font-weight: 700;
+  color: var(--green-dark); line-height: 1.5; letter-spacing: 0.04em;
+}
+.past-title-sub {
+  font-size: 13px; color: var(--text-light); margin-top: 6px;
+  text-align: right; width: 100%; font-family: "Songti SC",serif;
+}
+.past-card:nth-child(1) .past-card-img::before {
+  background: linear-gradient(135deg, #E8F0ED 0%, #C5DDD5 100%);
+}
+.past-card:nth-child(2) .past-card-img::before {
+  background: linear-gradient(135deg, #EDE8F0 0%, #D5C5DD 100%);
+}
+.past-card:nth-child(3) .past-card-img::before {
+  background: linear-gradient(135deg, #F0EDE8 0%, #DDD5C5 100%);
+}
 .past-card-body { padding: 16px; }
 .past-card-date { font-size: 11px; color: var(--text-lighter); margin-bottom: 4px; }
 .past-card-title { font-size: 15px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
 .past-card-desc { font-size: 12px; color: var(--text-light); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.past-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 8px; }
+.past-tag { font-size: 10px; padding: 3px 10px; background: linear-gradient(135deg, var(--green-bg), #dcedf2); color: var(--green-dark); border-radius: 10px; font-weight: 600; letter-spacing: 0.3px; }
+.past-card:nth-child(2) .past-tag { background: linear-gradient(135deg, #EDE8F0, #E5DDE8); color: #5A4A6A; }
+.past-card:nth-child(3) .past-tag { background: linear-gradient(135deg, #F0EDE8, #E8E0D5); color: #6A5A4A; }
 .past-link-all { text-align: center; margin-top: 20px; }
+
+/* 页脚 */
 .footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
 .footer-brand { font-family: "Songti SC",serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
 .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
 .footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
 .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
-@media (max-width: 768px) { .course-banner { flex-direction: column; text-align: center; padding: 24px; } .course-info { grid-template-columns: 1fr; } .empower-grid { grid-template-columns: 1fr; } .nav-links { display: none; } .session-header { flex-wrap: wrap; } .session-tag { margin-left: 0; } }
-@media (max-width: 480px) { .navbar-inner { height: 52px; padding: 0 16px; } .page-hero { padding: 100px 20px 40px; } .course-nav { top: 52px; gap: 6px; } .course-nav a { font-size: 12px; padding: 6px 12px; } .course-section { padding: 16px 0 48px; } .session-item { padding: 16px; } }
+
+@media (max-width: 768px) {
+  .course-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .past-card { min-width: 240px; }
+}
+@media (max-width: 480px) {
+  .navbar-inner { height: 52px; padding: 0 16px; }
+  .page-hero { padding: 100px 20px 40px; }
+  .course-nav { top: 52px; gap: 6px; }
+  .course-nav a { font-size: 12px; padding: 6px 12px; }
+}
 </style>
 </head>
 <body>
 
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="index.html" class="nav-logo"><img class="nav-logo-svg" src="logo.png" alt="寻心理"><div><div class="nav-logo-text">寻心理</div><div class="nav-logo-sub">InnerSeed</div></div></a>
-    <div class="nav-links"><a href="tuanfu.html" class="nav-link">&larr; 团辅首页</a><a href="index.html#contact" class="nav-link">联系我们</a></div>
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-svg" src="logo.png" alt="寻心理">
+      <div><div class="nav-logo-text">寻心理</div><div class="nav-logo-sub">InnerSeed</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="tuanfu.html" class="nav-link">&larr; 团辅首页</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+    </div>
   </div>
 </nav>
 
@@ -102,100 +279,229 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
   <p>面向社区老年群体及其家属，两大主题安顿时光、连接代际</p>
 </header>
 
+<!-- 课程导航 -->
 <div class="course-nav" id="courseNav">
-  <a href="#aging">积极老龄化心理关怀</a>
+  <a href="#aging" class="active">积极老龄化心理关怀</a>
   <a href="#intergen">代际沟通与理解</a>
 </div>
 
 <div class="container">
 
-  <!-- 课程一：积极老龄化心理关怀 -->
-  <section class="course-section" id="aging">
-    <div class="course-banner">
-      <div class="course-banner-icon">🌅</div>
-      <div class="course-banner-text">
-        <h2>积极老龄化心理关怀</h2>
-        <div class="course-theme">Positive Aging</div>
-        <p>帮助老年群体回顾生命历程、整合人生智慧、建立积极的晚年自我认同，在团体中感受温暖与意义。</p>
+  <!-- ═════════ 课程卡片网格 ══════════ -->
+  <div class="course-grid" id="courseGrid">
+
+    <!-- 课程一：积极老龄化心理关怀 -->
+    <div class="course-card" id="aging">
+      <div class="course-card-header" onclick="toggleCourse(this)">
+        <div class="course-card-icon">🌅</div>
+        <div class="course-card-info">
+          <div class="course-card-title">积极老龄化心理关怀</div>
+          <div class="course-card-theme">Positive Aging</div>
+          <div class="course-card-desc">帮助老年群体回顾生命历程、整合人生智慧、建立积极的晚年自我认同，在团体中感受温暖与意义。</div>
+          <div class="course-card-meta"><span>📋 6次课程</span><span>⏱ 90分钟/次</span><span>👥 8-15人/班</span></div>
+        </div>
+      </div>
+      <div class="course-card-toggle" onclick="event.stopPropagation();toggleCourse(this.parentElement.querySelector('.course-card-header'))"></div>
+      <div class="course-detail">
+        <div class="section-title" style="font-size:15px;margin:0 0 10px;text-align:left;font-family:'Songti SC',serif;color:var(--green-dark);font-weight:700;">课程大纲</div>
+        <div class="session-grid">
+          <div class="session-compact"><span class="session-compact-num">1</span><strong>从前慢——我们的故事从这里开始</strong> <span style="color:var(--gold);font-size:10px;">建立连接</span><div class="act-tags"><span class="act-tag">相识接龙</span><span class="act-tag">滚雪球</span><span class="act-tag">大风吹</span></div><div class="desc">在轻松温暖的互动中彼此认识，建立安全的团体氛围。分享"我这辈子最骄傲的一件事"。</div></div>
+          <div class="session-compact"><span class="session-compact-num">2</span><strong>岁月如歌——我的生命故事</strong> <span style="color:var(--gold);font-size:10px;">生命回顾</span><div class="act-tags"><span class="act-tag">生命线绘制</span><span class="act-tag">照片故事分享</span><span class="act-tag">我的五样</span></div><div class="desc">通过生命回顾（Life Review），系统性地回顾自己的人生旅程，发现自己走过的路有多远、多精彩。</div></div>
+          <div class="session-compact"><span class="session-compact-num">3</span><strong>我的智慧——这一生的财富</strong> <span style="color:var(--gold);font-size:10px;">智慧整合</span><div class="act-tags"><span class="act-tag">智慧锦囊</span><span class="act-tag">优点轰炸</span><span class="act-tag">"我最擅长"分享</span></div><div class="desc">提炼一生积累的人生智慧——那些年轻人不知道、只有走过这一路才懂得的道理。被听见、被珍视。</div></div>
+          <div class="session-compact"><span class="session-compact-num">4</span><strong>拥抱失落——那些回不去的、放不下的</strong> <span style="color:var(--gold);font-size:10px;">哀伤处理</span><div class="act-tags"><span class="act-tag">情绪温度计</span><span class="act-tag">情绪垃圾桶</span><span class="act-tag">温暖视界</span></div><div class="desc">在安全的团体中表达那些未曾言说的失落——逝去的伴侣、远方的子女、身体的衰退。被允许难过，也是一种疗愈。</div></div>
+          <div class="session-compact"><span class="session-compact-num">5</span><strong>当下的力量——此刻也值得庆祝</strong> <span style="color:var(--gold);font-size:10px;">正念当下</span><div class="act-tags"><span class="act-tag">身心充电站</span><span class="act-tag">感受当下</span><span class="act-tag">呼吸四元素</span></div><div class="desc">学习适合长者的正念练习——不追求年轻时的体能，只是安住在此时此刻。体验"慢"本身的美好。</div></div>
+          <div class="session-compact"><span class="session-compact-num">6</span><strong>向未来——我的金色时光</strong> <span style="color:var(--gold);font-size:10px;">积极展望</span><div class="act-tags"><span class="act-tag">集体心愿树</span><span class="act-tag">能量拍拍圈</span><span class="act-tag">给五年后的信</span></div><div class="desc">整合六周的旅程，带着重新发现的自己、新交朋友，以及对未来日子的期待，走向金色的时光。</div></div>
+        </div>
+        <div class="empower-row">
+          <div class="empower-compact">
+            <h4>🔍 解决的问题</h4>
+            <ul>
+              <li>退休后身份迷失，缺乏价值感</li>
+              <li>孤独感与社交隔离，缺乏与人连接</li>
+              <li>面对身体衰退与丧失的哀伤</li>
+              <li>回望人生时的不甘与遗憾</li>
+              <li>对未来的焦虑与无力感</li>
+            </ul>
+          </div>
+          <div class="empower-compact">
+            <h4>💪 赋能成长</h4>
+            <ul>
+              <li>通过生命回顾整合人生经验与智慧</li>
+              <li>建立新的社交连接，减少孤独感</li>
+              <li>在安全环境中表达与处理失落</li>
+              <li>学会正念与身心放松技能</li>
+              <li>建立积极、有意义的晚年自我认同</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a>
+        </div>
       </div>
     </div>
-    <div class="course-info">
-      <div class="info-item"><div class="num">6</div><div class="label">次课程</div></div>
-      <div class="info-item"><div class="num">90</div><div class="label">分钟/次</div></div>
-      <div class="info-item"><div class="num">8-15</div><div class="label">人/班</div></div>
-    </div>
-    <div class="section-title">课程大纲</div>
-    <div class="session-list">
-      <div class="session-item"><div class="session-header"><div class="session-num">1</div><div class="session-title">从前慢——我们的故事从这里开始</div><div class="session-tag">建立连接</div></div><div class="session-activities"><span class="activity-tag">相识接龙</span><span class="activity-tag">滚雪球</span><span class="activity-tag">大风吹</span></div><div class="session-desc">在轻松温暖的互动中彼此认识，建立安全的团体氛围。分享"我这辈子最骄傲的一件事"。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">2</div><div class="session-title">岁月如歌——我的生命故事</div><div class="session-tag">生命回顾</div></div><div class="session-activities"><span class="activity-tag">生命线绘制</span><span class="activity-tag">照片故事分享</span><span class="activity-tag">我的五样</span></div><div class="session-desc">通过生命回顾（Life Review），系统性地回顾自己的人生旅程，发现自己走过的路有多远、多精彩。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">3</div><div class="session-title">我的智慧——这一生的财富</div><div class="session-tag">智慧整合</div></div><div class="session-activities"><span class="activity-tag">智慧锦囊</span><span class="activity-tag">优点轰炸</span><span class="activity-tag">"我最擅长"分享</span></div><div class="session-desc">提炼一生积累的人生智慧——那些年轻人不知道、只有走过这一路才懂得的道理。被听见、被珍视。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">4</div><div class="session-title">拥抱失落——那些回不去的、放不下的</div><div class="session-tag">哀伤处理</div></div><div class="session-activities"><span class="activity-tag">情绪温度计</span><span class="activity-tag">情绪垃圾桶</span><span class="activity-tag">温暖视界</span></div><div class="session-desc">在安全的团体中表达那些未曾言说的失落——逝去的伴侣、远方的子女、身体的衰退。被允许难过，也是一种疗愈。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">5</div><div class="session-title">当下的力量——此刻也值得庆祝</div><div class="session-tag">正念当下</div></div><div class="session-activities"><span class="activity-tag">身心充电站</span><span class="activity-tag">感受当下</span><span class="activity-tag">呼吸四元素</span></div><div class="session-desc">学习适合长者的正念练习——不追求年轻时的体能，只是安住在此时此刻。体验"慢"本身的美好。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">6</div><div class="session-title">向未来——我的金色时光</div><div class="session-tag">积极展望</div></div><div class="session-activities"><span class="activity-tag">集体心愿树</span><span class="activity-tag">能量拍拍圈</span><span class="activity-tag">给五年后的信</span></div><div class="session-desc">整合六周的旅程，带着重新发现的自己、新交的朋友，以及对未来日子的期待，走向金色的时光。</div></div>
-    </div>
-    <div class="empower-grid">
-      <div class="empower-card"><h4>🔍 解决的问题</h4><ul><li>退休后身份迷失，缺乏价值感</li><li>孤独感与社交隔离，缺乏与人连接</li><li>面对身体衰退与丧失的哀伤</li><li>回望人生时的不甘与遗憾</li><li>对未来的焦虑与无力感</li></ul></div>
-      <div class="empower-card"><h4>💪 赋能成长</h4><ul><li>通过生命回顾整合人生经验与智慧</li><li>建立新的社交连接，减少孤独感</li><li>在安全环境中表达与处理失落</li><li>学会正念与身心放松技能</li><li>建立积极、有意义的晚年自我认同</li></ul></div>
-    </div>
-    <div class="cta-row"><a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a></div>
-  </section>
 
-  <!-- 课程二：代际沟通与理解 -->
-  <section class="course-section" id="intergen">
-    <div class="course-banner" style="background:linear-gradient(135deg,#f5efe8,#efe5d8)">
-      <div class="course-banner-icon">🤲</div>
-      <div class="course-banner-text">
-        <h2>代际沟通与理解</h2>
-        <div class="course-theme">Intergenerational Communication</div>
-        <p>搭建代际之间的理解桥梁。适合社区组织两代人共同参与，在体验中看见彼此的世界、听见彼此的声音。</p>
+    <!-- 课程二：代际沟通与理解 -->
+    <div class="course-card" id="intergen">
+      <div class="course-card-header" onclick="toggleCourse(this)">
+        <div class="course-card-icon">🤲</div>
+        <div class="course-card-info">
+          <div class="course-card-title">代际沟通与理解</div>
+          <div class="course-card-theme">Intergenerational Communication</div>
+          <div class="course-card-desc">搭建代际之间的理解桥梁。适合社区组织两代人共同参与，在体验中看见彼此的世界、听见彼此的声音。</div>
+          <div class="course-card-meta"><span>📋 4次课程</span><span>⏱ 120分钟/次</span><span>👥 6-10组长幼对/班</span></div>
+        </div>
+      </div>
+      <div class="course-card-toggle" onclick="event.stopPropagation();toggleCourse(this.parentElement.querySelector('.course-card-header'))"></div>
+      <div class="course-detail">
+        <div class="section-title" style="font-size:15px;margin:0 0 10px;text-align:left;font-family:'Songti SC',serif;color:var(--green-dark);font-weight:700;">课程大纲</div>
+        <div class="session-grid">
+          <div class="session-compact"><span class="session-compact-num">1</span><strong>交换世界——"你们那代人"和"我们这代人"</strong> <span style="color:var(--gold);font-size:10px;">视角交换</span><div class="act-tags"><span class="act-tag">角色互换</span><span class="act-tag">时代拼图</span><span class="act-tag">"我年轻的时候"故事分享</span></div><div class="desc">长者和年轻人分别展示"我们的时代"——从音乐、食物到价值观。差异不是隔阂，而是通往彼此世界的入口。</div></div>
+          <div class="session-compact"><span class="session-compact-num">2</span><strong>听懂你——语言的桥梁</strong> <span style="color:var(--gold);font-size:10px;">沟通技能</span><div class="act-tags"><span class="act-tag">传声筒</span><span class="act-tag">非暴力沟通练习</span><span class="act-tag">"你教我，我教你"</span></div><div class="desc">体验沟通中的误解，学习用对方能理解的方式表达关心。"你玩手机我着急，是因为我想和你说说话。"</div></div>
+          <div class="session-compact"><span class="session-compact-num">3</span><strong>共同的记忆——我们一起创造</strong> <span style="color:var(--gold);font-size:10px;">共创连接</span><div class="act-tags"><span class="act-tag">接力作画</span><span class="act-tag">我们的拼图</span><span class="act-tag">家庭时光胶囊</span></div><div class="desc">两代人共同完成一件作品——一幅拼贴画、一个故事、一段对话录音。共同创造的过程，本身就是最好的连接。</div></div>
+          <div class="session-compact"><span class="session-compact-num">4</span><strong>约定——以后的日子，我们怎么相处</strong> <span style="color:var(--gold);font-size:10px;">未来约定</span><div class="act-tags"><span class="act-tag">代际约定卡</span><span class="act-tag">想要靠近你</span><span class="act-tag">心意诉说</span></div><div class="desc">彼此写下"以后我希望我们之间……"，交换、讨论、达成小约定。把团体的温暖带回到日常的代际相处中。</div></div>
+        </div>
+        <div class="empower-row">
+          <div class="empower-compact">
+            <h4>🔍 解决的问题</h4>
+            <ul>
+              <li>家庭中代际沟通不畅，各说各话</li>
+              <li>两代人互相不理解对方的生活方式</li>
+              <li>"数字鸿沟"带来的隔阂与挫败感</li>
+              <li>关心变成了唠叨，爱的方式不被理解</li>
+              <li>缺乏共同话题与相处乐趣</li>
+            </ul>
+          </div>
+          <div class="empower-compact">
+            <h4>💪 赋能成长</h4>
+            <ul>
+              <li>理解不同代际的价值观形成背景</li>
+              <li>用对方能收到的方式表达关心</li>
+              <li>找到跨代共同兴趣与相处方式</li>
+              <li>将误解转化为理解的机会</li>
+              <li>建立跨代际的温暖连接与约定</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a>
+        </div>
       </div>
     </div>
-    <div class="course-info">
-      <div class="info-item"><div class="num">4</div><div class="label">次课程</div></div>
-      <div class="info-item"><div class="num">120</div><div class="label">分钟/次</div></div>
-      <div class="info-item"><div class="num">6-10</div><div class="label">组长幼对/班</div></div>
-    </div>
-    <div class="section-title">课程大纲</div>
-    <div class="session-list">
-      <div class="session-item"><div class="session-header"><div class="session-num">1</div><div class="session-title">交换世界——"你们那代人"和"我们这代人"</div><div class="session-tag">视角交换</div></div><div class="session-activities"><span class="activity-tag">角色互换</span><span class="activity-tag">时代拼图</span><span class="activity-tag">"我年轻的时候"故事分享</span></div><div class="session-desc">长者和年轻人分别展示"我们的时代"——从音乐、食物到价值观。差异不是隔阂，而是通往彼此世界的入口。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">2</div><div class="session-title">听懂你——语言的桥梁</div><div class="session-tag">沟通技能</div></div><div class="session-activities"><span class="activity-tag">传声筒</span><span class="activity-tag">非暴力沟通练习</span><span class="activity-tag">"你教我，我教你"</span></div><div class="session-desc">体验沟通中的误解，学习用对方能理解的方式表达关心。"你玩手机我着急，是因为我想和你说说话。"</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">3</div><div class="session-title">共同的记忆——我们一起创造</div><div class="session-tag">共创连接</div></div><div class="session-activities"><span class="activity-tag">接力作画</span><span class="activity-tag">我们的拼图</span><span class="activity-tag">家庭时光胶囊</span></div><div class="session-desc">两代人共同完成一件作品——一幅拼贴画、一个故事、一段对话录音。共同创造的过程，本身就是最好的连接。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">4</div><div class="session-title">约定——以后的日子，我们怎么相处</div><div class="session-tag">未来约定</div></div><div class="session-activities"><span class="activity-tag">代际约定卡</span><span class="activity-tag">想要靠近你</span><span class="activity-tag">心意诉说</span></div><div class="session-desc">彼此写下"以后我希望我们之间……"，交换、讨论、达成小约定。把团体的温暖带回到日常的代际相处中。</div></div>
-    </div>
-    <div class="empower-grid">
-      <div class="empower-card"><h4>🔍 解决的问题</h4><ul><li>家庭中代际沟通不畅，各说各话</li><li>两代人互相不理解对方的生活方式</li><li>"数字鸿沟"带来的隔阂与挫败感</li><li>关心变成了唠叨，爱的方式不被理解</li><li>缺乏共同话题与相处乐趣</li></ul></div>
-      <div class="empower-card"><h4>💪 赋能成长</h4><ul><li>理解不同代际的价值观形成背景</li><li>用对方能收到的方式表达关心</li><li>找到跨代共同兴趣与相处方式</li><li>将误解转化为理解的机会</li><li>建立跨代际的温暖连接与约定</li></ul></div>
-    </div>
-    <div class="cta-row"><a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a></div>
-  </section>
 
+  </div>
+
+  <!-- 定制化咨询 -->
   <div class="custom-cta">
     <h3>社区定制，用心理学温暖银龄时光</h3>
     <p>不同的社区有不同的长者群体和实际需求。我们可根据社区特点和您的要求，灵活定制课程内容与时长。</p>
     <a href="index.html#contact" class="cta-btn" style="font-size:15px; padding:12px 36px">更多定制化内容，请咨询客服 &rarr;</a>
   </div>
+
 </div>
 
+<!-- 往期活动回顾 -->
 <section class="past-section">
   <div class="container">
-    <div class="section-title">过往活动回顾</div>
+    <div class="section-title" style="font-family:'Songti SC',serif;font-size:20px;color:var(--green-dark);font-weight:700;text-align:center;margin-bottom:28px;">过往活动回顾</div>
     <div class="past-carousel">
-      <a href="tuanfu-gallery.html" class="past-card"><div class="past-card-img">🌅</div><div class="past-card-body"><div class="past-card-date">敬请期待</div><div class="past-card-title">老年人专场团辅即将推出</div><div class="past-card-desc">我们将推出面向社区长者的积极老龄化团辅活动，敬请关注。</div></div></a>
+      <a href="tuanfu-gallery.html?group=老年" class="past-card">
+        <div class="past-card-img text-title">
+          <div class="past-title-main">金色时光</div>
+          <div class="past-title-sub">——积极老龄化团辅</div>
+        </div>
+        <div class="past-card-body">
+          <div class="past-card-date">敬请期待</div>
+          <div class="past-tags">
+            <span class="past-tag">积极老龄化</span>
+            <span class="past-tag">生命回顾</span>
+            <span class="past-tag">正念当下</span>
+          </div>
+          <div class="past-card-desc">面向社区长者的积极老龄化团体辅导活动，通过生命回顾、智慧整合与正念练习，安顿晚年时光。</div>
+        </div>
+      </a>
+      <a href="tuanfu-gallery.html?group=老年" class="past-card">
+        <div class="past-card-img text-title">
+          <div class="past-title-main">代际桥</div>
+          <div class="past-title-sub">——代际沟通工作坊</div>
+        </div>
+        <div class="past-card-body">
+          <div class="past-card-date">即将推出</div>
+          <div class="past-tags">
+            <span class="past-tag">代际沟通</span>
+            <span class="past-tag">跨代理解</span>
+            <span class="past-tag">家庭关系</span>
+          </div>
+          <div class="past-card-desc">面向社区两代人的代际沟通体验活动，在互动中搭建理解桥梁，让爱不再有代沟。</div>
+        </div>
+      </a>
+      <a href="tuanfu-gallery.html?group=老年" class="past-card">
+        <div class="past-card-img text-title">
+          <div class="past-title-main">岁月回响</div>
+          <div class="past-title-sub">——生命回顾工作坊</div>
+        </div>
+        <div class="past-card-body">
+          <div class="past-card-date">即将推出</div>
+          <div class="past-tags">
+            <span class="past-tag">生命回顾</span>
+            <span class="past-tag">叙事疗愈</span>
+            <span class="past-tag">长者关怀</span>
+          </div>
+          <div class="past-card-desc">面向长者的生命回顾与叙事疗愈工作坊，在团体中重温人生故事，整合生命智慧。</div>
+        </div>
+      </a>
     </div>
-    <div class="past-link-all"><a href="tuanfu-gallery.html" class="cta-btn-outline">查看全部过往活动 &rarr;</a></div>
+    <div class="past-link-all">
+      <a href="tuanfu-gallery.html" class="cta-btn-outline">查看全部过往活动 &rarr;</a>
+    </div>
   </div>
 </section>
 
 <footer class="footer">
   <img src="logo-white.png" alt="寻心理" style="width:48px;height:48px;margin-bottom:12px;opacity:0.9">
-  <div class="footer-brand">寻心理</div><div class="footer-tagline">向内寻，向外生</div><div class="footer-en">InnerSeed</div>
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">InnerSeed</div>
   <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
 </footer>
 
 <script>
-const navLinks=document.querySelectorAll('#courseNav a'),sections=document.querySelectorAll('.course-section');
-window.addEventListener('scroll',()=>{let c='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-200)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)})});
-navLinks.forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth',block:'start'})})});
+function toggleCourse(header) {
+  const card = header.parentElement;
+  const detail = card.querySelector('.course-detail');
+  if (detail.classList.contains('open')) {
+    detail.classList.remove('open');
+    card.classList.remove('open');
+  } else {
+    detail.classList.add('open');
+    card.classList.add('open');
+  }
+}
+
+const navLinks = document.querySelectorAll('#courseNav a');
+const cards = document.querySelectorAll('.course-card');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  cards.forEach(c => {
+    if (window.scrollY >= c.offsetTop - 200) current = c.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const navHeight = document.querySelector('.course-nav').offsetHeight;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
 </script>
+
 </body>
 </html>

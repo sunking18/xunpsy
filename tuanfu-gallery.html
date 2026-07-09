@@ -87,6 +87,12 @@ body {
   white-space: nowrap;
 }
 .filter-reset:hover { border-color: var(--green); color: var(--green); }
+.filter-btn {
+  padding: 8px 18px; border: none; border-radius: var(--radius-sm);
+  font-size: 14px; color: #fff; background: var(--green); cursor: pointer; transition: var(--transition);
+  white-space: nowrap; font-weight: 600;
+}
+.filter-btn:hover { background: var(--green-dark); transform: translateY(-1px); }
 
 /* 统计 + 布局选择 */
 .toolbar {
@@ -119,22 +125,33 @@ body {
 /* 列表视图的卡片：横向布局 */
 .activity-list .activity-card { display: flex; }
 .activity-list .card-img { width: 240px; flex-shrink: 0; min-height: 180px; }
-.activity-grid .card-img { width: 100%; height: 200px; }
+.activity-grid .card-img { width: 100%; height: 160px; }
 
 .card-img {
-  background: linear-gradient(135deg, var(--green-bg), #d4e5dc);
-  display: flex; align-items: center; justify-content: center;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
   position: relative; overflow: hidden;
+  padding: 20px;
 }
-.card-img-placeholder {
-  font-size: 42px; opacity: 0.6;
+.card-img-title {
+  text-align: center; color: #fff; z-index: 1;
+}
+.card-title-main {
+  font-family: "Songti SC", serif; font-size: 18px; font-weight: 700;
+  line-height: 1.4; text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+.card-title-sub {
+  font-size: 13px; opacity: 0.9; margin-top: 6px; font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.15);
 }
 .card-img .date-badge {
   position: absolute; top: 12px; left: 12px;
-  background: rgba(56,95,85,0.85); color: #fff;
+  background: rgba(255,255,255,0.2); color: #fff;
   font-size: 11px; padding: 4px 10px; border-radius: 12px;
-  font-weight: 500;
+  font-weight: 500; backdrop-filter: blur(4px);
 }
+.card-img-placeholder { display: none; }
+.card-img img.card-cover { display: none; }
 
 .card-body { padding: 20px; flex: 1; display: flex; flex-direction: column; }
 .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 10px; }
@@ -279,9 +296,12 @@ body {
     </div>
     <div class="filter-group filter-search">
       <label>关键词搜索</label>
-      <input type="text" id="filterSearch" placeholder="搜索活动名称、主题...">
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="filterSearch" placeholder="搜索活动名称、主题、关键词、带领者..." style="flex:1;">
+        <button type="button" class="filter-btn" id="filterSearchBtn">🔍 搜索</button>
+      </div>
     </div>
-    <button class="filter-reset" id="filterReset">重置筛选</button>
+    <button type="button" class="filter-reset" id="filterReset">重置筛选</button>
   </div>
 
   <!-- 工具栏 -->
@@ -333,19 +353,19 @@ const activities = [
     leader: "金楠",
     coLeader: "秦齐",
     featured: true,
-    desc: "一次面向社会的公益团辅，不限职业、不限年龄。通过光谱测量、压力圈图、头脑风暴等环节，帮助参与者从"硬扛"到"有方法"，学会与压力共处。",
+    desc: "一次面向社会的公益团辅，不限职业、不限年龄。通过光谱测量、压力圈图、头脑风暴等环节，帮助参与者从\"硬扛\"到\"有方法\"，学会与压力共处。",
     participants: 12,
     duration: "2.5小时",
     location: "北京线下",
-    summary: "这次活动围绕"压力管理"展开，采用结构化团辅形式。从热身拍拍操到光谱测量、压力圈图外化、认知评估理论讲解、头脑风暴压力工具箱，最终以感言承诺收尾。参与者来自不同行业和年龄，在团体中找到了"普同感"——原来不只是自己一个人在扛。",
+    summary: "这次活动围绕\"压力管理\"展开，采用结构化团辅形式。从热身拍拍操到光谱测量、压力圈图外化、认知评估理论讲解、头脑风暴压力工具箱，最终以感言承诺收尾。参与者来自不同行业和年龄，在团体中找到了\"普同感\"——原来不只是自己一个人在扛。",
     highlights: [
-      "快乐拍拍操：用身体动作把人从"脑子"拉回"身体"，实践接地技术（Grounding）",
-      "光谱测量：5把椅子代表1-10分，看见彼此的压力状态，打破"只有我最难"的孤独感",
+      "快乐拍拍操：用身体动作把人从\"脑子\"拉回\"身体\"，实践接地技术（Grounding）",
+      "光谱测量：5把椅子代表1-10分，看见彼此的压力状态，打破\"只有我最难\"的孤独感",
       "压力圈图：将模糊的压力感外化为具体事件，实践叙事疗法的外化技术",
-      "认知评估讲解：引入拉扎鲁斯压力评估理论，理解"压力不是事件的属性，而是评估的结果"",
+      "认知评估讲解：引入拉扎鲁斯压力评估理论，理解\"压力不是事件的属性，而是评估的结果\"",
       "头脑风暴：小组共创压力工具箱，挖掘集体智慧"
     ],
-    images: ["拍拍操热身","光谱测量","压力圈图","小组讨论","感言时刻"],
+    images: ["拍拍操热身\",\"光谱测量\",\"压力圈图\",\"小组讨论\",\"感言时刻"],
     url: "https://mp.weixin.qq.com/s/3eQX2eI3viDX4xY8BaiMDw",
     page: "tuanfu-activity-slowdown.html"
   },
@@ -361,14 +381,14 @@ const activities = [
     participants: 10,
     duration: "90分钟 × 6次",
     location: "北京",
-    summary: "六次课程围绕"自我认知→情绪觉察→情绪表达→同伴关系→心理韧性→展望未来"的逻辑展开。青少年在安全、接纳的团体氛围中，逐渐打开自己，学会了表达情绪和倾听他人。",
+    summary: "六次课程围绕\"自我认知→情绪觉察→情绪表达→同伴关系→心理韧性→展望未来\"的逻辑展开。青少年在安全、接纳的团体氛围中，逐渐打开自己，学会了表达情绪和倾听他人。",
     highlights: [
       "情绪炸弹接力赛：音乐中传递球，趣味回答情绪问题，快速活跃气氛",
-      "自画像：用画笔探索"我是谁"，打破外貌评价，关注内在特质",
+      "自画像：用画笔探索\"我是谁\"，打破外貌评价，关注内在特质",
       "情绪温度计：学习用数字量化情绪，建立情绪觉察的习惯",
       "人际舒适圈：画同心圆标注关系亲疏，觉察自己的社交模式"
     ],
-    images: ["破冰游戏","自画像创作","情绪温度计","团体分享"],
+    images: ["破冰游戏\",\"自画像创作\",\"情绪温度计\",\"团体分享"],
     url: ""
   },
   {
@@ -383,14 +403,14 @@ const activities = [
     participants: 16,
     duration: "3小时",
     location: "企业定制 · 北京",
-    summary: "从沟通的基本原理出发，通过体验式活动让参与者切身感受"信息损耗""倾听的重要性"和"积极反馈的力量"。后半程引入冲突化解的角色扮演，将理论转化为实际技能。",
+    summary: "从沟通的基本原理出发，通过体验式活动让参与者切身感受\"信息损耗\"\"倾听的重要性\"和\"积极反馈的力量\"。后半程引入冲突化解的角色扮演，将理论转化为实际技能。",
     highlights: [
       "传声筒：信息依次传递，直观体验沟通中的损耗与误解来源",
       "优点轰炸：每人坐在中央接受同事真诚的优点反馈，增强团队信任",
       "冲突场景模拟：职场常见冲突的角色扮演，练习非暴力沟通四步法",
       "同理心地图：绘制同事/客户的同理心地图，提升换位思考能力"
     ],
-    images: ["破冰游戏","传声筒活动","小组共创","合影留念"],
+    images: ["破冰游戏\",\"传声筒活动\",\"小组共创\",\"合影留念"],
     url: ""
   },
   {
@@ -405,14 +425,14 @@ const activities = [
     participants: "8组家庭",
     duration: "2小时",
     location: "北京",
-    summary: "亲子分开做"我希望你……"的书写练习，然后交换阅读。很多家长第一次看到孩子写下的"希望妈妈少看手机多陪我"，眼眶湿润。通过体验式互动，亲子之间的理解从"知道"走向"感受到"。",
+    summary: "亲子分开做\"我希望你……\"的书写练习，然后交换阅读。很多家长第一次看到孩子写下的\"希望妈妈少看手机多陪我\"，眼眶湿润。通过体验式互动，亲子之间的理解从\"知道\"走向\"感受到\"。",
     highlights: [
       "角色互换：孩子扮演家长、家长扮演孩子，体验彼此日常",
       "爱的语言测试：了解彼此感受爱的方式（肯定的言语、精心的时刻等）",
       "家庭优点日：轮流当主角接受家人真诚的赞美",
       "心意诉说：互相写下想对对方说的话，交换阅读"
     ],
-    images: ["亲子互动","角色互换","书写练习","温馨合影"],
+    images: ["亲子互动\",\"角色互换\",\"书写练习\",\"温馨合影"],
     url: ""
   },
   {
@@ -427,14 +447,14 @@ const activities = [
     participants: 20,
     duration: "3小时",
     location: "学校定制 · 北京",
-    summary: "教师群体长期处于高压和情感劳动状态。本次工作坊首先让教师们"被看见"——通过压力光谱和压力圈图，看到彼此的不易。随后引入正念呼吸、肌肉放松和情绪急救包等实用工具。",
+    summary: "教师群体长期处于高压和情感劳动状态。本次工作坊首先让教师们\"被看见\"——通过压力光谱和压力圈图，看到彼此的不易。随后引入正念呼吸、肌肉放松和情绪急救包等实用工具。",
     highlights: [
-      "情绪垃圾桶：写下消耗自己的事，揉团扔掉，完成一次"心理大扫除"",
+      "情绪垃圾桶：写下消耗自己的事，揉团扔掉，完成一次\"心理大扫除\"",
       "身心充电站：肌肉收紧放松+海浪冥想，让身体先放松下来",
       "压力气球爆破：写压力事件装入气球踩爆，释放的不仅是气球",
-      "情绪急救包：每人制作一个"快速恢复能量"的个性化清单"
+      "情绪急救包：每人制作一个\"快速恢复能量\"的个性化清单"
     ],
-    images: ["热身活动","压力圈图","放松练习","收获分享"],
+    images: ["热身活动\",\"压力圈图\",\"放松练习\",\"收获分享"],
     url: ""
   },
   {
@@ -449,14 +469,14 @@ const activities = [
     participants: 14,
     duration: "90分钟 × 4次",
     location: "企业定制 · 北京",
-    summary: "实习生群体面临从"学生"到"职场人"的身份转换。四期团体围绕"认识自己→澄清价值观→看见优势→规划未来"的框架展开，帮助他们在踏入职场的第一步时建立清晰的自我定位。",
+    summary: "实习生群体面临从\"学生\"到\"职场人\"的身份转换。四期团体围绕\"认识自己→澄清价值观→看见优势→规划未来\"的框架展开，帮助他们在踏入职场的第一步时建立清晰的自我定位。",
     highlights: [
       "我的五样：价值澄清活动，在取舍中看清什么最重要",
       "SWOT自我分析：系统梳理个人优势、劣势、机会和挑战",
       "生命线绘制：回顾成长中的关键节点，发现自己的韧性",
       "未来名片：设计三年后的名片，具象化职业愿景"
     ],
-    images: ["破冰互动","SWOT分析","生命线分享","未来名片展示"],
+    images: ["破冰互动\",\"SWOT分析\",\"生命线分享\",\"未来名片展示"],
     url: ""
   },
   {
@@ -471,14 +491,14 @@ const activities = [
     participants: 16,
     duration: "全天 × 2天",
     location: "北京",
-    summary: "两天一夜的成长营设计了"挑战→反思→赋能"的体验闭环。从低空绳索到团队拼图，每次挑战后带领青少年复盘"我是怎么做到的"，将成功经验内化为心理韧性。",
+    summary: "两天一夜的成长营设计了\"挑战→反思→赋能\"的体验闭环。从低空绳索到团队拼图，每次挑战后带领青少年复盘\"我是怎么做到的\"，将成功经验内化为心理韧性。",
     highlights: [
       "团队挑战赛：分组完成多项任务，体验协作与面对失败",
       "冷静大闯关：学习呼吸定心、十秒刹车等即时冷静技巧",
-      "韧性故事会：每人分享自己"最难但挺过来"的经历",
+      "韧性故事会：每人分享自己\"最难但挺过来\"的经历",
       "能量拍拍圈：闭营围圈传递鼓励，彼此赋能"
     ],
-    images: ["开营破冰","挑战任务","正念时刻","闭营合影"],
+    images: ["开营破冰\",\"挑战任务\",\"正念时刻\",\"闭营合影"],
     url: ""
   },
   {
@@ -489,21 +509,48 @@ const activities = [
     category: "沟通效能",
     leader: "金楠",
     featured: false,
-    desc: "面向伴侣的深度对话体验。通过"我们之间"时间线绘制、爱的语言测试、非暴力沟通练习等活动，促进亲密关系中的理解与连接。",
+    desc: "面向伴侣的深度对话体验。通过\"我们之间\"时间线绘制、爱的语言测试、非暴力沟通练习等活动，促进亲密关系中的理解与连接。",
     participants: "6对伴侣",
     duration: "3小时",
     location: "北京",
-    summary: "伴侣们分别绘制"我们之间"的时间线——标注关系中的高光时刻与低谷。然后交换分享，在带领者的引导下彼此回应。这个环节触动最深，很多伴侣发现"我以为你知道的事，其实你不知道"。",
+    summary: "伴侣们分别绘制\"我们之间\"的时间线——标注关系中的高光时刻与低谷。然后交换分享，在带领者的引导下彼此回应。这个环节触动最深，很多伴侣发现\"我以为你知道的事，其实你不知道\"。",
     highlights: [
       "关系时间线：共同绘制关系历程，标注重要时刻与转折",
-      "爱的语言测试：了解自己和伴侣"接收爱"的不同方式",
+      "爱的语言测试：了解自己和伴侣\"接收爱\"的不同方式",
       "非暴力沟通练习：用观察+感受+需要+请求替换指责",
       "给未来的信：各自写下对关系未来的期待，约定一年后开启"
     ],
-    images: ["暖场互动","时间线创作","深度对话","温馨合影"],
+    images: ["暖场互动\",\"时间线创作\",\"深度对话\",\"温馨合影"],
     url: ""
   }
 ];
+
+// ═══════════════════════════════════════════════
+// 卡片主题
+// ═══════════════════════════════════════════════
+function getCardTheme(a) {
+  const themes = {
+    '职场': { gradient: 'linear-gradient(135deg, #4A7C6F, #6B9E8F)' },
+    '青少年': { gradient: 'linear-gradient(135deg, #7B6BA8, #9B8EC8)' },
+    '家庭': { gradient: 'linear-gradient(135deg, #C9A87C, #D4B88C)' },
+    '教师': { gradient: 'linear-gradient(135deg, #5B8D8E, #7BADAE)' },
+    '老年': { gradient: 'linear-gradient(135deg, #B8905C, #D4A574)' },
+    '亲密关系': { gradient: 'linear-gradient(135deg, #B87B7B, #D49595)' }
+  };
+  return themes[a.group] || themes['职场'];
+}
+
+function splitTitle(title) {
+  if (title.includes('——')) {
+    const [main, sub] = title.split('——');
+    return { main: main.trim(), sub: '——' + sub.trim() };
+  }
+  if (title.includes('—')) {
+    const [main, sub] = title.split('—');
+    return { main: main.trim(), sub: '—' + sub.trim() };
+  }
+  return { main: title, sub: '' };
+}
 
 // ═══════════════════════════════════════════════
 // 渲染逻辑
@@ -519,7 +566,10 @@ function renderActivities() {
   let filtered = activities.filter(a => {
     if (group && a.group !== group) return false;
     if (category && a.category !== category) return false;
-    if (search && !a.title.toLowerCase().includes(search) && !a.desc.toLowerCase().includes(search)) return false;
+    if (search) {
+      const haystack = [a.title, a.desc, a.summary, a.group, a.category, a.leader, a.coLeader, ...(a.keywords || []), ...(a.highlights || [])].filter(Boolean).join(' ').toLowerCase();
+      if (!haystack.includes(search)) return false;
+    }
     return true;
   });
 
@@ -539,10 +589,16 @@ function renderActivities() {
   }
   empty.style.display = 'none';
 
-  container.innerHTML = filtered.map(a => `
+  container.innerHTML = filtered.map(a => {
+    const theme = getCardTheme(a);
+    const t = splitTitle(a.title);
+    return `
     <div class="activity-card" onclick="openDetail(${a.id})">
-      <div class="card-img">
-        <div class="card-img-placeholder">${a.group === '青少年' ? '🧒' : a.group === '职场' ? '💼' : a.group === '家庭' ? '👨‍👩‍👧' : a.group === '教师' ? '🏫' : a.group === '老年' ? '👵' : '💑'}</div>
+      <div class="card-img" style="background: ${theme.gradient}">
+        <div class="card-img-title">
+          <div class="card-title-main">${t.main}</div>
+          ${t.sub ? `<div class="card-title-sub">${t.sub}</div>` : ''}
+        </div>
         <div class="date-badge">${a.date}</div>
       </div>
       <div class="card-body">
@@ -551,7 +607,6 @@ function renderActivities() {
           <span class="card-tag tag-category">${a.category}</span>
           ${a.featured ? '<span class="card-tag tag-featured">精选</span>' : ''}
         </div>
-        <div class="card-title">${a.title}</div>
         <div class="card-desc">${a.desc}</div>
         <div class="card-meta">
           <span>👤 ${a.leader}</span>
@@ -560,7 +615,7 @@ function renderActivities() {
         </div>
       </div>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 function openDetail(id) {
@@ -610,6 +665,13 @@ document.addEventListener('keydown', function(e) {
   document.getElementById(id).addEventListener('change', renderActivities);
 });
 document.getElementById('filterSearch').addEventListener('input', renderActivities);
+document.getElementById('filterSearchBtn').addEventListener('click', renderActivities);
+document.getElementById('filterSearch').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') {
+    e.preventDefault();
+    renderActivities();
+  }
+});
 document.getElementById('filterReset').addEventListener('click', () => {
   document.getElementById('filterGroup').value = '';
   document.getElementById('filterCategory').value = '';

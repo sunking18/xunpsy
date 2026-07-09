@@ -6,12 +6,32 @@
 <title>家庭关系团辅课程 | 寻心理 · InnerSeed</title>
 <link rel="icon" href="favicon.png">
 <style>
-:root { --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55; --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED; --gold: #D4A574; --gold-light: #F0E0CC; --text: #2C2C2C; --text-light: #5C5C5C; --text-lighter: #888; --white: #FAFAF8; --border: #E8E4DF; --shadow-sm: 0 2px 8px rgba(44,44,44,0.06); --shadow-md: 0 4px 20px rgba(44,44,44,0.10); --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px; --transition: all 0.3s ease; }
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --text-lighter: #888;
+  --white: #FAFAF8; --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
-body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif; background: var(--white); color: var(--text); line-height: 1.7; -webkit-font-smoothing: antialiased; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
 .container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
-.navbar { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; background: rgba(250,250,248,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); }
+
+/* 导航栏 */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
 .navbar-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
 .nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
 .nav-logo-svg { width: 36px; height: 36px; }
@@ -20,79 +40,236 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
 .nav-links { display: flex; gap: 20px; align-items: center; white-space: nowrap; }
 .nav-link { font-size: 13px; color: var(--text-light); text-decoration: none; transition: var(--transition); padding: 4px 0; }
 .nav-link:hover { color: var(--green); }
-.nav-back { font-size: 13px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
-.nav-back:hover { background: var(--green); color: #fff; }
-.page-hero { background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%); padding: 110px 24px 48px; text-align: center; position: relative; overflow: hidden; }
-.page-hero::before { content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%; background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.12) 0%, transparent 60%); }
+
+/* 页面标题 Hero */
+.page-hero {
+  background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%);
+  padding: 110px 24px 48px; text-align: center; position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.12) 0%, transparent 60%);
+}
 .page-hero-icon { font-size: 48px; margin-bottom: 12px; position: relative; }
 .page-hero h1 { font-family: "Songti SC",serif; font-size: clamp(26px,5vw,36px); font-weight: 900; color: #fff; letter-spacing: 0.06em; position: relative; margin-bottom: 10px; }
 .page-hero p { font-size: clamp(14px,2.5vw,17px); color: rgba(255,255,255,0.85); position: relative; }
-.course-nav { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; padding: 24px 0 8px; border-bottom: 1px solid var(--border); margin-bottom: 40px; position: sticky; top: 60px; background: var(--white); z-index: 50; }
-.course-nav a { font-size: 13px; padding: 8px 18px; border-radius: 20px; text-decoration: none; color: var(--text-light); background: #f5f5f5; transition: var(--transition); white-space: nowrap; }
+
+/* 课程导航 */
+.course-nav {
+  display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; padding: 24px 0 8px;
+  border-bottom: 1px solid var(--border); margin-bottom: 40px; position: sticky; top: 60px;
+  background: var(--white); z-index: 50;
+}
+.course-nav a {
+  font-size: 13px; padding: 8px 18px; border-radius: 20px; text-decoration: none;
+  color: var(--text-light); background: #f5f5f5; transition: var(--transition); white-space: nowrap;
+}
 .course-nav a:hover, .course-nav a.active { background: var(--green); color: #fff; }
-.course-section { padding: 24px 0 64px; }
-.course-section:not(:last-of-type) { border-bottom: 1px solid var(--border); margin-bottom: 32px; }
-.course-banner { background: linear-gradient(135deg, var(--green-bg), #dcedf2); border-radius: var(--radius-lg); padding: 32px; margin-bottom: 32px; display: flex; align-items: center; gap: 24px; }
-.course-banner-icon { font-size: 48px; flex-shrink: 0; }
-.course-banner-text h2 { font-family: "Songti SC",serif; font-size: 22px; color: var(--green-dark); font-weight: 700; margin-bottom: 6px; }
-.course-banner-text .course-theme { font-size: 14px; color: var(--gold); font-weight: 600; margin-bottom: 8px; }
-.course-banner-text p { font-size: 14px; color: var(--text-light); line-height: 1.7; }
-.course-info { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 36px; }
-.info-item { background: #fff; border-radius: var(--radius-md); padding: 20px; text-align: center; box-shadow: var(--shadow-sm); border-top: 3px solid var(--green); }
-.info-item .num { font-size: 26px; font-weight: 700; color: var(--green-dark); font-family: Georgia,serif; }
-.info-item .label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
-.section-title { font-family: "Songti SC",serif; font-size: 20px; color: var(--green-dark); font-weight: 700; text-align: center; margin-bottom: 28px; }
-.session-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 36px; }
-.session-item { background: #fff; border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); transition: var(--transition); }
-.session-item:hover { box-shadow: var(--shadow-md); }
-.session-header { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-.session-num { width: 36px; height: 36px; background: var(--green); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; font-family: Georgia,serif; flex-shrink: 0; }
-.session-title { font-size: 16px; color: var(--green-dark); font-weight: 700; }
-.session-tag { font-size: 11px; color: var(--gold); background: var(--warm-light); padding: 2px 10px; border-radius: 10px; margin-left: auto; }
-.session-activities { display: flex; flex-wrap: wrap; gap: 6px; }
-.activity-tag { font-size: 12px; color: var(--text-light); background: var(--green-bg); padding: 3px 10px; border-radius: 14px; }
-.session-desc { font-size: 13px; color: var(--text-light); margin-top: 10px; line-height: 1.7; }
-.empower-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
-.empower-card { background: #fff; border-radius: var(--radius-lg); padding: 24px; box-shadow: var(--shadow-sm); }
-.empower-card h4 { font-family: "Songti SC",serif; font-size: 16px; color: var(--green-dark); margin-bottom: 12px; }
-.empower-card ul { list-style: none; }
-.empower-card li { font-size: 13px; color: var(--text-light); padding: 5px 0; padding-left: 18px; position: relative; line-height: 1.6; }
-.empower-card li::before { content: "✓"; position: absolute; left: 0; color: var(--green); font-weight: 700; font-size: 12px; }
-.cta-row { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+/* ── 课程卡片网格 ── */
+.course-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 32px 0 24px; }
+
+/* 课程卡片 */
+.course-card {
+  background: #fff; border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: var(--transition);
+  border-top: 4px solid var(--green);
+}
+.course-card:nth-child(2) { border-top-color: #5B9FC7; }
+.course-card:nth-child(3) { border-top-color: #D4A574; }
+.course-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+/* 卡片头部 */
+.course-card-header { 
+  padding: 20px 20px 12px; cursor: pointer; display: flex; gap: 14px; align-items: flex-start;
+  user-select: none;
+}
+.course-card-icon { font-size: 36px; flex-shrink: 0; line-height: 1.1; }
+.course-card-info { flex: 1; }
+.course-card-title { font-family: "Songti SC",serif; font-size: 17px; color: var(--green-dark); font-weight: 700; margin-bottom: 3px; letter-spacing: 0.03em; }
+.course-card-theme { font-size: 11px; color: var(--gold); font-weight: 600; margin-bottom: 5px; text-transform: uppercase; }
+.course-card-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 10px; }
+.course-card-meta { display: flex; gap: 14px; flex-wrap: wrap; }
+.course-card-meta span { font-size: 12px; color: var(--text-lighter); display: flex; align-items: center; gap: 3px; }
+
+/* 展开/折叠按钮 */
+.course-card-toggle {
+  text-align: center; padding: 8px 20px 14px; cursor: pointer;
+  font-size: 12px; color: var(--green); transition: var(--transition);
+  border-top: 1px dashed var(--border); margin: 0 20px;
+}
+.course-card-toggle:hover { color: var(--green-dark); }
+.course-card-toggle::after { content: '▾ 展开课程大纲'; }
+.course-card.open .course-card-toggle::after { content: '▴ 收起课程大纲'; }
+
+/* 折叠内容 - 上下流式布局 */
+.course-detail { display: none; padding: 0 20px 20px; }
+.course-detail.open { display: block; }
+
+/* 课程大纲区域：2列×3行 */
+.course-detail .session-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-bottom: 16px;
+}
+.course-detail .session-grid .session-compact {
+  padding: 12px 14px;
+  background: var(--green-bg);
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+}
+.course-detail .session-compact-num {
+  display: inline-block; width: 20px; height: 20px;
+  background: var(--green); color: #fff; border-radius: 50%;
+  text-align: center; line-height: 20px; font-size: 11px; font-weight: 700;
+  font-family: Georgia,serif; margin-right: 6px;
+}
+.course-detail .session-compact strong { color: var(--green-dark); font-size: 12px; }
+.course-detail .session-compact .act-tags { margin: 5px 0 0 26px; display: flex; flex-wrap: wrap; gap: 3px; }
+.course-detail .act-tag { font-size: 10px; color: var(--green); background: rgba(74,124,111,0.08); padding: 1px 6px; border-radius: 8px; }
+.course-detail .session-compact .desc { margin: 3px 0 0 26px; font-size: 11px; color: var(--text-light); line-height: 1.5; }
+
+/* 效果区域：2列并排 */
+.course-detail .empower-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+.course-detail .empower-row .empower-compact {
+  background: #fff;
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  border: 1px solid var(--border);
+}
+.course-detail .empower-compact h4 {
+  font-family: "Songti SC",serif; font-size: 14px; color: var(--green-dark);
+  margin-bottom: 8px;
+}
+.course-detail .empower-compact ul { list-style: none; }
+.course-detail .empower-compact li {
+  font-size: 12px; color: var(--text-light); padding: 3px 0;
+  padding-left: 16px; position: relative; line-height: 1.5;
+}
+.course-detail .empower-compact li::before {
+  content: "✓"; position: absolute; left: 0; color: var(--green);
+  font-weight: 700; font-size: 11px;
+}
+.course-detail .cta-row { text-align: center; margin-top: 4px; }
+.course-detail .cta-row .cta-btn { font-size: 13px; padding: 10px 28px; }
+
+/* CTA */
 .cta-btn { display: inline-block; padding: 10px 28px; background: var(--green); color: #fff; border-radius: 24px; font-size: 14px; text-decoration: none; font-weight: 600; transition: var(--transition); border: none; cursor: pointer; }
 .cta-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
 .cta-btn-outline { display: inline-block; padding: 10px 28px; background: transparent; color: var(--green); border: 1.5px solid var(--green); border-radius: 24px; font-size: 14px; text-decoration: none; font-weight: 600; transition: var(--transition); cursor: pointer; }
 .cta-btn-outline:hover { background: var(--green); color: #fff; }
-.custom-cta { text-align: center; padding: 48px 24px; margin-top: 24px; background: linear-gradient(135deg, var(--warm-light), #fff); border-radius: var(--radius-lg); border: 1px dashed var(--gold); }
+
+/* 定制化 CTA */
+.custom-cta {
+  text-align: center; padding: 48px 24px; margin-top: 24px;
+  background: linear-gradient(135deg, var(--warm-light), #fff);
+  border-radius: var(--radius-lg); border: 1px dashed var(--gold);
+}
 .custom-cta h3 { font-family: "Songti SC",serif; font-size: 20px; color: var(--green-dark); margin-bottom: 8px; }
 .custom-cta p { font-size: 14px; color: var(--text-light); margin-bottom: 20px; }
+
+/* 往期活动回顾 */
 .past-section { padding: 48px 0; background: var(--warm-light); margin-top: 24px; }
-.past-carousel { display: flex; gap: 16px; overflow-x: auto; padding: 8px 0 16px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.past-section .container { position: relative; }
+.past-carousel {
+  display: flex; gap: 16px; overflow-x: auto; padding: 8px 4px 20px;
+  scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
 .past-carousel::-webkit-scrollbar { height: 4px; }
-.past-carousel::-webkit-scrollbar-thumb { background: #ddd; border-radius: 2px; }
-.past-card { min-width: 280px; max-width: 320px; flex-shrink: 0; scroll-snap-align: start; background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: var(--transition); cursor: pointer; text-decoration: none; display: block; color: inherit; }
-.past-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.past-card-img { height: 140px; background: linear-gradient(135deg, var(--green-bg), #d4e5dc); display: flex; align-items: center; justify-content: center; font-size: 40px; }
+.past-carousel::-webkit-scrollbar-thumb { background: #ccc; border-radius: 2px; }
+.past-carousel::-webkit-scrollbar-track { background: transparent; }
+.past-section .container::before,
+.past-section .container::after {
+  content: ''; position: absolute; top: 8px; bottom: 20px; width: 40px; pointer-events: none; z-index: 2;
+}
+.past-section .container::before { left: 0; background: linear-gradient(90deg, var(--warm-light), transparent); }
+.past-section .container::after { right: 0; background: linear-gradient(-90deg, var(--warm-light), transparent); }
+.past-card {
+  min-width: 280px; max-width: 300px; flex-shrink: 0; scroll-snap-align: start;
+  background: #fff; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm);
+  transition: var(--transition); cursor: pointer; text-decoration: none; display: block; color: inherit;
+  position: relative;
+}
+.past-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.past-card:hover .past-title-main { color: var(--green); }
+.past-card-img {
+  height: 150px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  padding: 20px; text-align: center; position: relative; overflow: hidden;
+}
+.past-card-img::before {
+  content: ''; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(135deg, var(--green-bg), #d4e5dc);
+  transition: transform 0.4s ease;
+}
+.past-card:hover .past-card-img::before { transform: scale(1.05); }
+.past-card-img.text-title { position: relative; z-index: 1; width: 100%; }
+.past-title-main {
+  font-family: "Songti SC",serif; font-size: 18px; font-weight: 700;
+  color: var(--green-dark); line-height: 1.5; letter-spacing: 0.04em;
+}
+.past-title-sub {
+  font-size: 13px; color: var(--text-light); margin-top: 6px;
+  text-align: right; width: 100%; font-family: "Songti SC",serif;
+}
+.past-card:nth-child(1) .past-card-img::before {
+  background: linear-gradient(135deg, #E8F0ED 0%, #C5DDD5 100%);
+}
+.past-card:nth-child(2) .past-card-img::before {
+  background: linear-gradient(135deg, #EDE8F0 0%, #D5C5DD 100%);
+}
+.past-card:nth-child(3) .past-card-img::before {
+  background: linear-gradient(135deg, #F0EDE8 0%, #DDD5C5 100%);
+}
 .past-card-body { padding: 16px; }
 .past-card-date { font-size: 11px; color: var(--text-lighter); margin-bottom: 4px; }
 .past-card-title { font-size: 15px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
 .past-card-desc { font-size: 12px; color: var(--text-light); line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.past-tags { display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 8px; }
+.past-tag { font-size: 10px; padding: 3px 10px; background: linear-gradient(135deg, var(--green-bg), #dcedf2); color: var(--green-dark); border-radius: 10px; font-weight: 600; letter-spacing: 0.3px; }
+.past-card:nth-child(2) .past-tag { background: linear-gradient(135deg, #EDE8F0, #E5DDE8); color: #5A4A6A; }
+.past-card:nth-child(3) .past-tag { background: linear-gradient(135deg, #F0EDE8, #E8E0D5); color: #6A5A4A; }
 .past-link-all { text-align: center; margin-top: 20px; }
+
+/* 页脚 */
 .footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
 .footer-brand { font-family: "Songti SC",serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
 .footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
 .footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
 .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
-@media (max-width: 768px) { .course-banner { flex-direction: column; text-align: center; padding: 24px; } .course-info { grid-template-columns: 1fr; } .empower-grid { grid-template-columns: 1fr; } .nav-links { display: none; } .session-header { flex-wrap: wrap; } .session-tag { margin-left: 0; } }
-@media (max-width: 480px) { .navbar-inner { height: 52px; padding: 0 16px; } .page-hero { padding: 100px 20px 40px; } .course-nav { top: 52px; gap: 6px; } .course-nav a { font-size: 12px; padding: 6px 12px; } .course-section { padding: 16px 0 48px; } .session-item { padding: 16px; } }
+
+@media (max-width: 768px) {
+  .course-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .past-card { min-width: 240px; }
+}
+@media (max-width: 480px) {
+  .navbar-inner { height: 52px; padding: 0 16px; }
+  .page-hero { padding: 100px 20px 40px; }
+  .course-nav { top: 52px; gap: 6px; }
+  .course-nav a { font-size: 12px; padding: 6px 12px; }
+}
 </style>
 </head>
 <body>
 
 <nav class="navbar">
   <div class="navbar-inner">
-    <a href="index.html" class="nav-logo"><img class="nav-logo-svg" src="logo.png" alt="寻心理"><div><div class="nav-logo-text">寻心理</div><div class="nav-logo-sub">InnerSeed</div></div></a>
-    <div class="nav-links"><a href="tuanfu.html" class="nav-link">&larr; 团辅首页</a><a href="index.html#contact" class="nav-link">联系我们</a></div>
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-svg" src="logo.png" alt="寻心理">
+      <div><div class="nav-logo-text">寻心理</div><div class="nav-logo-sub">InnerSeed</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="tuanfu.html" class="nav-link">&larr; 团辅首页</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+    </div>
   </div>
 </nav>
 
@@ -102,102 +279,231 @@ body { font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-seri
   <p>面向亲子与家庭的两大主题，让爱与理解在家庭中流动</p>
 </header>
 
+<!-- 课程导航 -->
 <div class="course-nav" id="courseNav">
-  <a href="#parent-child">亲子沟通与家庭关系</a>
+  <a href="#parent-child" class="active">亲子沟通与家庭关系</a>
   <a href="#parent-growth">家长情绪管理与成长</a>
 </div>
 
 <div class="container">
 
-  <!-- 课程一：亲子沟通与家庭关系 -->
-  <section class="course-section" id="parent-child">
-    <div class="course-banner">
-      <div class="course-banner-icon">💬</div>
-      <div class="course-banner-text">
-        <h2>亲子沟通与家庭关系</h2>
-        <div class="course-theme">Parent-Child Communication & Family Relations</div>
-        <p>亲子共同参与，通过体验式互动增进理解、改善沟通模式，构建温暖支持的家庭氛围。家长和孩子分开、合组交替进行。</p>
+  <!-- ═════════ 课程卡片网格 ══════════ -->
+  <div class="course-grid" id="courseGrid">
+
+    <!-- 课程一：亲子沟通与家庭关系 -->
+    <div class="course-card" id="parent-child">
+      <div class="course-card-header" onclick="toggleCourse(this)">
+        <div class="course-card-icon">💬</div>
+        <div class="course-card-info">
+          <div class="course-card-title">亲子沟通与家庭关系</div>
+          <div class="course-card-theme">Parent-Child Communication & Family Relations</div>
+          <div class="course-card-desc">亲子共同参与，通过体验式互动增进理解、改善沟通模式，构建温暖支持的家庭氛围。家长和孩子分开、合组交替进行。</div>
+          <div class="course-card-meta"><span>📋 6次课程</span><span>⏱ 90分钟/次</span><span>👥 6-8组家庭/班</span></div>
+        </div>
+      </div>
+      <div class="course-card-toggle" onclick="event.stopPropagation();toggleCourse(this.parentElement.querySelector('.course-card-header'))"></div>
+      <div class="course-detail">
+        <div class="section-title" style="font-size:15px;margin:0 0 10px;text-align:left;font-family:'Songti SC',serif;color:var(--green-dark);font-weight:700;">课程大纲</div>
+        <div class="session-grid">
+          <div class="session-compact"><span class="session-compact-num">1</span><strong>重新认识彼此</strong> <span style="color:var(--gold);font-size:10px;">破冰连接</span><div class="act-tags"><span class="act-tag">碰拳找朋友</span><span class="act-tag">滚雪球</span><span class="act-tag">桃花朵朵开</span></div><div class="desc">亲子共同参与趣味破冰游戏，打破日常互动模式，在轻松的氛围中重新认识对方。</div></div>
+          <div class="session-compact"><span class="session-compact-num">2</span><strong>听见彼此——沟通模式觉察</strong> <span style="color:var(--gold);font-size:10px;">沟通觉察</span><div class="act-tags"><span class="act-tag">传声筒</span><span class="act-tag">角色互换</span><span class="act-tag">心意诉说</span></div><div class="desc">亲子互换角色，体验对方日常的处境与感受。从"说"到"听"，看见沟通中的盲区。</div></div>
+          <div class="session-compact"><span class="session-compact-num">3</span><strong>爱的正确打开方式</strong> <span style="color:var(--gold);font-size:10px;">爱的语言</span><div class="act-tags"><span class="act-tag">爱的语言测试</span><span class="act-tag">我们会夸夸</span><span class="act-tag">家庭优点日</span></div><div class="desc">了解彼此感受爱的方式——肯定言语、精心时刻、接受礼物、服务行动、身体接触，学习用对方能收到的方式表达爱。</div></div>
+          <div class="session-compact"><span class="session-compact-num">4</span><strong>化解矛盾——冲突中的连接</strong> <span style="color:var(--gold);font-size:10px;">冲突化解</span><div class="act-tags"><span class="act-tag">亲子冲突场景模拟</span><span class="act-tag">非暴力沟通练习</span><span class="act-tag">心有千千结</span></div><div class="desc">模拟家庭常见冲突场景，学习用"观察+感受+需要+请求"替代指责与对抗，在冲突中保持连接。</div></div>
+          <div class="session-compact"><span class="session-compact-num">5</span><strong>我们是一家人——归属与边界</strong> <span style="color:var(--gold);font-size:10px;">家庭认同</span><div class="act-tags"><span class="act-tag">人物关系网</span><span class="act-tag">人际舒适圈</span><span class="act-tag">家庭愿景画布</span></div><div class="desc">共同绘制"我们家的样子"，在亲密与独立之间找到每个家庭成员舒适的边界，建立健康的家庭认同。</div></div>
+          <div class="session-compact"><span class="session-compact-num">6</span><strong>写给未来的我们</strong> <span style="color:var(--gold);font-size:10px;">家庭展望</span><div class="act-tags"><span class="act-tag">家庭时光胶囊</span><span class="act-tag">想要靠近你</span><span class="act-tag">家庭承诺礼</span></div><div class="desc">亲子共同制作"家庭时光胶囊"，把这段旅程的收获与对未来的期待封存，约定一年后共同开启。</div></div>
+        </div>
+        <div class="empower-row">
+          <div class="empower-compact">
+            <h4>🔍 解决的问题</h4>
+            <ul>
+              <li>亲子之间沟通模式固化，说不了几句就争吵</li>
+              <li>家长觉得自己说了很多，孩子觉得"你不懂我"</li>
+              <li>爱的方式错位——你给的不是我要的</li>
+              <li>家庭冲突反复发生，缺乏化解的工具</li>
+              <li>家庭中缺乏归属感与温暖氛围</li>
+            </ul>
+          </div>
+          <div class="empower-compact">
+            <h4>💪 赋能成长</h4>
+            <ul>
+              <li>重建亲子间真诚的倾听与表达</li>
+              <li>理解彼此感受爱的方式差异</li>
+              <li>掌握非暴力沟通化解家庭冲突</li>
+              <li>建立健康的家庭边界与认同</li>
+              <li>创造属于家庭的共同美好记忆</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a>
+        </div>
       </div>
     </div>
-    <div class="course-info">
-      <div class="info-item"><div class="num">6</div><div class="label">次课程</div></div>
-      <div class="info-item"><div class="num">90</div><div class="label">分钟/次</div></div>
-      <div class="info-item"><div class="num">6-8</div><div class="label">组家庭/班</div></div>
-    </div>
-    <div class="section-title">课程大纲</div>
-    <div class="session-list">
-      <div class="session-item"><div class="session-header"><div class="session-num">1</div><div class="session-title">重新认识彼此</div><div class="session-tag">破冰连接</div></div><div class="session-activities"><span class="activity-tag">碰拳找朋友</span><span class="activity-tag">滚雪球</span><span class="activity-tag">桃花朵朵开</span></div><div class="session-desc">亲子共同参与趣味破冰游戏，打破日常互动模式，在轻松的氛围中重新认识对方。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">2</div><div class="session-title">听见彼此——沟通模式觉察</div><div class="session-tag">沟通觉察</div></div><div class="session-activities"><span class="activity-tag">传声筒</span><span class="activity-tag">角色互换</span><span class="activity-tag">心意诉说</span></div><div class="session-desc">亲子互换角色，体验对方日常的处境与感受。从"说"到"听"，看见沟通中的盲区。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">3</div><div class="session-title">爱的正确打开方式</div><div class="session-tag">爱的语言</div></div><div class="session-activities"><span class="activity-tag">爱的语言测试</span><span class="activity-tag">我们会夸夸</span><span class="activity-tag">家庭优点日</span></div><div class="session-desc">了解彼此感受爱的方式——肯定言语、精心时刻、接受礼物、服务行动、身体接触，学习用对方能收到的方式表达爱。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">4</div><div class="session-title">化解矛盾——冲突中的连接</div><div class="session-tag">冲突化解</div></div><div class="session-activities"><span class="activity-tag">亲子冲突场景模拟</span><span class="activity-tag">非暴力沟通练习</span><span class="activity-tag">心有千千结</span></div><div class="session-desc">模拟家庭常见冲突场景，学习用"观察+感受+需要+请求"替代指责与对抗，在冲突中保持连接。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">5</div><div class="session-title">我们是一家人——归属与边界</div><div class="session-tag">家庭认同</div></div><div class="session-activities"><span class="activity-tag">人物关系网</span><span class="activity-tag">人际舒适圈</span><span class="activity-tag">家庭愿景画布</span></div><div class="session-desc">共同绘制"我们家的样子"，在亲密与独立之间找到每个家庭成员舒适的边界，建立健康的家庭认同。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">6</div><div class="session-title">写给未来的我们</div><div class="session-tag">家庭展望</div></div><div class="session-activities"><span class="activity-tag">家庭时光胶囊</span><span class="activity-tag">想要靠近你</span><span class="activity-tag">家庭承诺礼</span></div><div class="session-desc">亲子共同制作"家庭时光胶囊"，把这段旅程的收获与对未来的期待封存，约定一年后共同开启。</div></div>
-    </div>
-    <div class="empower-grid">
-      <div class="empower-card"><h4>🔍 解决的问题</h4><ul><li>亲子之间沟通模式固化，说不了几句就争吵</li><li>家长觉得自己说了很多，孩子觉得"你不懂我"</li><li>爱的方式错位——你给的不是我要的</li><li>家庭冲突反复发生，缺乏化解的工具</li><li>家庭中缺乏归属感与温暖氛围</li></ul></div>
-      <div class="empower-card"><h4>💪 赋能成长</h4><ul><li>重建亲子间真诚的倾听与表达</li><li>理解彼此感受爱的方式差异</li><li>掌握非暴力沟通化解家庭冲突</li><li>建立健康的家庭边界与认同</li><li>创造属于家庭的共同美好记忆</li></ul></div>
-    </div>
-    <div class="cta-row"><a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a></div>
-  </section>
 
-  <!-- 课程二：家长情绪管理与成长 -->
-  <section class="course-section" id="parent-growth">
-    <div class="course-banner" style="background:linear-gradient(135deg,#f5efe8,#efe5d8)">
-      <div class="course-banner-icon">🧘‍♀️</div>
-      <div class="course-banner-text">
-        <h2>家长情绪管理与成长</h2>
-        <div class="course-theme">Parental Emotional Management</div>
-        <p>专为家长设计的情绪管理团体。在育儿的压力中，先学会照顾自己——因为只有内心充盈的父母，才能给孩子有温度的陪伴。</p>
+    <!-- 课程二：家长情绪管理与成长 -->
+    <div class="course-card" id="parent-growth">
+      <div class="course-card-header" onclick="toggleCourse(this)">
+        <div class="course-card-icon">🧘‍♀️</div>
+        <div class="course-card-info">
+          <div class="course-card-title">家长情绪管理与成长</div>
+          <div class="course-card-theme">Parental Emotional Management</div>
+          <div class="course-card-desc">专为家长设计的情绪管理团体。在育儿的压力中，先学会照顾自己——因为只有内心充盈的父母，才能给孩子有温度的陪伴。</div>
+          <div class="course-card-meta"><span>📋 6次课程</span><span>⏱ 90分钟/次</span><span>👥 8-12人/班</span></div>
+        </div>
+      </div>
+      <div class="course-card-toggle" onclick="event.stopPropagation();toggleCourse(this.parentElement.querySelector('.course-card-header'))"></div>
+      <div class="course-detail">
+        <div class="section-title" style="font-size:15px;margin:0 0 10px;text-align:left;font-family:'Songti SC',serif;color:var(--green-dark);font-weight:700;">课程大纲</div>
+        <div class="session-grid">
+          <div class="session-compact"><span class="session-compact-num">1</span><strong>我的情绪从哪里来</strong> <span style="color:var(--gold);font-size:10px;">情绪觉察</span><div class="act-tags"><span class="act-tag">情绪温度计</span><span class="act-tag">压力圈图</span><span class="act-tag">情绪垃圾桶</span></div><div class="desc">觉察育儿中触发情绪的场景，将"我就是控制不住"变成"原来我是被这个点触到了"。</div></div>
+          <div class="session-compact"><span class="session-compact-num">2</span><strong>不只是妈妈——多重的我</strong> <span style="color:var(--gold);font-size:10px;">自我关怀</span><div class="act-tags"><span class="act-tag">我是谁？</span><span class="act-tag">角色地图绘制</span><span class="act-tag">相似圈</span></div><div class="desc">在"母亲/父亲"角色之外，重新看见也重要的自己——伴侣、职场人、朋友、以及那个依然有梦想的"我"。</div></div>
+          <div class="session-compact"><span class="session-compact-num">3</span><strong>从"炸了"到"停一下"</strong> <span style="color:var(--gold);font-size:10px;">情绪调节</span><div class="act-tags"><span class="act-tag">情绪冷静大闯关</span><span class="act-tag">呼吸四元素</span><span class="act-tag">身心充电站</span></div><div class="desc">建立"情绪急救包"——在即将爆发前，给自己一个暂停的空间。学习即时冷静的多种技巧。</div></div>
+          <div class="session-compact"><span class="session-compact-num">4</span><strong>看见孩子的情绪世界</strong> <span style="color:var(--gold);font-size:10px;">共情能力</span><div class="act-tags"><span class="act-tag">情绪猜谜</span><span class="act-tag">青春期身份卡</span><span class="act-tag">同理心地图</span></div><div class="desc">理解孩子在不同发展阶段的心理需求，用孩子的眼睛看世界——"他的哭闹不是在攻击你，而是在求救"。</div></div>
+          <div class="session-compact"><span class="session-compact-num">5</span><strong>不完美的勇气</strong> <span style="color:var(--gold);font-size:10px;">自我接纳</span><div class="act-tags"><span class="act-tag">优点轰炸</span><span class="act-tag">羞耻感释放练习</span><span class="act-tag">温暖视界</span></div><div class="desc">放下"完美妈妈/爸爸"的枷锁。在团体中看到——原来大家都会失控、都会后悔、都会觉得不够好。你不是一个人。</div></div>
+          <div class="session-compact"><span class="session-compact-num">6</span><strong>带着爱，继续前行</strong> <span style="color:var(--gold);font-size:10px;">整合前行</span><div class="act-tags"><span class="act-tag">给孩子的信</span><span class="act-tag">能量拍拍圈</span><span class="act-tag">成长承诺卡</span></div><div class="desc">将六周的学习与觉察整合为一封写给孩子的信和给自己的承诺，带着更轻盈的心回到家庭。</div></div>
+        </div>
+        <div class="empower-row">
+          <div class="empower-compact">
+            <h4>🔍 解决的问题</h4>
+            <ul>
+              <li>育儿中频繁情绪失控，事后又自责</li>
+              <li>被"完美父母"的标准压得喘不过气</li>
+              <li>除了父母角色，找不到完整的自己</li>
+              <li>无法理解孩子"莫名其妙"的情绪爆发</li>
+              <li>育儿焦虑与孤独感，觉得"只有我在崩溃"</li>
+            </ul>
+          </div>
+          <div class="empower-compact">
+            <h4>💪 赋能成长</h4>
+            <ul>
+              <li>觉察并有效管理育儿中的情绪触发点</li>
+              <li>重新整合多重角色身份</li>
+              <li>建立"情绪急救包"与即时冷静技能</li>
+              <li>提升对孩子情绪世界的共情能力</li>
+              <li>与不完美和解，建立健康的育儿信心</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a>
+        </div>
       </div>
     </div>
-    <div class="course-info">
-      <div class="info-item"><div class="num">6</div><div class="label">次课程</div></div>
-      <div class="info-item"><div class="num">90</div><div class="label">分钟/次</div></div>
-      <div class="info-item"><div class="num">8-12</div><div class="label">人/班</div></div>
-    </div>
-    <div class="section-title">课程大纲</div>
-    <div class="session-list">
-      <div class="session-item"><div class="session-header"><div class="session-num">1</div><div class="session-title">我的情绪从哪里来</div><div class="session-tag">情绪觉察</div></div><div class="session-activities"><span class="activity-tag">情绪温度计</span><span class="activity-tag">压力圈图</span><span class="activity-tag">情绪垃圾桶</span></div><div class="session-desc">觉察育儿中触发情绪的场景，将"我就是控制不住"变成"原来我是被这个点触到了"。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">2</div><div class="session-title">不只是妈妈——多重的我</div><div class="session-tag">自我关怀</div></div><div class="session-activities"><span class="activity-tag">我是谁？</span><span class="activity-tag">角色地图绘制</span><span class="activity-tag">相似圈</span></div><div class="session-desc">在"母亲/父亲"角色之外，重新看见也重要的自己——伴侣、职场人、朋友、以及那个依然有梦想的"我"。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">3</div><div class="session-title">从"炸了"到"停一下"</div><div class="session-tag">情绪调节</div></div><div class="session-activities"><span class="activity-tag">情绪冷静大闯关</span><span class="activity-tag">呼吸四元素</span><span class="activity-tag">身心充电站</span></div><div class="session-desc">建立"情绪急救包"——在即将爆发前，给自己一个暂停的空间。学习即时冷静的多种技巧。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">4</div><div class="session-title">看见孩子的情绪世界</div><div class="session-tag">共情能力</div></div><div class="session-activities"><span class="activity-tag">情绪猜谜</span><span class="activity-tag">青春期身份卡</span><span class="activity-tag">同理心地图</span></div><div class="session-desc">理解孩子在不同发展阶段的心理需求，用孩子的眼睛看世界——"他的哭闹不是在攻击你，而是在求救"。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">5</div><div class="session-title">不完美的勇气</div><div class="session-tag">自我接纳</div></div><div class="session-activities"><span class="activity-tag">优点轰炸</span><span class="activity-tag">羞耻感释放练习</span><span class="activity-tag">温暖视界</span></div><div class="session-desc">放下"完美妈妈/爸爸"的枷锁。在团体中看到——原来大家都会失控、都会后悔、都会觉得不够好。你不是一个人。</div></div>
-      <div class="session-item"><div class="session-header"><div class="session-num">6</div><div class="session-title">带着爱，继续前行</div><div class="session-tag">整合前行</div></div><div class="session-activities"><span class="activity-tag">给孩子的信</span><span class="activity-tag">能量拍拍圈</span><span class="activity-tag">成长承诺卡</span></div><div class="session-desc">将六周的学习与觉察整合为一封写给孩子的信和给自己的承诺，带着更轻盈的心回到家庭。</div></div>
-    </div>
-    <div class="empower-grid">
-      <div class="empower-card"><h4>🔍 解决的问题</h4><ul><li>育儿中频繁情绪失控，事后又自责</li><li>被"完美父母"的标准压得喘不过气</li><li>除了父母角色，找不到完整的自己</li><li>无法理解孩子"莫名其妙"的情绪爆发</li><li>育儿焦虑与孤独感，觉得"只有我在崩溃"</li></ul></div>
-      <div class="empower-card"><h4>💪 赋能成长</h4><ul><li>觉察并有效管理育儿中的情绪触发点</li><li>重新整合多重角色身份</li><li>建立"情绪急救包"与即时冷静技能</li><li>提升对孩子情绪世界的共情能力</li><li>与不完美和解，建立健康的育儿信心</li></ul></div>
-    </div>
-    <div class="cta-row"><a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a></div>
-  </section>
 
+  </div>
+
+  <!-- 定制化咨询 -->
   <div class="custom-cta">
     <h3>每个家庭都不一样，方案也可以不一样</h3>
     <p>无论是亲子互动专场还是家长成长营，我们都可根据需求灵活定制课程内容与形式。</p>
     <a href="index.html#contact" class="cta-btn" style="font-size:15px; padding:12px 36px">更多定制化内容，请咨询客服 &rarr;</a>
   </div>
+
 </div>
 
+<!-- 往期活动回顾 -->
 <section class="past-section">
   <div class="container">
-    <div class="section-title">过往活动回顾</div>
+    <div class="section-title" style="font-family:'Songti SC',serif;font-size:20px;color:var(--green-dark);font-weight:700;text-align:center;margin-bottom:28px;">过往活动回顾</div>
     <div class="past-carousel">
-      <a href="tuanfu-gallery.html" class="past-card"><div class="past-card-img">💬</div><div class="past-card-body"><div class="past-card-date">2026-04-10</div><div class="past-card-title">亲子沟通工作坊——听见彼此的声音</div><div class="past-card-desc">亲子共同参与的工作坊，通过角色互换、家庭优点日、爱的语言测试等活动，帮助亲子重新听见彼此。</div></div></a>
+      <a href="tuanfu-gallery.html" class="past-card">
+        <div class="past-card-img text-title">
+          <div class="past-title-main">听见彼此的声音</div>
+          <div class="past-title-sub">——亲子沟通工作坊</div>
+        </div>
+        <div class="past-card-body">
+          <div class="past-card-date">2026-04-10</div>
+          <div class="past-tags">
+            <span class="past-tag">亲子沟通</span>
+            <span class="past-tag">家庭关系</span>
+            <span class="past-tag">线下团辅</span>
+          </div>
+          <div class="past-card-desc">亲子共同参与的工作坊，通过角色互换、家庭优点日、爱的语言测试等活动，帮助亲子重新听见彼此。</div>
+        </div>
+      </a>
+      <a href="index.html#contact" class="past-card">
+        <div class="past-card-img text-title">
+          <div class="past-title-main">给情绪一个出口</div>
+          <div class="past-title-sub">——家长情绪管理体验沙龙</div>
+        </div>
+        <div class="past-card-body">
+          <div class="past-card-date">2026-08（预告）</div>
+          <div class="past-tags">
+            <span class="past-tag">情绪管理</span>
+            <span class="past-tag">家长成长</span>
+            <span class="past-tag">体验沙龙</span>
+          </div>
+          <div class="past-card-desc">专为家长设计的情绪管理体验活动，在安全温暖的团体中，学习照顾自己的情绪，找回内心的从容。</div>
+        </div>
+      </a>
+      <a href="index.html#contact" class="past-card">
+        <div class="past-card-img text-title">
+          <div class="past-title-main">爱的五种语言</div>
+          <div class="past-title-sub">——家庭关系主题工作坊</div>
+        </div>
+        <div class="past-card-body">
+          <div class="past-card-date">2026-09（预告）</div>
+          <div class="past-tags">
+            <span class="past-tag">家庭关系</span>
+            <span class="past-tag">爱的语言</span>
+            <span class="past-tag">亲子互动</span>
+          </div>
+          <div class="past-card-desc">带领家庭探索"爱的五种语言"，发现彼此感受爱的方式，让爱不再错位，让家更有温度。</div>
+        </div>
+      </a>
     </div>
-    <div class="past-link-all"><a href="tuanfu-gallery.html" class="cta-btn-outline">查看全部过往活动 &rarr;</a></div>
+    <div class="past-link-all">
+      <a href="tuanfu-gallery.html" class="cta-btn-outline">查看全部过往活动 &rarr;</a>
+    </div>
   </div>
 </section>
 
 <footer class="footer">
   <img src="logo-white.png" alt="寻心理" style="width:48px;height:48px;margin-bottom:12px;opacity:0.9">
-  <div class="footer-brand">寻心理</div><div class="footer-tagline">向内寻，向外生</div><div class="footer-en">InnerSeed</div>
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">InnerSeed</div>
   <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
 </footer>
 
 <script>
-const navLinks=document.querySelectorAll('#courseNav a'),sections=document.querySelectorAll('.course-section');
-window.addEventListener('scroll',()=>{let c='';sections.forEach(s=>{if(window.scrollY>=s.offsetTop-200)c=s.id});navLinks.forEach(a=>{a.classList.toggle('active',a.getAttribute('href')==='#'+c)})});
-navLinks.forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth',block:'start'})})});
+function toggleCourse(header) {
+  const card = header.parentElement;
+  const detail = card.querySelector('.course-detail');
+  if (detail.classList.contains('open')) {
+    detail.classList.remove('open');
+    card.classList.remove('open');
+  } else {
+    detail.classList.add('open');
+    card.classList.add('open');
+  }
+}
+
+const navLinks = document.querySelectorAll('#courseNav a');
+const cards = document.querySelectorAll('.course-card');
+
+window.addEventListener('scroll', () => {
+  let current = '';
+  cards.forEach(c => {
+    if (window.scrollY >= c.offsetTop - 200) current = c.id;
+  });
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+});
+
+navLinks.forEach(a => {
+  a.addEventListener('click', e => {
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if (target) {
+      const navHeight = document.querySelector('.course-nav').offsetHeight;
+      const y = target.getBoundingClientRect().top + window.pageYOffset - navHeight - 80;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  });
+});
 </script>
+
 </body>
 </html>
