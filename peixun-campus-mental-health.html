@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>校园心理健康体系建设 | 寻心理 · InnerSeed</title>
+<link rel="icon" href="favicon.png">
+<style>
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --text-muted: #8C8C8C;
+  --white: #FAFAF8; --card-bg: #FFFFFF;
+  --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+/* 导航 */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-svg { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-link { font-size: 14px; color: var(--text-light); text-decoration: none; transition: var(--transition); position: relative; padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+.nav-back { font-size: 14px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
+.nav-back:hover { background: var(--green); color: #fff; }
+
+/* 页内导航 */
+.chapter-nav {
+  position: sticky; top: 60px; z-index: 99;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 16px; overflow-x: auto; white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+}
+.chapter-nav-inner { display: inline-flex; gap: 16px; }
+.chapter-nav a {
+  font-size: 13px; color: var(--green); text-decoration: none;
+  font-weight: 600; white-space: nowrap; transition: var(--transition);
+}
+.chapter-nav a:hover { color: var(--green-dark); }
+
+/* 封面 */
+.sub-hero {
+  background: linear-gradient(165deg, #2E4F44 0%, #385F55 40%, #4A7C6F 100%);
+  padding: 120px 24px 60px; text-align: center; position: relative; overflow: hidden;
+}
+.sub-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(232,240,237,0.15) 0%, transparent 60%);
+}
+.sub-hero::after {
+  content: ''; position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(212,165,116,0.15) 0%, transparent 70%);
+}
+.sub-hero-brand {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+  padding: 6px 16px; border-radius: 100px; font-size: 13px; color: rgba(255,255,255,0.9);
+  margin-bottom: 28px; position: relative; z-index: 2;
+}
+.sub-hero-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 10px rgba(212,165,116,0.5);
+}
+.sub-hero-title {
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: clamp(24px, 5vw, 34px); font-weight: 900; color: #fff;
+  letter-spacing: 0.06em; position: relative; z-index: 2; margin-bottom: 8px; line-height: 1.5;
+}
+.sub-hero-subtitle {
+  font-size: clamp(16px, 3vw, 20px); font-weight: 600; color: rgba(255,255,255,0.9);
+  position: relative; z-index: 2; margin-bottom: 16px;
+}
+.sub-hero-divider { width: 50px; height: 2px; background: var(--gold); margin: 0 auto 20px; border-radius: 1px; position: relative; z-index: 2; }
+.sub-hero-slogan {
+  font-size: 14px; color: rgba(255,255,255,0.8); line-height: 2;
+  position: relative; z-index: 2; margin-bottom: 24px;
+}
+.sub-hero-meta {
+  font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.8;
+  position: relative; z-index: 2;
+}
+
+/* 内容区域 */
+.content-section { padding: 64px 0; }
+.content-section-alt { padding: 64px 0; background: var(--warm-light); }
+.section-num {
+  display: inline-block; background: var(--green-bg); color: var(--green);
+  font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 12px; letter-spacing: 1px;
+}
+.section-h2 {
+  font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 22px; font-weight: 800;
+  color: var(--green-dark); margin-bottom: 24px; line-height: 1.4;
+}
+.section-h3 {
+  font-size: 17px; font-weight: 700; color: var(--green-dark);
+  margin: 32px 0 14px; padding-left: 12px; border-left: 4px solid var(--green); line-height: 1.5;
+}
+.section-h4 { font-size: 15px; font-weight: 700; color: var(--text); margin: 22px 0 10px; }
+.section-p {
+  font-size: 15px; color: var(--text-light); line-height: 1.9; margin-bottom: 14px; text-align: justify;
+}
+.section-ul { list-style: none; margin: 14px 0; }
+.section-ul li {
+  font-size: 15px; color: var(--text-light); line-height: 1.9;
+  padding-left: 22px; position: relative; margin-bottom: 8px;
+}
+.section-ul li::before { content: "■"; position: absolute; left: 0; top: 2px; color: var(--green); font-size: 11px; }
+.section-ul li strong { color: var(--text); }
+
+/* 目标卡片 */
+.goal-card {
+  background: var(--gold-light); border-left: 4px solid var(--gold);
+  border-radius: var(--radius-sm); padding: 18px 20px; margin: 14px 0;
+}
+.goal-card h4 { color: #7A5A30; font-size: 15px; margin-bottom: 6px; font-weight: 700; }
+.goal-card p { color: var(--text-light); font-size: 14px; margin: 0; line-height: 1.8; }
+
+/* 英雄卡片 */
+.card-hero {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: #fff; border-radius: var(--radius); padding: 32px 28px;
+  margin: 24px 0; text-align: center; box-shadow: 0 4px 20px rgba(56,95,85,0.2);
+}
+.card-hero-icon { font-size: 32px; margin-bottom: 8px; }
+.card-hero-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.card-hero-text { font-size: 14px; line-height: 1.9; opacity: 0.95; }
+
+/* 优势/能力卡片 */
+.advantage {
+  background: var(--card-bg); border-radius: var(--radius); padding: 20px;
+  margin: 14px 0; border-left: 4px solid var(--green);
+  box-shadow: var(--shadow-sm);
+}
+.advantage-name { font-size: 17px; font-weight: 800; color: var(--green-dark); margin-bottom: 6px; }
+.advantage-desc { font-size: 14px; color: var(--text-light); line-height: 1.85; }
+
+/* 保障机制 */
+.guarantee {
+  background: var(--green-bg); border-radius: var(--radius); padding: 20px;
+  margin: 14px 0; border-left: 4px solid var(--green);
+}
+.guarantee h4 { color: var(--green-dark); margin: 0 0 8px 0; font-size: 16px; }
+.guarantee p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.8; }
+
+/* 数据表格 */
+.data-table {
+  background: var(--card-bg); border-radius: var(--radius);
+  overflow: hidden; margin: 20px 0;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+}
+.data-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.data-table th, .data-table td {
+  padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); line-height: 1.6;
+}
+.data-table th { background: var(--green-bg); color: var(--green-dark); font-weight: 700; font-size: 13px; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table td:first-child { font-weight: 700; color: var(--green-dark); white-space: nowrap; }
+
+/* 专家卡片 */
+.expert {
+  background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px;
+  margin: 20px 0; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+}
+.expert-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.expert-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 800; flex-shrink: 0;
+}
+.expert-avatar-img {
+  width: 48px; height: 48px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  border: 2px solid var(--gold-light); box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.expert-name { font-size: 19px; font-weight: 800; color: var(--text); }
+.expert-title-name {
+  font-size: 12px; color: var(--green); background: var(--green-bg);
+  padding: 3px 10px; border-radius: 100px; font-weight: 600;
+}
+.expert-role { font-size: 13px; color: var(--text-muted); font-weight: 500; margin-bottom: 10px; }
+.expert p { font-size: 14px; color: var(--text-light); margin-bottom: 10px; line-height: 1.85; }
+.expert p strong { color: var(--green-dark); }
+
+/* 案例卡片 */
+.case-card {
+  background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px;
+  margin: 20px 0; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+}
+.case-title { font-size: 17px; font-weight: 800; color: var(--green-dark); margin-bottom: 8px; line-height: 1.5; }
+.case-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
+.case-tag {
+  font-size: 11px; background: var(--green-bg); color: var(--green);
+  padding: 3px 10px; border-radius: 100px; font-weight: 600;
+}
+.case-row {
+  display: grid; grid-template-columns: 80px 1fr; gap: 12px;
+  padding: 10px 0; border-top: 1px solid var(--green-bg);
+}
+.case-row:first-of-type { border-top: none; padding-top: 0; }
+.case-label { font-size: 13px; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.case-value { font-size: 14px; color: var(--text-light); line-height: 1.85; }
+
+/* 阶段卡片 */
+.phase {
+  background: var(--card-bg); border-radius: var(--radius); padding: 20px;
+  margin: 14px 0; box-shadow: var(--shadow-sm);
+}
+.phase-1 { border-left: 4px solid var(--green); }
+.phase-2 { border-left: 4px solid var(--gold); }
+.phase-3 { border-left: 4px solid #C0856E; }
+.phase-title { font-size: 16px; font-weight: 800; color: var(--green-dark); margin-bottom: 10px; }
+.phase ul { margin: 0; }
+
+/* 服务包 */
+.pkg-card {
+  background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px;
+  margin: 20px 0; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  border-left: 4px solid var(--green);
+}
+.pkg-card.pkg-2 { border-left-color: var(--gold); }
+.pkg-card.pkg-3 {
+  border-left-color: var(--green-dark);
+  background: linear-gradient(135deg, var(--green-dark), var(--green)); color: #fff;
+}
+.pkg-card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 16px; flex-wrap: wrap; gap: 12px; }
+.pkg-card-title { font-size: 19px; font-weight: 800; color: var(--green-dark); margin: 0; display: flex; align-items: center; gap: 8px; }
+.pkg-card.pkg-3 .pkg-card-title { color: #fff; }
+.pkg-rec-tag {
+  font-size: 11px; font-weight: 700; background: var(--gold); color: #fff;
+  padding: 2px 10px; border-radius: 100px;
+}
+.pkg-card-scene { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+.pkg-card.pkg-3 .pkg-card-scene { color: rgba(255,255,255,0.7); }
+.pkg-card-price { font-size: 26px; font-weight: 800; color: var(--green); white-space: nowrap; }
+.pkg-card.pkg-2 .pkg-card-price { color: #8A6520; }
+.pkg-card.pkg-3 .pkg-card-price { color: var(--gold-light); }
+.pkg-card-price span { font-size: 14px; font-weight: 400; opacity: 0.7; }
+.pkg-item {
+  display: grid; grid-template-columns: 80px 1fr; gap: 12px;
+  padding: 10px 0; border-top: 1px solid var(--green-bg);
+}
+.pkg-card.pkg-3 .pkg-item { border-top-color: rgba(255,255,255,0.12); }
+.pkg-item:first-of-type { border-top: none; padding-top: 0; }
+.pkg-item-label { font-size: 13px; color: var(--green); font-weight: 700; flex-shrink: 0; }
+.pkg-card.pkg-3 .pkg-item-label { color: var(--gold-light); }
+.pkg-item-value { font-size: 14px; color: var(--text-light); line-height: 1.85; }
+.pkg-card.pkg-3 .pkg-item-value { color: rgba(255,255,255,0.9); }
+
+/* 备注条 */
+.pkg-note {
+  font-size: 13px; color: var(--text-muted); line-height: 1.9; margin-top: 20px;
+  padding: 16px 20px; background: var(--green-bg); border-radius: var(--radius-sm);
+}
+
+/* 联系人卡片区 */
+.contact-section { padding: 64px 0; background: var(--warm-light); }
+.contact-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.contact-card-item {
+  background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px 16px;
+  text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition);
+  display: flex; flex-direction: column; align-items: center;
+}
+.contact-card-item:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.contact-card-avatar {
+  width: 64px; height: 64px; border-radius: 50%; overflow: hidden;
+  margin-bottom: 14px; border: 2px solid var(--green-bg);
+}
+.contact-card-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.contact-card-name { font-size: 16px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
+.contact-card-tel {
+  font-size: 13px; color: var(--text-light); font-family: "SF Mono","Menlo",monospace;
+  margin-bottom: 4px;
+}
+.contact-card-email { font-size: 12px; color: var(--text-muted); word-break: break-all; }
+
+.contact-invite {
+  text-align: center; font-size: 14px; color: var(--text-light); line-height: 2;
+  margin-top: 36px; font-family: "Songti SC","STSong","SimSun",serif;
+}
+
+/* 页脚 */
+.footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
+.footer-brand { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
+.footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .contact-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .case-row { grid-template-columns: 1fr; gap: 4px; }
+  .sub-hero-title { font-size: 22px; }
+  .data-table th, .data-table td { padding: 10px 12px; font-size: 13px; }
+  .data-table td:first-child { white-space: normal; }
+}
+@media (max-width: 480px) {
+  .contact-grid-4 { grid-template-columns: 1fr 1fr; }
+  .pkg-card-header { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-svg" src="logo.png" alt="寻心理">
+      <div>
+        <div class="nav-logo-text">寻心理</div>
+        <div class="nav-logo-sub">InnerSeed</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#story" class="nav-link">品牌故事</a>
+      <a href="index.html#products" class="nav-link">产品服务</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+      <a href="peixun.html" class="nav-back">← 返回培训页</a>
+    </div>
+  </div>
+</nav>
+
+<!-- 封面 -->
+<header class="sub-hero">
+  <div class="sub-hero-brand">
+    <div class="sub-hero-dot"></div>
+    寻心理 · 培训者培训
+  </div>
+  <h1 class="sub-hero-title">中小学生心理健康服务体系搭建<br>与教师心理健康通识培训</h1>
+  <div class="sub-hero-subtitle">服 务 方 案</div>
+  <div class="sub-hero-divider"></div>
+  <div class="sub-hero-slogan">
+    <div>以专业心理服务 · 筑牢学生心理健康防线</div>
+    <div>以科学培训体系 · 赋能教师心理育人能力</div>
+  </div>
+  <div class="sub-hero-meta">
+    <div>学术支持：北京师范大学心理学部寻心理课题组</div>
+    <div style="margin-top:10px;">二〇二六年七月</div>
+  </div>
+</header>
+
+<!-- 总体目标与章节导航 -->
+<div class="container" style="margin-top: 30px;">
+  <!-- 页内导航 -->
+  <nav class="chapter-nav" style="position: static; border-radius: 12px 12px 0 0; border-bottom: none; border: 1px solid var(--border); border-bottom: none; background: rgba(250,250,248,0.95); margin-bottom: 0;">
+    <div class="chapter-nav-inner" style="justify-content: space-between; width: 100%; padding: 0 8px;">
+      <a href="#ch1">第一章 政策背景</a>
+      <a href="#ch2">第二章 公司概况</a>
+      <a href="#ch3">第三章 专家团队</a>
+      <a href="#ch4">第四章 方案框架</a>
+      <a href="#ch5">第五章 案例</a>
+      <a href="#ch6">第六章 预期效果</a>
+      <a href="#ch7">第七章 保障机制</a>
+      <a href="#ch8">第八章 服务包方案</a>
+      <a href="#contact">联系我们</a>
+    </div>
+  </nav>
+  <div class="card-hero" style="margin-top: 0; border-radius: 0 0 12px 12px;">
+    <div class="card-hero-icon">🎯</div>
+    <div class="card-hero-title">总体目标</div>
+    <div class="card-hero-text">
+      依托北京师范大学心理学部专业力量，以教育部政策要求为导向，构建"预防为主、教育为本、干预精准、协同高效"的学生心理健康服务体系，实现学生心理健康水平显著提升、教师心理育人能力全面增强、区域心理健康教育生态持续优化的总体目标。
+    </div>
+  </div>
+</div>
+
+<!-- 第一章：政策背景 -->
+<section class="content-section" id="ch1">
+  <div class="container">
+    <div class="section-num">PART 01</div>
+    <h2 class="section-h2">第一章 政策背景与时代需求</h2>
+
+    <h3 class="section-h3">1.1 国家政策导向：心理健康是教育强国的重要基石</h3>
+    <p class="section-p">心理健康是学生健康成长的重要基础，是落实立德树人根本任务的重要内容。党的二十大报告明确提出，要"重视心理健康和精神卫生"。教育部先后印发多项专项文件，明确要求各地建立健全覆盖中小学生的心理健康教育、监测预警与危机干预全链条体系，将心理健康工作纳入教育质量评估核心指标，为区域系统化推进学生心理服务建设提供了明确的政策指引。</p>
+
+    <h3 class="section-h3">1.2 区域学生心理健康现状与需求分析</h3>
+    <p class="section-p">随着社会经济快速发展和教育改革的深入推进，各地中小学生心理健康工作普遍面临新的挑战。学生学业压力、心理困惑日益突出，教师心理育人能力亟待提升，课程体系与筛查预警机制有待健全，家校社协同尚需深化：</p>
+    <ul class="section-ul">
+      <li><strong>学生层面：</strong>学业压力、青春期心理困惑、网络依赖、人际交往困难等问题日益突出，部分学生存在焦虑、抑郁等情绪困扰，需要专业的心理筛查与干预支持。</li>
+      <li><strong>教师层面：</strong>班主任和任课教师普遍缺乏系统的心理健康知识和干预技能，面对学生心理问题存在"识别无方法、干预无底气、引导无思路"的困境，同时教师自身也面临职业倦怠和心理压力，且地方学校又常有心理教师配备不足的情况，亟须针对性的心理赋能支持。</li>
+      <li><strong>学校层面：</strong>心理健康教育课程体系尚不完善，心理筛查与预警机制有待健全，校家社协同育人格局尚未形成闭环，专业心理服务资源供给不足，部分学校难以实现心理服务常态化覆盖。</li>
+      <li><strong>家庭层面：</strong>家长心理健康意识参差不齐，亲子沟通方式单一，家庭教育与学校心理教育衔接不畅，难以形成家校共育的有效合力。</li>
+    </ul>
+    <p class="section-p">基于以上现状，希望能为各地教育行政部门引入专业心理服务力量，系统化推进学生心理健康服务体系建设。</p>
+
+    <h3 class="section-h3">1.3 服务目标</h3>
+    <div class="goal-card"><h4>目标一</h4><p>建设适配区域中小学实际的学生心理团辅课程资源，用更高效且行之有效的方式支持心理健康教育进入班会课、课后延时服务和年级主题活动等学校日常场景。</p></div>
+    <div class="goal-card"><h4>目标二</h4><p>面向区域内中小学班主任及一线教师开展心理健康通识培训，系统提升教师的心理学基础素养、师生沟通能力、日常心理支持意识，提升教师队伍的心理育人能力。</p></div>
+    <div class="goal-card"><h4>目标三</h4><p>打造一支区域性心理健康教育骨干教师队伍和校级心理辅导力量，重点提升其团辅课程带领、学生心理问题早期识别、分层支持、危机风险上报与转介协同等实操能力。</p></div>
+    <div class="goal-card"><h4>目标四</h4><p>搭建覆盖区域内中小学的学生心理健康监测、预警、干预一体化服务体系，实现心理问题"早发现、早预警、早干预"。</p></div>
+    <div class="goal-card"><h4>目标五</h4><p>构建"学校—家庭—社区"三位一体协同心理育人格局，落地为可复制、可推广的"区域心理服务模式"。</p></div>
+  </div>
+</section>
+
+<!-- 第二章：公司概况 -->
+<section class="content-section-alt" id="ch2">
+  <div class="container">
+    <div class="section-num">PART 02</div>
+    <h2 class="section-h2">第二章 公司概况与核心优势</h2>
+
+    <h3 class="section-h3">2.1 公司简介</h3>
+    <p class="section-p">河北唠里唠叨心理咨询有限公司是一家专注于心理健康服务的专业机构，以教育心理学为核心，依托北京师范大学心理学部寻心理课题组的学术资源与科研力量，致力于为教育系统、企事业单位及社区家庭提供高质量、系统化、可落地的心理健康服务解决方案。</p>
+    <p class="section-p">公司业务涵盖心理健康咨询服务、教育心理支持、心理相关产品研发三大板块，在教育心理服务领域积累了丰富的项目经验，服务对象覆盖北京、上海、重庆、甘肃、河北等多地教育主管部门及中小学校。</p>
+
+    <h3 class="section-h3">2.2 服务理念</h3>
+    <p class="section-p">"唠里唠叨"这个名字，蕴含着我们对情感沟通、品牌温度与用户连接的深刻理解。"唠叨"一词自带生活气息，让人联想到家人、朋友间那种反复叮嘱、无话不谈的亲密与温暖。我们期望以这个名字为桥梁，打破传统心理服务带来的距离感与严肃感，让每一位走进"唠里唠叨"的人，都能感受到如同与老朋友唠家常般的轻松自在，从而毫无顾虑地倾诉内心的烦恼与困惑。</p>
+    <p class="section-p">在教育心理服务领域，我们始终秉持"专业、科学、温暖、落地"的服务理念——以专业筑基，以科学领航，以温暖润心，以落地见效，让心理健康服务真正融入学校教育日常，成为学生成长路上的温暖陪伴，成为教师育人路上的专业支撑。</p>
+
+    <h3 class="section-h3">2.3 核心优势</h3>
+    <div class="advantage"><div class="advantage-name">学术背景深厚</div><div class="advantage-desc">核心团队来自北京师范大学心理学部，涵盖教育博士、应用心理博士、应用心理硕士等多层次学历背景，长期跟随国内外顶尖学者开展教育心理与社会情感学习（SEL）研究，具备扎实的理论功底与学术视野。</div></div>
+    <div class="advantage"><div class="advantage-name">科研项目扎实</div><div class="advantage-desc">团队成员深度参与国家自然科学基金项目、长三角社会救助援助公共服务课题等多项科研工作，由北师大出版社出版专著《教师的六节心理课》系列丛书，将科研成果持续转化为可落地的服务方案。</div></div>
+    <div class="advantage"><div class="advantage-name">团辅经验丰厚</div><div class="advantage-desc">团队拥有13年以上教育教学与心理服务一线经验，累计带领SEL团体辅导活动176场以上，服务学校、企业、社区逾百家，覆盖北京、上海、重庆、甘肃、河北等多地。</div></div>
+    <div class="advantage"><div class="advantage-name">横向课题多元</div><div class="advantage-desc">与政府教育主管部门、知名中学、公益基金会、地方社区等多元主体合作，承担区域教师赋能、班主任胜任力提升、乡村教师团辅、社区儿童SEL等多类型横向课题，合作模式成熟、交付经验丰富。</div></div>
+    <div class="advantage"><div class="advantage-name">AI + 心理技术创新</div><div class="advantage-desc">团队自研SEL领域大模型智能课程生成平台、AI心理测评系统、班主任胜任力测评量表等数字化工具正在加速建设，率先探索"数字药"（依托SEL模型开发的身心交互智能干预课程）等AI + 心理融合产品，让心理筛查、课程设计、培训评估更加精准、可追踪。目前，数字化项目已成为中国教育学会2025年度立项课题。</div></div>
+
+    <h3 class="section-h3">2.4 我们能做什么</h3>
+    <div class="advantage"><div class="advantage-name">课程研发与交付</div><div class="advantage-desc">提供学生心理团辅课程资源包（教案、逐字稿、PPT、学生活动单、观察记录表、风险提示等），让非心理专业教师也能照本上课，降低课程实施门槛。</div></div>
+    <div class="advantage"><div class="advantage-name">教师培训与督导</div><div class="advantage-desc">覆盖教师心理健康通识培训、团体带领训练、线上教学指导全流程：课前答疑、课后复盘、共性问题讨论、个案场景讨论、课程调整建议，将一次性培训转化为长效实践能力。</div></div>
+    <div class="advantage"><div class="advantage-name">家校社协同支持</div><div class="advantage-desc">搭建"学校—家庭—社区"三位一体协同育人网络，提供家长课堂、亲子沟通培训、社区儿童 SEL 活动等全场景支持，让心理健康教育从校园延伸到家庭与社区。</div></div>
+    <div class="advantage"><div class="advantage-name">数字化工具平台</div><div class="advantage-desc">提供 AI 心理测评、SEL 智能课程生成、班主任胜任力测评等数字化平台，让心理筛查、课程设计、培训评估可量化、可追踪。</div></div>
+    <div class="advantage"><div class="advantage-name">监测评估与报告</div><div class="advantage-desc">提供心理健康筛查、阶段性实施反馈、区域心理健康教育报告等服务，为教育部门决策提供数据支撑。</div></div>
+  </div>
+</section>
+
+<!-- 第三章：专家团队 -->
+<section class="content-section" id="ch3">
+  <div class="container">
+    <div class="section-num">PART 03</div>
+    <h2 class="section-h2">第三章 专家团队</h2>
+    <p class="section-p">本公司专家团队以北京师范大学心理学部寻心理课题组为核心学术依托，汇聚教育心理学领域的资深学者与实战专家，兼具深厚的学术造诣和丰富的一线实践经验，为区域学生心理健康服务体系搭建提供强有力的专业保障。</p>
+
+    <div class="expert">
+      <div class="expert-header">
+        <div class="expert-avatar">刘</div>
+        <div><div class="expert-name">刘春荣</div><span class="expert-title-name">教育博士</span></div>
+      </div>
+      <div class="expert-role">北京师范大学副教务长、教务部招生处处长、研究生导师，原心理学部副部长</div>
+      <p><strong>研究方向：</strong>青少年心理健康教育、教师教育、教育经济与管理。中国教育学会学生发展指导分会常务理事，斯坦福、人社部认证创新创业导师，美国儿童社会情感发展认证讲师，中国家庭教育高级指导师。担任中央电视台多个节目的教育心理嘉宾、北京家教工委公益讲座特邀嘉宾、多个慈善基金会特约专家。</p>
+      <p><strong>荣誉与著作：</strong>曾获国家高等教育教学成果奖一等奖、北京市高等教育教学成果奖特等奖、北京市十佳辅导员、教育部中美青年创客优秀导师等奖项。出版《中小学社会情感学习系列丛书》《教师的6节心理课》等著作。</p>
+    </div>
+    <div class="expert">
+      <div class="expert-header">
+        <img src="images/teacher-yaoweiwei.jpg" alt="姚伟伟" class="expert-avatar-img" style="object-position: 50% 20%;">
+        <div><div class="expert-name">姚伟伟</div><span class="expert-title-name">应用心理博士</span></div>
+      </div>
+      <div class="expert-role">北京师范大学心理学部课程运营主管</div>
+      <p><strong>研究方向：</strong>教育心理学、教育类与成长类心理团体。从事教育教学与管理12年，参与国家自然科学基金项目，研究成果发表于《教师教育研究》和《Frontiers in Psychology》等国内外核心期刊。受训团体带领者，擅长青少年社会情感学习能力、成人自我意识、情绪管理、压力缓释、亲密关系、养育倦怠、工作倦怠等相关主题。</p>
+      <p><strong>项目经历：</strong>参编北师大出版社《教师的六节心理课》系列丛书；主持长三角社会救助援助公共服务课题——基于SEL团辅模型下的身心交互智能课程"数字药"研究与开发。2023—2025连续三年担任全国应用心理实践技能大赛北京师范大学领队教师。</p>
+    </div>
+    <div class="expert">
+      <div class="expert-header">
+        <img src="images/teacher-jinnan.png" alt="金楠" class="expert-avatar-img" style="object-position: 50% 20%;">
+        <div><div class="expert-name">金楠</div><span class="expert-title-name">应用心理博士</span></div>
+      </div>
+      <div class="expert-role">受训团体带领者 · 北京师范大学应用心理博士</div>
+      <p><strong>研究方向：</strong>教育心理、技术在心理学中的应用研究。深耕儿童青少年心理，对儿童社会情感发展、儿童心理健康知识普及有深入研究。拥有丰富心理团辅带领经验，长期担任宋庆龄基金会社会情感团辅合作带领老师，长期与慈弘基金会合作开展线下亲子沟通心理团辅活动、社区儿童SEL心理团辅活动及教师心理赋能活动。</p>
+      <p><strong>专业特长：</strong>具备十余年一线大厂技术研发经验，善于将结构化思维融入团体辅导方案设计与执行。曾获第四届CMAU全国大学生市场研究与商业策划大赛全国特等奖、第八届全国应用心理专业学位研究生实践技能大赛全国三等奖。</p>
+    </div>
+    <div class="expert">
+      <div class="expert-header">
+        <img src="images/teacher-mahuiyuan.jpg" alt="马卉媛" class="expert-avatar-img" style="object-position: 50% 15%;">
+        <div><div class="expert-name">马卉媛</div><span class="expert-title-name">应用心理硕士</span></div>
+      </div>
+      <div class="expert-role">专业受训团体带领者 · 唠里唠叨心理运营负责人</div>
+      <p><strong>研究方向：</strong>专注教育心理学研究与青少年心理健康实践，拥有6年少儿教学与一线心理团辅经验。原全国大中小学生心理健康监测工作组秘书，深度参与区域心理服务体系搭建，深耕团体辅导与社会情感学习（SEL）体系，立足教育学与发展心理学背景，精准把握青少年心理发展规律。</p>
+      <p>同时聚焦家庭教育全场景支持，将家长自我成长、亲密关系经营、科学亲子沟通及养育倦怠调适融入专业心理课程与团体辅导中，开发社会情感学习活动卡牌，以系统化、落地化的心理支持方案，兼顾青少年心理健康发展与家庭心理生态建设。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 第四章：方案框架 -->
+<section class="content-section-alt" id="ch4">
+  <div class="container">
+    <div class="section-num">PART 04</div>
+    <h2 class="section-h2">第四章 服务方案总体框架</h2>
+
+    <h3 class="section-h3">4.1 方案设计理念</h3>
+    <p class="section-p">本服务方案以教育部《全面加强和改进新时代学生心理健康工作专项行动计划（2023—2025年）》为政策依据，以"健康教育、监测预警、咨询服务、干预处置"四位一体工作体系为框架，结合区域教育实际，构建"一中心、两支撑、三阶段、四协同"的服务体系：</p>
+    <ul class="section-ul">
+      <li><strong>一中心：</strong>以学生心理健康为中心，统筹推进学生心理服务体系搭建与教师心理育人能力提升两条主线。</li>
+      <li><strong>两支撑：</strong>基础支撑（课程资源与教师提升）+ 专业支撑（心理健康前置干预和风险转介教育），形成从基础到专业的完整服务链条。</li>
+      <li><strong>三阶段：</strong>试点 → 扩面 → 沉淀，逐步完成课程落地、师资培养、机制完善和区域推广。</li>
+      <li><strong>四协同：</strong>构建"教育局—学校—家庭—社区"四方协同育人机制，形成心理健康教育的有效合力。</li>
+    </ul>
+
+    <h3 class="section-h3">4.2 学生心理健康服务体系</h3>
+    <p class="section-p">基于社会情感学习（SEL）理论框架：</p>
+    <ul class="section-ul">
+      <li><strong>小学阶段：</strong>以情绪认知、社交技能、自我管理为核心，开发趣味化、体验式SEL课程。</li>
+      <li><strong>初中阶段：</strong>以青春期心理调适、学业压力管理、人际交往能力提升为重点。</li>
+      <li><strong>高中阶段：</strong>以生涯规划心理辅导、考试焦虑干预、抗挫折能力培养为方向。</li>
+    </ul>
+
+    <h3 class="section-h3">4.3 教师心理健康通识培训</h3>
+    <h4 class="section-h4">（一）培训对象与分层设计</h4>
+    <p class="section-p">面向区域全体中小学教师，实施分层分类培训：</p>
+    <div class="data-table">
+      <table>
+        <thead><tr><th style="width:12%;white-space:nowrap;">培训层级</th><th style="width:22%;white-space:nowrap;">培训对象</th><th style="width:66%;">培训内容与目标</th></tr></thead>
+        <tbody>
+          <tr><td style="white-space:nowrap;font-weight:700;">通识层</td><td style="white-space:nowrap;">全体班主任及任课教师</td><td>心理健康基础知识、学生心理问题识别与初步干预、师生沟通技巧、教师自我心理调适。目标：让每一位教师都掌握心理育人的基本能力。</td></tr>
+          <tr><td style="white-space:nowrap;font-weight:700;">专业层</td><td style="white-space:nowrap;">心理健康教育教师及骨干教师</td><td>心理咨询技术、团体辅导设计与带领、心理测评与数据分析、危机干预流程。目标：培养校级心理辅导骨干。</td></tr>
+          <tr><td style="white-space:nowrap;font-weight:700;">管理层</td><td style="white-space:nowrap;">学校管理者及教育局干部</td><td>心理健康工作体系建设、心理危机管理决策、家校协同机制构建、心理健康教育政策解读。目标：提升管理决策科学性。</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h4 class="section-h4">（二）培训形式与课程模块</h4>
+    <p class="section-p">培训采用"线上+线下"混合模式，以体验式学习为核心，打破传统讲座式培训的局限：</p>
+    <ul class="section-ul">
+      <li><strong>专题讲座：</strong>邀请北师大专家团队（不限于本单位合作的核心成员）开展心理健康通识讲座，覆盖政策解读、理论基础、实务技能等模块。</li>
+      <li><strong>实操演练：</strong>通过角色扮演、案例研讨、卡牌互动等形式，让教师在模拟场景中掌握心理健康前置干预的技能。</li>
+      <li><strong>线上研修：</strong>依托课程平台，提供《教师的6节心理课》领读研讨等线上课程资源，支持教师随时随地学习。</li>
+      <li><strong>督导跟进：</strong>建立培训后督导机制，定期回访参训教师，提供持续专业支持。</li>
+    </ul>
+
+    <h3 class="section-h3">4.4 家校社协同机制</h3>
+    <p class="section-p">构建"学校—家庭—社区"三位一体的心理健康教育协同网络：</p>
+    <ul class="section-ul">
+      <li><strong>学校端：</strong>建立心理健康教育常规机制，将心理课程纳入校本课程体系，设立名师工作室。</li>
+      <li><strong>家庭端：</strong>开设家长心理课堂，开展亲子沟通培训，提供家庭教育心理指导服务，改善家庭心理生态。</li>
+      <li><strong>社区端：</strong>联合社区开展儿童SEL活动、心理健康科普讲座，拓展心理健康服务的社区覆盖面。</li>
+    </ul>
+    <p class="section-p">建立"校—家—社"信息互通与联动干预机制，形成心理健康教育合力。</p>
+  </div>
+</section>
+
+<!-- 第五章：案例 -->
+<section class="content-section" id="ch5">
+  <div class="container">
+    <div class="section-num">PART 05</div>
+    <h2 class="section-h2">第五章 优质服务案例</h2>
+    <p class="section-p">以下案例均为本公司核心团队主导或深度参与的真实项目，覆盖区域教育系统赋能、教师心理培训、学生心理成长、社区心理服务等多个维度，充分验证了团队在教育心理服务领域的专业能力与实践成效。</p>
+
+    <div class="case-card">
+      <div class="case-title">5.1 教师心理赋能——重庆铜梁二中</div>
+      <div class="case-tags"><span class="case-tag">区域赋能</span><span class="case-tag">教师心理</span><span class="case-tag">双减背景</span><span class="case-tag">蝴蝶模型</span></div>
+      <div class="case-row"><div class="case-label">项目背景</div><div class="case-value">伴随"双减"政策全面落地和强力推进，学校教师和家长面临机遇与挑战并存的情况，工作压力显著增大。重庆市铜梁第二中学作为教育实践的前沿阵地，其所面临的挑战深刻映射出当前教育改革与教师队伍建设中的普遍性问题。</div></div>
+      <div class="case-row"><div class="case-label">服务内容</div><div class="case-value">服务全校班主任教师、心理健康教师及管理岗全部教师。通过深度访谈、线上团辅+主题写作等形式，缓解教师养育倦怠和教育焦虑；搭建"教师心理健康培育体系之蝴蝶模型"，依托北京师范大学心理学部平台建立筛查与心理干预机制，以团体辅导与叙事疗法打通从"认知能力"提升到"非认知能力"培育的渠道；开展心理科普讲座和家庭教育指导活动，提高家长教育素养。</div></div>
+      <div class="case-row"><div class="case-label">项目成果</div><div class="case-value">精心构建了"教师心理健康培育体系之蝴蝶模型"，多方面为教师赋能，激发幸福成长，进而带动学生全面健康发展。核心成员团队组织参与第十二届教博会心理学部展厅建设，展出家校社协同育人"幸福的蝴蝶模型"系列服务内容，获得广泛关注与好评。该模式已具备区域推广价值。</div></div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-title">5.2 班主任胜任力提升——甘肃东乡族自治县教育局</div>
+      <div class="case-tags"><span class="case-tag">班主任培训</span><span class="case-tag">入校指导</span><span class="case-tag">四轮递进</span><span class="case-tag">12区县推广</span></div>
+      <div class="case-row"><div class="case-label">项目背景</div><div class="case-value">甘肃东乡族自治县教师队伍缺乏活力，缺乏专业的心理学课程，教师亟须以心理学知识为基石带动综合职业素养的提高。</div></div>
+      <div class="case-row"><div class="case-label">服务内容</div><div class="case-value">依托《班主任胜任力提升》课程，通过四轮入校指导活动，提升教师及班主任的自我成长能力和专业能力。开展即时反馈与压力应对等主题培训，帮助教师提升工作反馈能力和应对压力的专业能力。梳理教师现状和困惑，系统化提升班主任专业能力，提高教育质量。</div></div>
+      <div class="case-row"><div class="case-label">项目成果</div><div class="case-value">教师的自我成长力和专业能力显著提升，师生关系、自我关系、亲密关系、亲子关系等四大关系得到有效改善。班主任专业能力得到系统化提升，教育质量明显提高。随即教师社会情感学习课程得到广泛推广，共服务12个区县教育局幸福工作室的老师。</div></div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-title">5.3 教师职业倦怠缓解——北京慈弘慈善基金会</div>
+      <div class="case-tags"><span class="case-tag">乡村教师</span><span class="case-tag">团体辅导</span><span class="case-tag">写作疗愈</span><span class="case-tag">北师大实践项目</span></div>
+      <div class="case-row"><div class="case-label">项目背景</div><div class="case-value">随着国家对乡村教育重视程度的提升，乡村教师队伍建设成为关键。然而，乡村教师在面对复杂多变的教学任务、繁重的考评工作以及有限的资源时，往往承受着巨大的心理压力，自我效能感低、工作投入不足。</div></div>
+      <div class="case-row"><div class="case-label">服务内容</div><div class="case-value">项目采用线上团辅与主题写作相结合的方式，通过六周团体辅导活动，引导乡村教师围绕特定主题进行写作，提升自我认知和情感表达能力。活动主题包括"自知而后自明，自察而后自信"等，通过自我探索、团队协作、专业素养提升及创造力激发等方面，全面赋能乡村教师。</div></div>
+      <div class="case-row"><div class="case-label">项目成果</div><div class="case-value">教师在繁衍感、工作投入及活力维度上均出现显著提升，繁衍感行为也有显著改善，追踪测试显示干预效果具有稳定性和延续性。项目成果经专家评估具有推广价值，已成为北师大心理学部的应用实践项目。随即产出《教师的6节心理课》一书，为更多教师提供系统、实用的心理支持与指导。</div></div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-title">5.4 学生学习力提升——北大附中</div>
+      <div class="case-tags"><span class="case-tag">名校合作</span><span class="case-tag">学习力提升</span><span class="case-tag">教师培训</span><span class="case-tag">SEL</span></div>
+      <div class="case-row"><div class="case-label">项目背景</div><div class="case-value">北京大学附属中学学生面临学习能力、社会情感技能发展需求，教师需要提升教育学、心理学方面的专业素养以及促进专业成长。</div></div>
+      <div class="case-row"><div class="case-label">服务内容</div><div class="case-value">从整体理论背景梳理、具体框架搭建、详细条目与案例结合等方面进行指导，助力提升学生的学习能力和社会情感技能。为教师提供学法课培训，提升教师的教育学、心理学素养，促进专业成长。开展示范课产出等活动，促进教学交流和经验分享。</div></div>
+      <div class="case-row"><div class="case-label">项目成果</div><div class="case-value">学生的学习能力和社会情感技能显著提升，为全面发展奠定了坚实基础。教师的教育学、心理学素养和专业成长得到明显提升，为教学质量提升提供了有力保障。</div></div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-title">5.5 社区儿童情绪管理能力提升——天津天铁冶金集团</div>
+      <div class="case-tags"><span class="case-tag">社区服务</span><span class="case-tag">SEL体系</span><span class="case-tag">10社区112场</span><span class="case-tag">可复制模式</span></div>
+      <div class="case-row"><div class="case-label">项目背景</div><div class="case-value">当前儿童成长环境复杂，尤其在自我认知、情绪管理、人际交往等方面存在不足，影响其社会适应能力与未来发展。项目聚焦社区儿童心理健康，旨在通过系统性社会情感学习（SEL）活动，填补社区在心理健康支持领域的空白。</div></div>
+      <div class="case-row"><div class="case-label">服务内容</div><div class="case-value">针对小学全年龄段儿童，设计两个年龄段、各5次主题活动，围绕"负责任的决策"等5大主题，开发心理团辅活动教案、卡牌工具及逐字稿（实操手册）。提供专业化、实操性强的技术与方法培训，支持社工开展SEL活动。通过全测问卷、代表性访谈等形式，评估社工能力变化、儿童SEL提升及家长反馈。</div></div>
+      <div class="case-row"><div class="case-label">项目成果</div><div class="case-value">构建系统性SEL服务体系，覆盖社区儿童、社工及家长，形成"儿童—家庭—社区"联动支持模式。目前在北京、天津两地部分社区进行试点，一期活动共计服务10个社区，开展112场活动，后续将逐渐扩大服务范围。</div></div>
+    </div>
+
+    <div class="case-card">
+      <div class="case-title">5.6 教师养育倦怠缓解——日慈公益基金会</div>
+      <div class="case-tags"><span class="case-tag">教师心理</span><span class="case-tag">双减背景</span><span class="case-tag">胜任力模型</span><span class="case-tag">卡牌产品</span></div>
+      <div class="case-row"><div class="case-label">项目背景</div><div class="case-value">在"双减"政策背景下，教师面临的工作压力日益增大，家庭中还需照料子女，养育倦怠问题频发，心理健康问题凸显。为提升教师的心理健康水平，本团队与上海日慈公益基金会联合发起该项目。</div></div>
+      <div class="case-row"><div class="case-label">服务内容</div><div class="case-value">项目通过专题访谈、线上团辅、主题写作及绘画疗法等形式，为教师提供心理健康支持。专题访谈深入剖析教师家校沟通痛点，构建教师胜任力模型。以应用心理学结合叙事疗法的技术手段，为繁衍感的干预机制与教师胜任力模型的构建提供实证支持。</div></div>
+      <div class="case-row"><div class="case-label">项目成果</div><div class="case-value">打造了补充教师心理能量的赋能计划，随即产出一套具有创新性与实用性的社会情感学习卡牌，结合教师与家长在工作场景与家庭场景的不同需求，精心设计了多个主题与情境。该项目为我国提升教师队伍质量、建设教育强国提供了现实意义。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 第六章：预期效果 -->
+<section class="content-section-alt" id="ch6">
+  <div class="container">
+    <div class="section-num">PART 06</div>
+    <h2 class="section-h2">第六章 预期效果规划</h2>
+
+    <h3 class="section-h3">6.1 阶段性目标与量化指标</h3>
+    <p class="section-p">基于本服务方案的系统实施，预期在三年内实现以下阶段性目标与量化成效：</p>
+
+    <div class="phase phase-1"><div class="phase-title">第一年：建机制、打基础</div><ul class="section-ul"><li>完成区域教师心理健康通识培训</li><li>搭建区域心理健康筛查与预警平台，形成四级预警机制</li><li>开发适配区域学情的心理健康教育课程方案，覆盖小学、初中、高中三个学段</li></ul></div>
+    <div class="phase phase-2"><div class="phase-title">第二年：深覆盖、提质量</div><ul class="section-ul"><li>教师心理健康通识培训累计覆盖不少于3000人次，参训教师心理育人能力显著提升</li><li>培养校级心理健康教育骨干不少于200名，形成区域性骨干教师队伍</li></ul></div>
+    <div class="phase phase-3"><div class="phase-title">第三年：出成果、树品牌</div><ul class="section-ul"><li>实现区域内中小学心理健康服务体系全覆盖，形成标准化、可持续的运行机制</li><li>学生心理健康水平有望显著提升</li><li>形成"区域学生心理健康服务模式"，总结可复制、可推广的区域经验</li><li>产出区域心理健康年度报告、教师培训教材、学生心理课程资源包等成果</li></ul></div>
+
+    <h3 class="section-h3">6.2 长期影响与可持续发展</h3>
+    <p class="section-p">希望三年完整服务周期结束后，为合作区域留存可持续自主运行的心理健康服务体系与专业人才队伍，实现长期可持续价值：</p>
+    <ul class="section-ul">
+      <li>形成区域心理健康教育生态闭环，实现"预防—教育—辅导—干预"全链条常态化运行</li>
+      <li>培养一支"带不走"的心理健康教育骨干队伍，学校心理辅导能力实现自主运行</li>
+      <li>产出系列成果（课程资源包、教师培训教材、区域研究报告），形成可推广的"区域经验"</li>
+      <li>构建家校社协同育人长效机制，持续优化区域学生心理健康生态</li>
+      <li>为全国同规模地区提供可复制、可借鉴的区域心理健康服务体系建设范式</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 第七章：保障机制 -->
+<section class="content-section" id="ch7">
+  <div class="container">
+    <div class="section-num">PART 07</div>
+    <h2 class="section-h2">第七章 服务保障机制</h2>
+    <div class="guarantee"><h4>7.1 专业保障</h4><p>以北京师范大学心理学部刘春荣老师等核心专家组成项目专家委员会，负责方案审核、专业督导与质量评估。所有培训讲师均具备心理学硕士及以上学历和专业受训背景，团体辅导带领者均经过系统专业训练。</p></div>
+    <div class="guarantee"><h4>7.2 技术保障</h4><p>配备自研AI心理测评系统、SEL大模型智能课程生成平台、班主任胜任力测评量表等数字化工具，实现心理筛查精准化、课程设计个性化、培训效果可量化。所有学生心理数据本地加密存储、加密传输；测评数据仅用于校内心理健康工作，不对外泄露；可出具书面数据安全承诺书。</p></div>
+    <div class="guarantee"><h4>7.3 质量保障</h4><p>建立"过程评估+结果评估"双轨质量控制体系：过程评估涵盖培训出勤率、参与度、满意度等指标；结果评估通过前后测对比、追踪随访等方式，量化评估干预效果。定期向教育局提交项目进展报告与效果评估报告，接受监督与指导。</p></div>
+  </div>
+</section>
+
+<!-- 第八章：服务包 -->
+<section class="content-section-alt" id="ch8">
+  <div class="container">
+    <div class="section-num">PART 08</div>
+    <h2 class="section-h2">第八章 产品服务包方案</h2>
+    <p class="section-p">为满足不同规模、不同阶段的服务需求，我们设计了三个层级的产品服务包，从单校试点到区域共建，层层递进、灵活可选，助力教育系统按需推进学生心理健康服务体系建设。各服务包均包含课程资源、教师培训、督导支持、测评服务、访谈调研、教学工具、报告产出等核心维度，具体内容如下：</p>
+
+    <div class="pkg-card">
+      <div class="pkg-card-header">
+        <div><div class="pkg-card-title">基础试点包</div><div class="pkg-card-scene">单校试点 · 验证落地可行性</div></div>
+        <div class="pkg-card-price">12–15<span>万元</span></div>
+      </div>
+      <div class="pkg-item"><div class="pkg-item-label">课程资源</div><div class="pkg-item-value">课程资源包·10节</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">教师培训</div><div class="pkg-item-value">针对校内种子教师（30人）开展2日培训<br>DAY1 体系理论精讲<br>DAY2 分组实操磨课、模拟授课</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">督导支持</div><div class="pkg-item-value">专项教学指导：2次</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">抽样访谈</div><div class="pkg-item-value">学生抽样访谈·30-40人</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">基础心理测评</div><div class="pkg-item-value">学生心理健康测评·1次</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">报告产出</div><div class="pkg-item-value">试点实施报告</div></div>
+    </div>
+
+    <div class="pkg-card pkg-2">
+      <div class="pkg-card-header">
+        <div><div class="pkg-card-title">标准落地包</div><div class="pkg-card-scene">试点区县学校 · 形成可复制模板</div></div>
+        <div class="pkg-card-price">32–48<span>万元</span></div>
+      </div>
+      <div class="pkg-item"><div class="pkg-item-label">课程资源</div><div class="pkg-item-value">课程资源包·20节</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">教师培训</div><div class="pkg-item-value">教师带领实操示范·1场/3小时<br>系统理论精讲·1场/3小时<br>教师通识培训·3场（50-100人/场，单场3小时）</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">督导支持</div><div class="pkg-item-value">专项教学指导：2次<br>课堂评课反馈指导：4次</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">测评服务</div><div class="pkg-item-value">学生心理健康筛查·2个年级</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">访谈调研</div><div class="pkg-item-value">学生专项访谈：访谈人数50-60人<br>教师专项访谈：访谈人数30-40人</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">教学工具</div><div class="pkg-item-value">社会情感学习卡牌：10套<br>卡牌活动操作手册：10份</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">报告产出</div><div class="pkg-item-value">区县实施报告</div></div>
+    </div>
+
+    <div class="pkg-card pkg-3">
+      <div class="pkg-card-header">
+        <div><div class="pkg-card-title">区域共建包 <span class="pkg-rec-tag">推荐</span></div><div class="pkg-card-scene">教育局统筹 · 区域体系建设</div></div>
+        <div class="pkg-card-price">88–100<span>万元</span></div>
+      </div>
+      <div class="pkg-item"><div class="pkg-item-label">课程资源</div><div class="pkg-item-value">课程资源包·30节</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">教师培训</div><div class="pkg-item-value">教师带领实操示范·3场（单场3小时）<br>教师通识培训·6场（100-200人/场，单场3小时）</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">督导支持</div><div class="pkg-item-value">专项教学指导：4次<br>课堂评课反馈指导：6次</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">测评服务</div><div class="pkg-item-value">全区学生心理健康普查<br>监测测评平台搭建</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">访谈调研</div><div class="pkg-item-value">学生抽样访谈：访谈人数60-80人<br>教师专项访谈：访谈人数30-40人<br>家长专项访谈：访谈人数30-40人</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">教学工具</div><div class="pkg-item-value">社会情感学习全套卡牌：80套<br>卡牌专属操作手册：80份<br>教师心理课程书籍：100本<br>家长亲子共读心理书籍：100本</div></div>
+      <div class="pkg-item"><div class="pkg-item-label">报告产出</div><div class="pkg-item-value">区域实施报告</div></div>
+    </div>
+
+    <div class="pkg-note">测评量表版本、访谈提纲可根据学校学段定制；超出约定人数的测评、访谈服务另行核算费用。配套教具、图书可根据区域学校数量按需增配，增配物料单价单独核算；本服务包适配县域全域体系搭建，按需选择。</div>
+  </div>
+</section>
+
+<!-- 联系我们 -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-intro" style="max-width:700px;margin:0 auto 40px;text-align:center;">
+      <div class="section-num" style="display:inline-block;margin-bottom:12px;">CONTACT</div>
+      <h2 class="section-h2" style="margin-bottom:12px;">联系我们</h2>
+      <p class="section-p" style="text-align:center;">如需进一步了解本服务方案详情，或希望进行项目合作洽谈，欢迎通过以下方式与我们取得联系。</p>
+    </div>
+
+    <div class="contact-grid-4">
+      <div class="contact-card-item">
+        <div class="contact-card-avatar"><img src="images/qr-yao.png" alt="姚老师"></div>
+        <div class="contact-card-name">姚老师</div>
+        <div class="contact-card-tel">17710721070</div>
+        <div class="contact-card-email">yaoweiwei@laolilaodao.com.cn</div>
+      </div>
+      <div class="contact-card-item">
+        <div class="contact-card-avatar"><img src="images/qr-jin.jpg" alt="金老师"></div>
+        <div class="contact-card-name">金老师</div>
+        <div class="contact-card-tel">13910799452</div>
+        <div class="contact-card-email">liaoliao@laolilaodao.com.cn</div>
+      </div>
+      <div class="contact-card-item">
+        <div class="contact-card-avatar"><img src="images/qr-ma.jpg" alt="马老师"></div>
+        <div class="contact-card-name">马老师</div>
+        <div class="contact-card-tel">16619841215</div>
+        <div class="contact-card-email">vip@laolilaodao.com.cn</div>
+      </div>
+      <div class="contact-card-item">
+        <div class="contact-card-avatar"><img src="images/qr-qin.png" alt="秦老师"></div>
+        <div class="contact-card-name">秦老师</div>
+        <div class="contact-card-tel">17310917890</div>
+        <div class="contact-card-email">qinqi@laolilaodao.com.cn</div>
+      </div>
+    </div>
+
+    <div class="contact-invite">
+      诚挚期待与各地教育主管部门、各中小学校深度协作<br>
+      一体化搭建区域标准化中小学生心理健康服务体系<br>
+      全方位守护青少年身心健康发展，助力区域立德树人工作落地见效
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer" style="margin-top: 40px;">
+  <img src="logo-white.png" alt="寻心理" style="width:48px;height:48px;margin-bottom:12px;opacity:0.9">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">InnerSeed</div>
+  <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
+</footer>
+
+</body>
+</html>

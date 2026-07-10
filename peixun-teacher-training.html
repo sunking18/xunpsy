@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学校培训 | 寻心理 · InnerSeed</title>
+<link rel="icon" href="favicon.png">
+<style>
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --text-lighter: #888;
+  --white: #FAFAF8; --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius-md: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+/* 导航栏 */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-inner { max-width: 1100px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-svg { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC","STSong","SimSun",serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
+.nav-links { display: flex; gap: 20px; align-items: center; white-space: nowrap; }
+.nav-link { font-size: 13px; color: var(--text-light); text-decoration: none; transition: var(--transition); padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+.nav-back { font-size: 13px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
+.nav-back:hover { background: var(--green); color: #fff; }
+
+/* 页面标题 Hero */
+.page-hero {
+  background: linear-gradient(165deg, #385F55 0%, #4A7C6F 40%, #5C8D7E 100%);
+  padding: 110px 24px 48px; text-align: center; position: relative; overflow: hidden;
+}
+.page-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(212,165,116,0.12) 0%, transparent 60%);
+}
+.page-hero-icon { font-size: 48px; margin-bottom: 12px; position: relative; }
+.page-hero h1 { font-family: "Songti SC",serif; font-size: clamp(26px,5vw,36px); font-weight: 900; color: #fff; letter-spacing: 0.06em; position: relative; margin-bottom: 10px; }
+.page-hero p { font-size: clamp(14px,2.5vw,17px); color: rgba(255,255,255,0.85); position: relative; }
+
+/* 课程卡片网格 */
+.course-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin: 32px 0 24px; }
+
+/* 课程卡片 - 可跳转 */
+.course-card {
+  background: #fff; border-radius: var(--radius-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm); transition: var(--transition); text-decoration: none; color: inherit; display: block;
+  border-top: 4px solid var(--green);
+}
+.course-card:nth-child(2) { border-top-color: #5B9FC7; }
+.course-card:nth-child(3) { border-top-color: #D4A574; }
+.course-card:nth-child(4) { border-top-color: #5C8D7E; }
+.course-card:nth-child(5) { border-top-color: #B89AC8; }
+.course-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+.course-card-header { padding: 20px 20px 12px; display: flex; gap: 14px; align-items: flex-start; }
+.course-card-icon { font-size: 36px; flex-shrink: 0; line-height: 1.1; }
+.course-card-info { flex: 1; }
+.course-card-title { font-family: "Songti SC",serif; font-size: 17px; color: var(--green-dark); font-weight: 700; margin-bottom: 3px; letter-spacing: 0.03em; }
+.course-card-theme { font-size: 11px; color: var(--gold); font-weight: 600; margin-bottom: 5px; text-transform: uppercase; }
+.course-card-desc { font-size: 13px; color: var(--text-light); line-height: 1.6; margin-bottom: 10px; }
+.course-card-meta { display: flex; gap: 14px; flex-wrap: wrap; }
+.course-card-meta span { font-size: 12px; color: var(--text-lighter); display: flex; align-items: center; gap: 3px; }
+.course-card-footer {
+  text-align: center; padding: 8px 20px 14px;
+  font-size: 12px; color: var(--green); transition: var(--transition);
+  border-top: 1px dashed var(--border); margin: 0 20px;
+}
+.course-card:hover .course-card-footer { color: var(--green-dark); }
+
+/* CTA */
+.cta-btn { display: inline-block; padding: 10px 28px; background: var(--green); color: #fff; border-radius: 24px; font-size: 14px; text-decoration: none; font-weight: 600; transition: var(--transition); border: none; cursor: pointer; }
+.cta-btn:hover { background: var(--green-dark); transform: translateY(-2px); }
+
+/* 定制化 CTA */
+.custom-cta {
+  text-align: center; padding: 48px 24px; margin-top: 24px;
+  background: linear-gradient(135deg, var(--warm-light), #fff);
+  border-radius: var(--radius-lg); border: 1px dashed var(--gold);
+}
+.custom-cta h3 { font-family: "Songti SC",serif; font-size: 20px; color: var(--green-dark); margin-bottom: 8px; }
+.custom-cta p { font-size: 14px; color: var(--text-light); margin-bottom: 20px; }
+
+/* 页脚 */
+.footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
+.footer-brand { font-family: "Songti SC",serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
+.footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+@media (max-width: 768px) {
+  .course-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-svg" src="logo.png" alt="寻心理">
+      <div><div class="nav-logo-text">寻心理</div><div class="nav-logo-sub">InnerSeed</div></div>
+    </a>
+    <div class="nav-links">
+      <a href="peixun.html" class="nav-link">← 培训者培训</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="page-hero-icon">🏫</div>
+  <h1>学校培训</h1>
+  <p>为学校提供全方位的心理健康教育解决方案</p>
+</header>
+
+<div class="container">
+
+  <!-- 课程卡片网格 -->
+  <div class="course-grid">
+
+    <a href="peixun-crisis-intervention.html" class="course-card">
+      <div class="course-card-header">
+        <div class="course-card-icon">🛡️</div>
+        <div class="course-card-info">
+          <div class="course-card-title">学生心理危机识别与干预</div>
+          <div class="course-card-theme">Crisis Intervention for Students</div>
+          <div class="course-card-desc">帮助教师识别学生心理危机的早期信号，掌握即时支持与转介技能，成为学生心理安全的"第一道防线"。包含检测软件与预警系统。</div>
+          <div class="course-card-meta"><span>📋 完整方案</span><span>⏱ 长期项目</span><span>👥 全校覆盖</span></div>
+        </div>
+      </div>
+      <div class="course-card-footer">查看完整方案 →</div>
+    </a>
+
+    <a href="peixun-campus-mental-health.html" class="course-card">
+      <div class="course-card-header">
+        <div class="course-card-icon">🏫</div>
+        <div class="course-card-info">
+          <div class="course-card-title">校园心理健康体系建设</div>
+          <div class="course-card-theme">Campus Mental Health System</div>
+          <div class="course-card-desc">为学校提供从体系建设、师资培训到学生服务的全套心理健康解决方案，包含组织架构、课程设计、危机干预与评估体系。</div>
+          <div class="course-card-meta"><span>📋 完整方案</span><span>⏱ 长期项目</span><span>👥 全校覆盖</span></div>
+        </div>
+      </div>
+      <div class="course-card-footer">查看完整方案 →</div>
+    </a>
+
+  </div>
+
+  <!-- 定制化咨询 -->
+  <div class="custom-cta">
+    <h3>以上方案仅供参考，我们更懂定制</h3>
+    <p>每个学校、每位教师的情况各不相同。我们可以根据您的实际需求，定制课程内容、时长与频次。</p>
+    <a href="index.html#contact" class="cta-btn" style="font-size:15px; padding:12px 36px">更多定制化内容，请咨询客服 &rarr;</a>
+  </div>
+
+</div>
+
+<footer class="footer">
+  <img src="logo-white.png" alt="寻心理" style="width:48px;height:48px;margin-bottom:12px;opacity:0.9">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">InnerSeed</div>
+  <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
+</footer>
+
+</body>
+</html>

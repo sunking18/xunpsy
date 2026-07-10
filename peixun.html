@@ -78,9 +78,29 @@ body {
 .advantage-card h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; color: var(--green-dark); margin-bottom: 8px; }
 .advantage-card p { font-size: 14px; color: var(--text-light); line-height: 1.8; }
 
-/* 客户 */
-.client-logos { text-align: center; display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; max-width: 700px; margin: 0 auto; }
-.client-tag { padding: 10px 20px; background: var(--green-bg); border-radius: 20px; font-size: 13px; color: var(--green-dark); font-weight: 600; }
+/* 标杆案例 */
+.case-section { background: var(--warm-light); padding: 80px 0; }
+.case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; max-width: 800px; margin: 0 auto; }
+.case-card {
+  background: #fff; border-radius: var(--radius-lg); padding: 28px 24px;
+  text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition);
+  border-left: 4px solid var(--green);
+}
+.case-card:nth-child(2) { border-left-color: #5B9FC7; }
+.case-card:nth-child(3) { border-left-color: #D4A574; }
+.case-card:nth-child(4) { border-left-color: #5C8D7E; }
+.case-card:nth-child(5) { border-left-color: #B89AC8; }
+.case-card:nth-child(6) { border-left-color: #C88A8A; }
+.case-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.case-card h4 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
+.case-card p { font-size: 14px; color: var(--green); font-weight: 600; }
+
+/* 培训场景卡片 — 可跳转 */
+.scene-card-link { display: flex; height: 100%; text-decoration: none; color: inherit; cursor: pointer; }
+.scene-card-link:hover .scene-name { color: var(--green); }
+.scene-card-link .scene-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 24px; text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition); border-top: 4px solid var(--green-light); height: 100%; display: flex; flex-direction: column; justify-content: flex-start; }
+.scene-card-link .scene-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.scene-card-link .scene-card .scene-name { color: var(--green-dark); }
 
 .cta-block { text-align: center; padding: 56px 24px; background: linear-gradient(135deg, #3A5A6E, #4A7A8E); border-radius: var(--radius-lg); max-width: 700px; margin: 0 auto; }
 .cta-block h3 { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 22px; color: #fff; margin-bottom: 10px; }
@@ -143,39 +163,42 @@ body {
     </div>
 
     <div class="scene-grid">
-      <div class="scene-card">
-        <div class="scene-icon">🏫</div>
-        <div class="scene-name">学校培训</div>
-        <ul class="scene-items">
-          <li>教师心理素养提升</li>
-          <li>师生沟通技巧工作坊</li>
-          <li>教师情绪调节与减压</li>
-          <li>学生心理危机识别与干预</li>
-          <li>校园心理健康体系建设</li>
-        </ul>
-      </div>
-      <div class="scene-card">
-        <div class="scene-icon">🏢</div>
-        <div class="scene-name">企业培训</div>
-        <ul class="scene-items">
-          <li>员工心理关怀计划（EAP）</li>
-          <li>职场压力管理与韧性训练</li>
-          <li>高效沟通与冲突化解</li>
-          <li>团队凝聚力与心理安全</li>
-          <li>管理者情绪领导力</li>
-        </ul>
-      </div>
-      <div class="scene-card">
-        <div class="scene-icon">🏘️</div>
-        <div class="scene-name">社区 / 家长培训</div>
-        <ul class="scene-items">
-          <li>家长心理养育工作坊</li>
-          <li>亲子沟通与情绪教练</li>
-          <li>老年人心理健康讲座</li>
-          <li>社区心理健康服务体系建设</li>
-          <li>心理健康科普系列</li>
-        </ul>
-      </div>
+      <a href="peixun-teacher-training.html" class="scene-card-link">
+        <div class="scene-card">
+          <div class="scene-icon">🏫</div>
+          <div class="scene-name">学校培训</div>
+          <ul class="scene-items">
+            <li>学生心理危机识别与干预</li>
+            <li>校园心理健康体系建设</li>
+          </ul>
+        </div>
+      </a>
+      <a href="peixun-corporate.html" class="scene-card-link">
+        <div class="scene-card">
+          <div class="scene-icon">🏢</div>
+          <div class="scene-name">企业培训</div>
+          <ul class="scene-items">
+            <li>员工心理关怀计划（EAP）</li>
+            <li>职场压力管理与韧性训练</li>
+            <li>高效沟通与冲突化解</li>
+            <li>团队凝聚力与心理安全</li>
+            <li>管理者情绪领导力</li>
+          </ul>
+        </div>
+      </a>
+      <a href="peixun-community.html" class="scene-card-link">
+        <div class="scene-card">
+          <div class="scene-icon">🏘️</div>
+          <div class="scene-name">社区培训</div>
+          <ul class="scene-items">
+            <li>家长心理养育工作坊</li>
+            <li>亲子沟通与情绪教练</li>
+            <li>老年人心理健康讲座</li>
+            <li>社区心理健康服务体系建设</li>
+            <li>心理健康科普系列</li>
+          </ul>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -207,19 +230,37 @@ body {
   </div>
 </section>
 
-<section class="content-section">
+<section class="case-section">
   <div class="container">
     <div class="section-intro">
-      <h2>合作客户</h2>
+      <h2>标杆案例</h2>
       <p>我们的培训已经走进了这些地方</p>
     </div>
-    <div class="client-logos">
-      <span class="client-tag">🏫 明天小学</span>
-      <span class="client-tag">🏫 北师大东门社区</span>
-      <span class="client-tag">🏢 教师沟通训练平台</span>
-      <span class="client-tag">🏘️ 社区心理服务站</span>
-      <span class="client-tag">👨‍👩‍👧 家长成长工作坊</span>
-      <span class="client-tag">💼 企业EAP合作</span>
+    <div class="case-grid">
+      <div class="case-card">
+        <h4>重庆铜梁二中</h4>
+        <p>教师心理赋能</p>
+      </div>
+      <div class="case-card">
+        <h4>东乡族自治县教育局</h4>
+        <p>班主任胜任力提升</p>
+      </div>
+      <div class="case-card">
+        <h4>北大附中</h4>
+        <p>学生学习力提升</p>
+      </div>
+      <div class="case-card">
+        <h4>北京慈弘慈善基金会</h4>
+        <p>教师职业倦怠缓解</p>
+      </div>
+      <div class="case-card">
+        <h4>天津天铁冶金集团</h4>
+        <p>社区儿童情绪管理能力提升</p>
+      </div>
+      <div class="case-card">
+        <h4>日慈公益基金会</h4>
+        <p>教师养育倦怠缓解</p>
+      </div>
     </div>
   </div>
 </section>

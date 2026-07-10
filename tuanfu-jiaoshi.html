@@ -77,6 +77,7 @@ body {
 }
 .course-card:nth-child(2) { border-top-color: #5B9FC7; }
 .course-card:nth-child(3) { border-top-color: #D4A574; }
+.course-card:nth-child(4) { border-top-color: #B89AC8; }
 .course-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
 
 /* 卡片头部 */
@@ -276,13 +277,15 @@ body {
 <header class="page-hero">
   <div class="page-hero-icon">🏫</div>
   <h1>教师心理培训</h1>
-  <p>面向学校教师与教育管理者，两大主题守护教育者的心灵</p>
+  <p>面向学校教师与教育管理者，四大主题守护教育者的心灵</p>
 </header>
 
 <!-- 课程导航 -->
 <div class="course-nav" id="courseNav">
   <a href="#burnout" class="active">职业倦怠预防</a>
   <a href="#team">团队协作沟通</a>
+  <a href="#emotion-care">情绪管理</a>
+  <a href="#teacher-student-comm">师生沟通</a>
 </div>
 
 <div class="container">
@@ -381,6 +384,102 @@ body {
               <li>构建团队信任与安全氛围</li>
               <li>培养真诚欣赏与积极反馈的习惯</li>
               <li>形成团队共创的愿景与行动方案</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 课程三：教师情绪管理与自我关怀 -->
+    <div class="course-card" id="emotion-care">
+      <div class="course-card-header" onclick="toggleCourse(this)">
+        <div class="course-card-icon">🧘</div>
+        <div class="course-card-info">
+          <div class="course-card-title">教师情绪管理与自我关怀</div>
+          <div class="course-card-theme">Teacher Emotional Wellness</div>
+          <div class="course-card-desc">帮助教师识别和管理职业倦怠、焦虑等负面情绪，建立自我关怀的日常习惯，在高压教育环境中保持身心平衡。</div>
+          <div class="course-card-meta"><span>📋 4次课程</span><span>⏱ 90分钟/次</span><span>👥 15-30人</span></div>
+        </div>
+      </div>
+      <div class="course-card-toggle" onclick="event.stopPropagation();toggleCourse(this.parentElement.querySelector('.course-card-header'))"></div>
+      <div class="course-detail">
+        <div class="section-title" style="font-size:15px;margin:0 0 10px;text-align:left;font-family:'Songti SC',serif;color:var(--green-dark);font-weight:700;">课程大纲</div>
+        <div class="session-grid">
+          <div class="session-compact"><span class="session-compact-num">1</span><strong>认识教师职业倦怠</strong> <span style="color:var(--gold);font-size:10px;">自我觉察</span><div class="act-tags"><span class="act-tag">倦怠光谱测量</span><span class="act-tag">能量地图</span><span class="act-tag">压力圈图</span></div><div class="desc">了解职业倦怠的三维模型，评估个人当前状态。</div></div>
+          <div class="session-compact"><span class="session-compact-num">2</span><strong>情绪调节工具箱</strong> <span style="color:var(--gold);font-size:10px;">应对技能</span><div class="act-tags"><span class="act-tag">ABCD情绪记录</span><span class="act-tag">呼吸四元素</span><span class="act-tag">身心充电站</span></div><div class="desc">学习即时冷静与长期情绪调节策略，建立个人"情绪急救包"。</div></div>
+          <div class="session-compact"><span class="session-compact-num">3</span><strong>自我关怀的实践</strong> <span style="color:var(--gold);font-size:10px;">内在滋养</span><div class="act-tags"><span class="act-tag">正念练习</span><span class="act-tag">慈爱冥想</span><span class="act-tag">自我关怀清单</span></div><div class="desc">打破"教师必须牺牲"的迷思，学习可持续的自我关怀方法。</div></div>
+          <div class="session-compact"><span class="session-compact-num">4</span><strong>建立心理滋养日常</strong> <span style="color:var(--gold);font-size:10px;">习惯养成</span><div class="act-tags"><span class="act-tag">微习惯设计</span><span class="act-tag">支持系统地图</span><span class="act-tag">韧性承诺卡</span></div><div class="desc">将所学转化为日常微小行动，构建教师专属的"心理健身房"。</div></div>
+        </div>
+        <div class="empower-row">
+          <div class="empower-compact">
+            <h4>🔍 解决的问题</h4>
+            <ul>
+              <li>职业倦怠感重，长期处于疲惫状态</li>
+              <li>情绪耗竭，容易对学生或家人发火</li>
+              <li>工作与生活边界模糊，无法真正休息</li>
+              <li>缺乏自我关怀意识，总把学生放在自己之前</li>
+              <li>面对家长和管理层压力难以自我调节</li>
+            </ul>
+          </div>
+          <div class="empower-compact">
+            <h4>💪 赋能成长</h4>
+            <ul>
+              <li>识别职业倦怠的早期信号与个人模式</li>
+              <li>掌握多种即学即用的情绪调节工具</li>
+              <li>建立可持续的自我关怀习惯</li>
+              <li>增强心理韧性与职业效能感</li>
+              <li>在付出与滋养之间找到动态平衡</li>
+            </ul>
+          </div>
+        </div>
+        <div class="cta-row">
+          <a href="index.html#contact" class="cta-btn">咨询本课程方案 &rarr;</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 课程四：师生有效沟通工作坊 -->
+    <div class="course-card" id="teacher-student-comm">
+      <div class="course-card-header" onclick="toggleCourse(this)">
+        <div class="course-card-icon">🗣️</div>
+        <div class="course-card-info">
+          <div class="course-card-title">师生有效沟通工作坊</div>
+          <div class="course-card-theme">Teacher-Student Communication</div>
+          <div class="course-card-desc">从发展心理学视角理解学生需求，掌握积极倾听、非暴力沟通等核心技能，将"对抗"转化为"合作"。</div>
+          <div class="course-card-meta"><span>📋 4次课程</span><span>⏱ 90分钟/次</span><span>👥 15-30人</span></div>
+        </div>
+      </div>
+      <div class="course-card-toggle" onclick="event.stopPropagation();toggleCourse(this.parentElement.querySelector('.course-card-header'))"></div>
+      <div class="course-detail">
+        <div class="section-title" style="font-size:15px;margin:0 0 10px;text-align:left;font-family:'Songti SC',serif;color:var(--green-dark);font-weight:700;">课程大纲</div>
+        <div class="session-grid">
+          <div class="session-compact"><span class="session-compact-num">1</span><strong>理解学生——发展视角</strong> <span style="color:var(--gold);font-size:10px;">认知基础</span><div class="act-tags"><span class="act-tag">发展需求地图</span><span class="act-tag">案例研讨</span><span class="act-tag">角色扮演</span></div><div class="desc">从发展心理学角度理解不同年龄学生的认知与情感需求。</div></div>
+          <div class="session-compact"><span class="session-compact-num">2</span><strong>积极倾听的力量</strong> <span style="color:var(--gold);font-size:10px;">倾听技能</span><div class="act-tags"><span class="act-tag">3F倾听法</span><span class="act-tag">传声筒体验</span><span class="act-tag">反馈练习</span></div><div class="desc">学习事实-感受-意图（3F）倾听模型，听懂学生"话外音"。</div></div>
+          <div class="session-compact"><span class="session-compact-num">3</span><strong>非暴力沟通四步法</strong> <span style="color:var(--gold);font-size:10px;">沟通框架</span><div class="act-tags"><span class="act-tag">观察-感受-需求-请求</span><span class="act-tag">情景模拟</span><span class="act-tag">修复对话</span></div><div class="desc">掌握NVC四步法，在冲突场景中保持尊重与建设性。</div></div>
+          <div class="session-compact"><span class="session-compact-num">4</span><strong>困难情境的沟通策略</strong> <span style="color:var(--gold);font-size:10px;">实战应用</span><div class="act-tags"><span class="act-tag">冲突化解</span><span class="act-tag">家长沟通</span><span class="act-tag">危机对话</span></div><div class="desc">针对学生违纪、家长质疑、同伴冲突等真实场景进行模拟演练。</div></div>
+        </div>
+        <div class="empower-row">
+          <div class="empower-compact">
+            <h4>🔍 解决的问题</h4>
+            <ul>
+              <li>与学生沟通陷入对抗模式，越管越失控</li>
+              <li>学生不听话，不知如何有效应对</li>
+              <li>与家长沟通产生冲突或误解</li>
+              <li>难以听懂学生行为背后的真实需求</li>
+              <li>班级管理中师生关系持续紧张</li>
+            </ul>
+          </div>
+          <div class="empower-compact">
+            <h4>💪 赋能成长</h4>
+            <ul>
+              <li>从发展视角理解学生行为背后的逻辑</li>
+              <li>掌握积极倾听与有效表达的核心技能</li>
+              <li>运用非暴力沟通化解师生与家校冲突</li>
+              <li>在困难情境中保持专业态度与教育温度</li>
+              <li>建立基于信任与尊重的师生关系</li>
             </ul>
           </div>
         </div>

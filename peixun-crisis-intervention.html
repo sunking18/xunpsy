@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>学生心理危机识别与干预 | 寻心理 · InnerSeed</title>
+<link rel="icon" href="favicon.png">
+<style>
+:root {
+  --green: #4A7C6F; --green-light: #6B9E8F; --green-dark: #385F55;
+  --green-bg: #E8F0ED; --warm: #F5E6D3; --warm-light: #FBF5ED;
+  --gold: #D4A574; --gold-light: #F0E0CC;
+  --text: #2C2C2C; --text-light: #5C5C5C; --text-muted: #8C8C8C;
+  --white: #FAFAF8; --card-bg: #FFFFFF;
+  --border: #E8E4DF;
+  --shadow-sm: 0 2px 8px rgba(44,44,44,0.06);
+  --shadow-md: 0 4px 20px rgba(44,44,44,0.10);
+  --radius-sm: 8px; --radius: 12px; --radius-lg: 20px;
+  --transition: all 0.3s ease;
+  --blue-alert: #3B7EA8; --blue-alert-bg: #E0EDF5;
+  --yellow-alert: #C99300; --yellow-alert-bg: #FBF3DC;
+  --red-alert: #C04A3E; --red-alert-bg: #F8E5E2;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: "PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  background: var(--white); color: var(--text); line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1000px; margin: 0 auto; padding: 0 24px; }
+
+/* 导航 */
+.navbar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+.navbar-inner { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+.nav-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.nav-logo-svg { width: 36px; height: 36px; }
+.nav-logo-text { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 17px; font-weight: 700; color: var(--green-dark); letter-spacing: 2px; }
+.nav-logo-sub { font-size: 9px; color: var(--gold); letter-spacing: 1.5px; font-family: Georgia,serif; margin-top: -2px; }
+.nav-links { display: flex; gap: 28px; align-items: center; }
+.nav-link { font-size: 14px; color: var(--text-light); text-decoration: none; transition: var(--transition); position: relative; padding: 4px 0; }
+.nav-link:hover { color: var(--green); }
+.nav-back { font-size: 14px; color: var(--green); text-decoration: none; padding: 6px 16px; border: 1px solid var(--green); border-radius: 20px; transition: var(--transition); }
+.nav-back:hover { background: var(--green); color: #fff; }
+
+/* 页内导航 */
+.chapter-nav {
+  position: sticky; top: 60px; z-index: 99;
+  background: rgba(250,250,248,0.95); backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+  padding: 10px 0; overflow-x: auto; white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  display: flex; justify-content: center;
+}
+.chapter-nav-inner { display: inline-flex; gap: 16px; max-width: 1080px; padding: 0 40px; }
+.chapter-nav a {
+  font-size: 13px; color: var(--green); text-decoration: none;
+  font-weight: 600; white-space: nowrap; transition: var(--transition);
+}
+.chapter-nav a:hover { color: var(--green-dark); }
+
+/* 封面 */
+.sub-hero {
+  background: linear-gradient(165deg, #2E4F44 0%, #385F55 40%, #4A7C6F 100%);
+  padding: 120px 24px 60px; text-align: center; position: relative; overflow: hidden;
+}
+.sub-hero::before {
+  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+  background: radial-gradient(ellipse at 50% 50%, rgba(232,240,237,0.15) 0%, transparent 60%);
+}
+.sub-hero::after {
+  content: ''; position: absolute; right: -100px; top: 50%; transform: translateY(-50%);
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(212,165,116,0.15) 0%, transparent 70%);
+}
+.sub-hero-brand {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.25);
+  padding: 6px 16px; border-radius: 100px; font-size: 13px; color: rgba(255,255,255,0.9);
+  margin-bottom: 28px; position: relative; z-index: 2;
+}
+.sub-hero-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); box-shadow: 0 0 10px rgba(212,165,116,0.5);
+}
+.sub-hero-title {
+  font-family: "Songti SC", "STSong", "SimSun", serif;
+  font-size: clamp(24px, 5vw, 34px); font-weight: 900; color: #fff;
+  letter-spacing: 0.06em; position: relative; z-index: 2; margin-bottom: 8px; line-height: 1.5;
+}
+.sub-hero-subtitle {
+  font-size: clamp(16px, 3vw, 20px); font-weight: 600; color: rgba(255,255,255,0.9);
+  position: relative; z-index: 2; margin-bottom: 16px;
+}
+.sub-hero-divider { width: 50px; height: 2px; background: var(--gold); margin: 0 auto 20px; border-radius: 1px; position: relative; z-index: 2; }
+.sub-hero-slogan {
+  font-size: 14px; color: rgba(255,255,255,0.8); line-height: 2;
+  position: relative; z-index: 2; margin-bottom: 24px;
+}
+.sub-hero-meta {
+  font-size: 12px; color: rgba(255,255,255,0.65); line-height: 1.8;
+  position: relative; z-index: 2;
+}
+
+/* 内容区域 */
+.content-section { padding: 64px 0; }
+.content-section-alt { padding: 64px 0; background: var(--warm-light); }
+.section-num {
+  display: inline-block; background: var(--green-bg); color: var(--green);
+  font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 100px;
+  margin-bottom: 12px; letter-spacing: 1px;
+}
+.section-h2 {
+  font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 22px; font-weight: 800;
+  color: var(--green-dark); margin-bottom: 24px; line-height: 1.4;
+}
+.section-h3 {
+  font-size: 17px; font-weight: 700; color: var(--green-dark);
+  margin: 32px 0 14px; padding-left: 12px; border-left: 4px solid var(--green); line-height: 1.5;
+}
+.section-h4 { font-size: 15px; font-weight: 700; color: var(--text); margin: 22px 0 10px; }
+.section-p {
+  font-size: 15px; color: var(--text-light); line-height: 1.9; margin-bottom: 14px; text-align: justify;
+}
+.section-ul { list-style: none; margin: 14px 0; }
+.section-ul li {
+  font-size: 15px; color: var(--text-light); line-height: 1.9;
+  padding-left: 22px; position: relative; margin-bottom: 8px;
+}
+.section-ul li::before { content: "■"; position: absolute; left: 0; top: 2px; color: var(--green); font-size: 11px; }
+.section-ul li strong { color: var(--text); }
+
+/* 英雄卡片 */
+.card-hero {
+  background: linear-gradient(135deg, var(--green-dark), var(--green));
+  color: #fff; border-radius: var(--radius); padding: 32px 28px;
+  margin: 24px 0; text-align: center; box-shadow: 0 4px 20px rgba(56,95,85,0.2);
+}
+.card-hero-icon { font-size: 32px; margin-bottom: 8px; }
+.card-hero-title { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+.card-hero-text { font-size: 14px; line-height: 1.9; opacity: 0.95; }
+
+/* 信号类别卡片 */
+.signal-card {
+  background: var(--card-bg); border-radius: var(--radius); padding: 20px;
+  margin: 14px 0; box-shadow: var(--shadow-sm); border-left: 4px solid var(--green);
+}
+.signal-card.signal-behavior { border-left-color: var(--blue-alert); }
+.signal-card.signal-emotion { border-left-color: var(--gold); }
+.signal-card.signal-cognition { border-left-color: var(--green); }
+.signal-card.signal-speech { border-left-color: var(--red-alert); }
+.signal-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.signal-card-icon { font-size: 20px; }
+.signal-card-title { font-size: 17px; font-weight: 800; color: var(--green-dark); }
+.signal-card ul { margin: 8px 0 0 0; }
+.signal-card ul li { font-size: 14px; color: var(--text-light); line-height: 1.85; padding-left: 18px; position: relative; margin-bottom: 6px; }
+.signal-card ul li::before { content: "·"; position: absolute; left: 4px; top: 0; color: var(--green); font-size: 18px; font-weight: 700; }
+
+/* 三级识别框架卡片 */
+.identify-card {
+  background: var(--card-bg); border-radius: var(--radius); padding: 20px;
+  margin: 14px 0; box-shadow: var(--shadow-sm);
+}
+.identify-card.level-1 { border-left: 4px solid var(--green-light); }
+.identify-card.level-2 { border-left: 4px solid var(--gold); }
+.identify-card.level-3 { border-left: 4px solid var(--red-alert); }
+.identify-card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; flex-wrap: wrap; gap: 8px; }
+.identify-card-title { font-size: 16px; font-weight: 800; color: var(--green-dark); }
+.identify-card-tag {
+  font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 100px;
+}
+.identify-card.level-1 .identify-card-tag { background: var(--green-bg); color: var(--green); }
+.identify-card.level-2 .identify-card-tag { background: var(--gold-light); color: var(--yellow-alert); }
+.identify-card.level-3 .identify-card-tag { background: var(--red-alert-bg); color: var(--red-alert); }
+.identify-card p { font-size: 14px; color: var(--text-light); line-height: 1.85; margin: 0; }
+.identify-card ul { margin: 8px 0 0 0; }
+
+/* 干预技术卡片 */
+.intervention-card {
+  background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px;
+  margin: 20px 0; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  border-top: 4px solid var(--green);
+}
+.intervention-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+.intervention-card-icon { font-size: 24px; }
+.intervention-card-title { font-size: 18px; font-weight: 800; color: var(--green-dark); }
+.intervention-card p { font-size: 14px; color: var(--text-light); line-height: 1.85; margin-bottom: 10px; }
+.intervention-card p strong { color: var(--green-dark); }
+
+/* 优势/能力卡片 */
+.advantage {
+  background: var(--card-bg); border-radius: var(--radius); padding: 20px;
+  margin: 14px 0; border-left: 4px solid var(--green);
+  box-shadow: var(--shadow-sm);
+}
+.advantage-name { font-size: 17px; font-weight: 800; color: var(--green-dark); margin-bottom: 6px; }
+.advantage-desc { font-size: 14px; color: var(--text-light); line-height: 1.85; }
+
+/* 数据表格 */
+.data-table {
+  background: var(--card-bg); border-radius: var(--radius);
+  overflow: hidden; margin: 20px 0;
+  box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+}
+.data-table table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.data-table th, .data-table td {
+  padding: 14px 16px; text-align: left; border-bottom: 1px solid var(--border); line-height: 1.6;
+}
+.data-table th { background: var(--green-bg); color: var(--green-dark); font-weight: 700; font-size: 13px; }
+.data-table tr:last-child td { border-bottom: none; }
+.data-table td:first-child { font-weight: 700; color: var(--green-dark); white-space: nowrap; }
+
+/* 预警等级卡片 */
+.alert-card {
+  border-radius: var(--radius); padding: 20px; margin: 14px 0;
+  box-shadow: var(--shadow-sm);
+}
+.alert-card.alert-blue { background: var(--blue-alert-bg); border-left: 4px solid var(--blue-alert); }
+.alert-card.alert-yellow { background: var(--yellow-alert-bg); border-left: 4px solid var(--yellow-alert); }
+.alert-card.alert-red { background: var(--red-alert-bg); border-left: 4px solid var(--red-alert); }
+.alert-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+.alert-card-badge {
+  width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; color: #fff;
+}
+.alert-card.alert-blue .alert-card-badge { background: var(--blue-alert); }
+.alert-card.alert-yellow .alert-card-badge { background: var(--yellow-alert); }
+.alert-card.alert-red .alert-card-badge { background: var(--red-alert); }
+.alert-card-title { font-size: 16px; font-weight: 800; }
+.alert-card.alert-blue .alert-card-title { color: var(--blue-alert); }
+.alert-card.alert-yellow .alert-card-title { color: var(--yellow-alert); }
+.alert-card.alert-red .alert-card-title { color: var(--red-alert); }
+.alert-card p { font-size: 14px; color: var(--text-light); line-height: 1.85; margin: 0; }
+.alert-card ul { margin: 8px 0 0 0; }
+
+/* 流程步骤 */
+.flow-steps { display: flex; flex-wrap: wrap; gap: 0; margin: 24px 0; }
+.flow-step {
+  flex: 1; min-width: 140px; background: var(--card-bg); border-radius: var(--radius);
+  padding: 18px 16px; text-align: center; box-shadow: var(--shadow-sm);
+  position: relative; margin: 0 8px 8px 0;
+}
+.flow-step-num {
+  width: 32px; height: 32px; border-radius: 50%; background: var(--green);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 800; margin: 0 auto 10px;
+}
+.flow-step-title { font-size: 15px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
+.flow-step-desc { font-size: 13px; color: var(--text-light); line-height: 1.7; }
+
+/* 软件系统卡片 */
+.software-card {
+  background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px;
+  margin: 20px 0; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+  border-left: 4px solid var(--green);
+}
+.software-card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+.software-card-icon { font-size: 24px; }
+.software-card-title { font-size: 18px; font-weight: 800; color: var(--green-dark); }
+.software-card p { font-size: 14px; color: var(--text-light); line-height: 1.85; margin-bottom: 10px; }
+
+/* 保障机制 */
+.guarantee {
+  background: var(--green-bg); border-radius: var(--radius); padding: 20px;
+  margin: 14px 0; border-left: 4px solid var(--green);
+}
+.guarantee h4 { color: var(--green-dark); margin: 0 0 8px 0; font-size: 16px; }
+.guarantee p { margin: 0; font-size: 14px; color: var(--text-light); line-height: 1.8; }
+
+/* 专家卡片 */
+.expert {
+  background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px;
+  margin: 20px 0; box-shadow: var(--shadow-sm); border: 1px solid var(--border);
+}
+.expert-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+.expert-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--green), var(--green-light));
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 18px; font-weight: 800; flex-shrink: 0;
+}
+.expert-avatar-img {
+  width: 48px; height: 48px; border-radius: 50%;
+  object-fit: cover; flex-shrink: 0;
+  border: 2px solid var(--gold-light); box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.expert-name { font-size: 19px; font-weight: 800; color: var(--text); }
+.expert-title-name {
+  font-size: 12px; color: var(--green); background: var(--green-bg);
+  padding: 3px 10px; border-radius: 100px; font-weight: 600;
+}
+.expert-role { font-size: 13px; color: var(--text-muted); font-weight: 500; margin-bottom: 10px; }
+.expert p { font-size: 14px; color: var(--text-light); margin-bottom: 10px; line-height: 1.85; }
+.expert p strong { color: var(--green-dark); }
+
+/* 转介网络卡片 */
+.referral-card {
+  background: var(--card-bg); border-radius: var(--radius); padding: 20px;
+  margin: 14px 0; box-shadow: var(--shadow-sm); border-left: 4px solid var(--green);
+}
+.referral-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.referral-card-icon { font-size: 18px; }
+.referral-card-title { font-size: 16px; font-weight: 800; color: var(--green-dark); }
+.referral-card p { font-size: 14px; color: var(--text-light); line-height: 1.85; margin: 0; }
+
+/* 联系人卡片区 */
+.contact-section { padding: 64px 0; background: var(--warm-light); }
+.contact-grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+.contact-card-item {
+  background: var(--card-bg); border-radius: var(--radius-lg); padding: 24px 16px;
+  text-align: center; box-shadow: var(--shadow-sm); transition: var(--transition);
+  display: flex; flex-direction: column; align-items: center;
+}
+.contact-card-item:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.contact-card-avatar {
+  width: 64px; height: 64px; border-radius: 50%; overflow: hidden;
+  margin-bottom: 14px; border: 2px solid var(--green-bg);
+}
+.contact-card-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.contact-card-name { font-size: 16px; font-weight: 700; color: var(--green-dark); margin-bottom: 6px; }
+.contact-card-tel {
+  font-size: 13px; color: var(--text-light); font-family: "SF Mono","Menlo",monospace;
+  margin-bottom: 4px;
+}
+.contact-card-email { font-size: 12px; color: var(--text-muted); word-break: break-all; }
+
+.contact-invite {
+  text-align: center; font-size: 14px; color: var(--text-light); line-height: 2;
+  margin-top: 36px; font-family: "Songti SC","STSong","SimSun",serif;
+}
+
+/* 页脚 */
+.footer { background: var(--green-dark); padding: 48px 24px 32px; text-align: center; }
+.footer-brand { font-family: "Songti SC", "STSong", "SimSun", serif; font-size: 26px; color: #fff; font-weight: 700; margin-bottom: 6px; letter-spacing: 3px; }
+.footer-tagline { font-size: 14px; color: rgba(255,255,255,0.5); letter-spacing: 0.12em; margin-bottom: 6px; }
+.footer-en { font-size: 11px; color: rgba(255,255,255,0.3); letter-spacing: 0.1em; font-family: Georgia,serif; margin-bottom: 20px; }
+.footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+
+/* 响应式 */
+@media (max-width: 768px) {
+  .nav-links { display: none; }
+  .contact-grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .sub-hero-title { font-size: 22px; }
+  .data-table th, .data-table td { padding: 10px 12px; font-size: 13px; }
+  .data-table td:first-child { white-space: normal; }
+  .flow-steps { flex-direction: column; }
+  .flow-step { margin: 0 0 10px 0; }
+}
+@media (max-width: 480px) {
+  .contact-grid-4 { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="container navbar-inner">
+    <a href="index.html" class="nav-logo">
+      <img class="nav-logo-svg" src="logo.png" alt="寻心理">
+      <div>
+        <div class="nav-logo-text">寻心理</div>
+        <div class="nav-logo-sub">InnerSeed</div>
+      </div>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#story" class="nav-link">品牌故事</a>
+      <a href="index.html#products" class="nav-link">产品服务</a>
+      <a href="index.html#contact" class="nav-link">联系我们</a>
+      <a href="peixun.html" class="nav-back">← 返回培训页</a>
+    </div>
+  </div>
+</nav>
+
+<header class="sub-hero">
+  <div class="sub-hero-brand">
+    <div class="sub-hero-dot"></div>
+    寻心理 · 危机干预专题
+  </div>
+  <h1 class="sub-hero-title">🏫 学生心理危机识别与干预</h1>
+  <div class="sub-hero-subtitle">早识别 · 早预警 · 早干预 · 守护每一个生命</div>
+  <div class="sub-hero-divider"></div>
+  <div class="sub-hero-slogan">
+    <div>以科学识别框架 · 精准捕捉学生心理危机信号</div>
+    <div>以专业干预技术 · 筑牢校园心理安全防线</div>
+    <div>以智能检测预警 · 实现风险早发现早处置</div>
+  </div>
+  <div class="sub-hero-meta">
+    <div>学术支持：北京师范大学心理学部寻心理课题组</div>
+    <div style="margin-top:10px;">二〇二六年七月</div>
+  </div>
+</header>
+
+<!-- 页内导航 -->
+<nav class="chapter-nav">
+  <div class="chapter-nav-inner">
+    <a href="#ch1">政策背景</a>
+    <a href="#ch2">危机信号</a>
+    <a href="#ch3">识别框架</a>
+    <a href="#ch4">即时干预</a>
+    <a href="#ch5">检测预警</a>
+    <a href="#ch6">转介流程</a>
+    <a href="#ch7">专家团队</a>
+    <a href="#contact">联系我们</a>
+  </div>
+</nav>
+
+<!-- 总体说明 -->
+<div class="container">
+  <div class="card-hero" style="margin-top: 30px;">
+    <div class="card-hero-icon">🛡️</div>
+    <div class="card-hero-title">服务宗旨</div>
+    <div class="card-hero-text">
+      学生心理危机识别与干预是校园心理健康工作的核心防线。本方案依托北京师范大学心理学部专业力量，以教育部政策为指引，构建"信号识别—风险评估—即时干预—检测预警—转介跟踪"全链条危机干预体系，帮助学校建立科学、高效、可操作的心理危机识别与干预机制，做到危机早发现、早预警、早干预，最大程度降低学生心理危机事件风险，守护每一个学生的生命安全与心理健康。
+    </div>
+  </div>
+</div>
+
+<!-- 第一章：政策背景 -->
+<section class="content-section" id="ch1">
+  <div class="container">
+    <div class="section-num">PART 01</div>
+    <h2 class="section-h2">政策背景与危机干预紧迫性</h2>
+
+    <h3 class="section-h3">1.1 国家政策导向：心理危机干预是校园安全的底线要求</h3>
+    <p class="section-p">学生心理健康事关亿万家庭幸福和社会和谐稳定。近年来，国家高度重视学生心理健康危机预防与干预工作，密集出台一系列政策文件，明确要求各级教育行政部门和学校建立健全心理危机识别、预警与干预机制，将危机干预能力建设作为校园安全工作的重中之重。</p>
+    <ul class="section-ul">
+      <li><strong>《全面加强和改进新时代学生心理健康工作专项行动计划（2023—2025年）》：</strong>教育部等十七部门联合印发，明确提出"建立健全心理健康教育与咨询监测预警体系"，要求学校"健全心理危机干预机制，完善早期预警、及时干预、有效转介的工作流程"，将心理危机识别与干预能力纳入学校心理健康工作考核核心指标。</li>
+      <li><strong>《关于加强学生心理健康管理工作的通知》：</strong>教育部明确要求"每学年面向小学高年级、初中、高中开展一次心理健康测评"，建立"一生一策"心理健康档案，构建"学校—教育部门—专业机构"转介干预绿色通道，做到心理问题"早发现、早预警、早干预"。</li>
+      <li><strong>《中国教育现代化2035》：</strong>将"促进学生身心健康"作为战略任务，要求"建立健全学生心理健康教育、咨询服务、评估监测、危机干预体系"，将心理健康危机预防提升至国家教育战略层面。</li>
+      <li><strong>《健康中国行动——儿童青少年心理健康行动方案》：</strong>提出"建立心理危机干预队伍，完善心理危机干预机制"，要求各类学校建立心理危机干预预案，定期开展心理危机排查。</li>
+    </ul>
+
+    <h3 class="section-h3">1.2 现实挑战：校园心理危机防控的紧迫性</h3>
+    <p class="section-p">当前，受学业压力、家庭变故、人际冲突、网络环境等多重因素影响，学生心理危机事件呈现低龄化、隐蔽化趋势。部分学校在心理危机识别与干预方面面临突出短板：</p>
+    <ul class="section-ul">
+      <li><strong>识别能力不足：</strong>多数班主任和任课教师缺乏心理危机信号识别能力，无法及时捕捉学生的行为、情绪、认知和言语预警信号，错失最佳干预窗口期。</li>
+      <li><strong>干预流程缺失：</strong>学校缺乏标准化、可操作的危机干预流程和应急预案，危机事件发生时"手忙脚乱"，难以做到科学、有序、有效处置。</li>
+      <li><strong>技术手段滞后：</strong>多数学校仍依赖人工观察和经验判断，缺乏心理测评系统、行为预警平台和AI辅助筛查等技术手段，难以实现全员覆盖和动态监测。</li>
+      <li><strong>转介通道不畅：</strong>校内心理中心、专科医院、危机热线之间缺乏高效联动机制，高风险学生难以获得及时的专业诊治和持续跟踪。</li>
+    </ul>
+
+    <h3 class="section-h3">1.3 方案定位</h3>
+    <p class="section-p">本方案以"科学识别、精准预警、专业干预、闭环管理"为核心定位，为学校提供一套从信号识别到危机处置的完整操作体系，配套心理测评软件、行为预警平台和AI筛查技术，帮助学校建立"人防+技防"双重保障的校园心理危机防控网络。</p>
+  </div>
+</section>
+
+<!-- 第二章：危机信号识别 -->
+<section class="content-section-alt" id="ch2">
+  <div class="container">
+    <div class="section-num">PART 02</div>
+    <h2 class="section-h2">心理危机信号识别</h2>
+    <p class="section-p">心理危机通常不是突然发生的，在危机爆发前，学生往往会通过行为、情绪、认知和言语等渠道释放求救信号。准确识别这些预警信号，是开展早期干预的前提。以下四大类危机信号，是教师和学校心理工作者必须掌握的核心识别知识。</p>
+
+    <h3 class="section-h3">2.1 行为信号</h3>
+    <div class="signal-card signal-behavior">
+      <div class="signal-card-header">
+        <span class="signal-card-icon">🏃</span>
+        <span class="signal-card-title">行为层面异常表现</span>
+      </div>
+      <ul>
+        <li><strong>社交退缩：</strong>突然远离朋友、回避集体活动、课间独处、拒绝参加原本喜欢的社团或兴趣小组</li>
+        <li><strong>学业骤降：</strong>成绩在短时间内大幅下滑、作业不做、上课走神、考试缺席，对学业表现出明显的放弃态度</li>
+        <li><strong>出勤异常：</strong>无故旷课、迟到频率增加、早退、请假理由含糊不清，甚至出现离家出走行为</li>
+        <li><strong>自伤行为：</strong>手臂、手腕等部位出现不明伤痕（尤其夏季仍穿长袖遮挡）、频繁拔头发、抠皮肤等自我伤害行为</li>
+        <li><strong>睡眠紊乱：</strong>上课频繁打瞌睡、黑眼圈明显、精神萎靡，或反映长期失眠、噩梦、早醒等睡眠障碍</li>
+        <li><strong>物品处置：</strong>突然将珍爱物品赠予他人、清理个人物品、在社交媒体发布"告别"性质的内容</li>
+        <li><strong>危险行为：</strong>酗酒、滥用药物、危险驾驶、攀爬高处、鲁莽冒险等不顾后果的行为</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">2.2 情绪信号</h3>
+    <div class="signal-card signal-emotion">
+      <div class="signal-card-header">
+        <span class="signal-card-icon">💔</span>
+        <span class="signal-card-title">情绪层面异常表现</span>
+      </div>
+      <ul>
+        <li><strong>持续低落：</strong>长期情绪低落、面无表情、哭泣、对以往感兴趣的事物丧失兴趣，持续两周以上</li>
+        <li><strong>易激惹：</strong>情绪波动剧烈、容易因小事发脾气、与同学冲突增多、对批评过度敏感</li>
+        <li><strong>情感麻木：</strong>对周围事物反应迟钝、表情淡漠、缺乏情感波动，被同学评价"像变了一个人"</li>
+        <li><strong>绝望感：</strong>口头表达"没希望了""一切都没有意义""活着没意思"等绝望性情绪，对未来丧失期待</li>
+        <li><strong>焦虑恐慌：</strong>无明显原因的紧张不安、心跳加速、手抖出汗、呼吸急促，出现恐慌发作表现</li>
+        <li><strong>羞耻自责：</strong>过度自责、认为自己"是负担""连累别人"、对过去的错误反复懊悔无法释怀</li>
+        <li><strong>情感倒错：</strong>在遭受挫折后反而表现出异常平静或愉快，或在开心场合突然哭泣，情绪反应与情境不匹配</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">2.3 认知信号</h3>
+    <div class="signal-card signal-cognition">
+      <div class="signal-card-header">
+        <span class="signal-card-icon">🧠</span>
+        <span class="signal-card-title">认知层面异常表现</span>
+      </div>
+      <ul>
+        <li><strong>注意力下降：</strong>无法集中注意力听讲、做事丢三落四、对话时心不在焉、频繁"走神"</li>
+        <li><strong>负面思维：</strong>习惯性关注消极信息、将中性事件解读为负面、对未来持悲观态度，思维内容以"失败""无望"为主题</li>
+        <li><strong>自我否定：</strong>反复表达"我很差劲""我什么都做不好""没人会在乎我"等自我贬低想法，自我评价极低</li>
+        <li><strong>死亡联想：</strong>在作文、日记、绘画中反复出现死亡、黑暗、离别等主题，对死亡话题表现出异常关注或"研究"</li>
+        <li><strong>思维僵化：</strong>陷入"非黑即白"的极端思维、认为问题是"无解的""永远的"，无法看到其他可能性</li>
+        <li><strong>记忆减退：</strong>近期记忆力明显下降、忘记重要约定、重复提问相同问题，认知效率显著降低</li>
+        <li><strong>决断困难：</strong>面对简单选择也犹豫不决、反复纠结、无法做出日常决定，决策能力明显下降</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">2.4 言语信号</h3>
+    <div class="signal-card signal-speech">
+      <div class="signal-card-header">
+        <span class="signal-card-icon">🗣️</span>
+        <span class="signal-card-title">言语层面异常表现</span>
+      </div>
+      <ul>
+        <li><strong>直接表达轻生念头：</strong>"我不想活了""我想死""活着太累了"——此类表达必须严肃对待，绝不可视为"说说而已"</li>
+        <li><strong>间接暗示：</strong>"如果我消失了，大家会更好""很快你们就不用为我操心了""我想去一个很远的地方"——间接表达离去或死亡意愿</li>
+        <li><strong>告别性言语：</strong>突然向同学、老师说"谢谢你一直以来的照顾""对不起，以后不能再一起了"等告别性质的话语</li>
+        <li><strong>求助信号：</strong>"我觉得很痛苦，不知道该怎么办""你能帮帮我吗"——看似微弱的求助表达，往往是危机前最后的呼救</li>
+        <li><strong>方法讨论：</strong>在社交媒体或日常对话中讨论轻生方式、搜索相关方法、关注死亡相关新闻或事件</li>
+        <li><strong>价值否定：</strong>频繁表达"我毫无价值""我的存在没有意义""我是别人的负担"等存在价值否定性言语</li>
+        <li><strong>未来消失：</strong>被问及未来计划时回避回答、表示"没有想过""无所谓"，对未来完全丧失规划和期待</li>
+      </ul>
+    </div>
+
+    <div class="guarantee" style="margin-top: 24px;">
+      <h4>⚠️ 关键提醒</h4>
+      <p>以上四类信号并非孤立出现，当多个信号同时出现或某一信号持续加重时，风险等级显著提升。任何涉及轻生念头、自伤行为或告别性言语的表达，均应视为红色预警信号，必须立即启动危机干预流程，不得延误。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 第三章：三级识别框架 -->
+<section class="content-section" id="ch3">
+  <div class="container">
+    <div class="section-num">PART 03</div>
+    <h2 class="section-h2">三级识别框架</h2>
+    <p class="section-p">为避免危机信号被遗漏或误判，本方案构建"日常观察—风险评估—危机确认"三级识别框架，层层递进、逐级深入，确保从日常观察到专业评估到危机确认形成完整闭环，实现风险学生的精准识别与分级管理。</p>
+
+    <h3 class="section-h3">3.1 一级识别：日常观察</h3>
+    <div class="identify-card level-1">
+      <div class="identify-card-header">
+        <div class="identify-card-title">一级识别 · 日常观察层</div>
+        <span class="identify-card-tag">全员参与</span>
+      </div>
+      <p>由班主任、任课教师、宿管教师、学生干部等组成的日常观察网络，在日常教育教学中持续关注学生的行为、情绪、学习和人际状态变化。一级识别是整个危机识别体系的基础，强调"全员参与、全域覆盖、全程关注"。</p>
+      <ul class="section-ul" style="margin-top: 12px;">
+        <li><strong>班主任观察：</strong>每周至少与每位学生进行一次非正式交流，关注出勤、课堂表现、作业完成质量、同伴关系变化，建立班级心理动态观察记录。</li>
+        <li><strong>任课教师观察：</strong>在课堂教学中关注学生注意力、情绪状态、参与度变化，发现异常及时向班主任反馈。</li>
+        <li><strong>同伴观察：</strong>培训班级心理委员、寝室长等学生骨干，学习基本识别知识，发现同学有异常表现时及时向班主任或心理教师报告。</li>
+        <li><strong>宿管观察：</strong>关注住校学生的作息规律、睡眠状况、寝室人际关系，发现夜不归宿、长时间独处等异常情况及时上报。</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">3.2 二级识别：风险评估</h3>
+    <div class="identify-card level-2">
+      <div class="identify-card-header">
+        <div class="identify-card-title">二级识别 · 风险评估层</div>
+        <span class="identify-card-tag">专业介入</span>
+      </div>
+      <p>由学校心理健康教师对一级识别中发现的可疑学生进行专业风险评估，运用标准化心理测评工具和临床访谈技术，评估学生的心理状态、风险等级和干预需求，形成个体风险评估报告。</p>
+      <ul class="section-ul" style="margin-top: 12px;">
+        <li><strong>标准化测评：</strong>使用PHQ-9（抑郁筛查）、GAD-7（焦虑筛查）、SSI（自杀意念量表）等标准化工具对学生进行心理测评，量化评估心理症状严重程度。</li>
+        <li><strong>临床访谈：</strong>心理教师与学生进行一对一深度访谈，了解其心理困扰来源、持续时间、社会支持系统、既往心理病史及家族史。</li>
+        <li><strong>风险分级：</strong>根据测评结果和访谈信息，将学生风险等级划分为"低风险""中风险""高风险"三级，为后续干预决策提供依据。</li>
+        <li><strong>信息整合：</strong>整合班主任观察记录、任课教师反馈、同伴报告、家长访谈等多源信息，形成360度风险评估视图。</li>
+        <li><strong>评估报告：</strong>出具个体风险评估报告，内容包括风险评估结论、风险等级判定、干预建议和转介意见，存入学生心理健康档案。</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">3.3 三级识别：危机确认</h3>
+    <div class="identify-card level-3">
+      <div class="identify-card-header">
+        <div class="identify-card-title">三级识别 · 危机确认层</div>
+        <span class="identify-card-tag">紧急响应</span>
+      </div>
+      <p>由学校心理危机干预小组对二级评估中判定为"高风险"的学生进行危机确认，启动紧急干预程序。三级识别是整个体系的最后一道防线，要求在确认危机后立即启动应急响应，确保学生生命安全。</p>
+      <ul class="section-ul" style="margin-top: 12px;">
+        <li><strong>危机小组介入：</strong>由分管校长、心理教师、班主任、校医组成的心理危机干预小组立即介入，召开紧急个案研判会议。</li>
+        <li><strong>危机等级确认：</strong>根据风险评估报告和现场情况，确认危机等级（蓝色关注/黄色预警/红色危机），确定响应级别。</li>
+        <li><strong>安全评估：</strong>立即评估学生当前安全状况，确认是否已有自伤/轻生计划或行为，是否需要紧急安全监护。</li>
+        <li><strong>启动应急预案：</strong>根据危机等级启动相应应急预案，包括安全监护、家长通知、专业转介、后续跟踪等环节。</li>
+        <li><strong>记录归档：</strong>完整记录危机确认过程、决策依据、干预措施和后续跟踪计划，形成危机干预个案档案。</li>
+      </ul>
+    </div>
+
+    <div class="card-hero" style="margin-top: 30px;">
+      <div class="card-hero-icon">🔗</div>
+      <div class="card-hero-title">三级联动 · 闭环管理</div>
+      <div class="card-hero-text">
+        三级识别框架不是孤立的三个环节，而是层层递进、信息互通的闭环系统。一级识别发现信号→二级评估确认风险→三级确认启动干预，每一级都有明确的职责主体、操作流程和时限要求，确保危机信号不被遗漏、风险评估科学准确、危机干预及时高效。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 第四章：即时干预技术 -->
+<section class="content-section-alt" id="ch4">
+  <div class="container">
+    <div class="section-num">PART 04</div>
+    <h2 class="section-h2">即时干预技术</h2>
+    <p class="section-p">当学生心理危机被识别确认后，即时干预是挽救生命的关键环节。本方案提供四项核心即时干预技术，帮助教师和学校心理工作者在危机发生的黄金窗口期内实施科学有效的干预，稳定学生情绪、降低风险等级、为后续专业治疗争取时间。</p>
+
+    <h3 class="section-h3">4.1 稳定化对话技术</h3>
+    <div class="intervention-card">
+      <div class="intervention-card-header">
+        <span class="intervention-card-icon">💬</span>
+        <span class="intervention-card-title">稳定化对话 · 建立安全联结</span>
+      </div>
+      <p><strong>技术目标：</strong>通过与危机学生建立安全、信任的对话关系，帮助其从情绪失控状态中稳定下来，恢复基本的认知功能和安全感受。</p>
+      <p><strong>核心原则：</strong>不评判、不追问、不建议、不反驳——以倾听和接纳为主，让学生感受到"被看见、被理解、被接纳"。</p>
+      <p><strong>操作要点：</strong></p>
+      <ul class="section-ul">
+        <li><strong>环境选择：</strong>选择安静、私密、安全的空间进行对话，移除尖锐物品和危险物，确保学生身体安全。</li>
+        <li><strong>非言语陪伴：</strong>保持适当距离、眼神温和接触、身体姿态开放，传递"我在这里，我不离开"的安全信号。</li>
+        <li><strong>倾听技术：</strong>使用积极倾听技术（点头、简短回应、复述确认），让学生充分表达内心感受，不被打断或纠正。</li>
+        <li><strong>情绪命名：</strong>帮助学生识别和命名当前情绪（"你现在感觉很痛苦，对吗？"），促进情绪认知化、外在化。</li>
+        <li><strong>正常化：</strong>温和传达"在这样困难的情况下，有这些感受是可以理解的"，减轻学生的羞耻感和自我否定。</li>
+        <li><strong>稳定化引导：</strong>引导学生关注当下（"你能告诉我现在周围有什么颜色吗？"），运用着陆技术帮助其从情绪漩涡中回到现实。</li>
+      </ul>
+      <p><strong>注意事项：</strong>稳定化对话不追求解决学生的所有问题，核心目标是让学生的情绪从"失控"回到"可控"状态，为后续干预创造条件。对话过程中如发现学生有立即的自伤/轻生风险，应立即启动安全监护程序。</p>
+    </div>
+
+    <h3 class="section-h3">4.2 情绪急救技术</h3>
+    <div class="intervention-card">
+      <div class="intervention-card-header">
+        <span class="intervention-card-icon">🩹</span>
+        <span class="intervention-card-title">情绪急救 · 心理急救PFA模型</span>
+      </div>
+      <p><strong>技术目标：</strong>借鉴世界卫生组织心理急救（Psychological First Aid, PFA）模型，为处于急性心理危机中的学生提供即时情绪支持，缓解创伤反应，恢复心理平衡。</p>
+      <p><strong>PFA三原则——观察·倾听·连接：</strong></p>
+      <ul class="section-ul">
+        <li><strong>观察（Look）：</strong>观察学生是否处于安全环境、是否有明显身体伤害、情绪反应是否在可控范围内、是否需要紧急医疗介入。确认安全后方可开展心理急救。</li>
+        <li><strong>倾听（Listen）：</strong>主动接近学生，以平静、温和的语调开始对话。倾听其讲述，不急于给出建议或解决方案。关注学生未说出口的需求，观察非言语信号。对学生的感受表示理解和尊重。</li>
+        <li><strong>连接（Link）：</strong>帮助学生连接社会支持资源——家人、朋友、信任的教师、学校心理教师。提供实用信息（下一步会做什么、可以找谁帮忙）。连接专业心理服务资源，确保持续跟踪。</li>
+      </ul>
+      <p><strong>情绪降温步骤：</strong></p>
+      <ul class="section-ul">
+        <li><strong>呼吸引导：</strong>引导学生进行腹式呼吸（吸气4秒—屏息4秒—呼气6秒），帮助激活副交感神经，降低生理唤起水平。</li>
+        <li><strong>感官锚定：</strong>运用5-4-3-2-1着陆技术（说出5个看到的、4个摸到的、3个听到的、2个闻到的、1个尝到的事物），将注意力从内在痛苦拉回外部现实。</li>
+        <li><strong>肌肉放松：</strong>引导学生逐步紧张—放松各大肌肉群，缓解身体紧张和焦虑反应。</li>
+        <li><strong>安全感重建：</strong>通过语言和行动传达"你现在安全了""我会陪着你"，帮助学生重建基本安全感。</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">4.3 陪伴技术</h3>
+    <div class="intervention-card">
+      <div class="intervention-card-header">
+        <span class="intervention-card-icon">🤝</span>
+        <span class="intervention-card-title">安全陪伴 · 不离不弃</span>
+      </div>
+      <p><strong>技术目标：</strong>在危机学生风险未解除期间，通过不间断的安全陪伴，确保学生人身安全，防止自伤或轻生行为发生，同时传递"你不是一个人"的心理支持。</p>
+      <p><strong>陪伴原则：</strong></p>
+      <ul class="section-ul">
+        <li><strong>不离不弃：</strong>危机风险未解除前，学生身边必须始终有经过培训的成年人陪同，绝不可让学生独处，包括上洗手间、用餐、休息等场景。</li>
+        <li><strong>安全距离：</strong>陪伴者与学生保持一臂距离内，确保在突发情况下能够第一时间进行物理干预。</li>
+        <li><strong>环境安全：</strong>陪伴期间持续检查环境安全，移除刀具、绳索、药物、玻璃制品等可能用于自伤的物品，远离窗户、阳台等高处。</li>
+        <li><strong>低调陪伴：</strong>陪伴不是审讯，不需要不断追问"你为什么要这样做"。安静地在场、适度的关怀言语、随时回应学生的需求，就是最好的陪伴。</li>
+        <li><strong>轮班制度：</strong>长时间陪伴需安排轮班，确保陪伴者自身状态稳定。交接班时需详细沟通学生当前状态、风险评估和注意事项。</li>
+      </ul>
+      <p><strong>陪伴者要求：</strong>陪伴者应经过基本培训，了解危机干预基本原则，保持情绪稳定，不将自身焦虑传递给学生。陪伴期间保持手机畅通，随时与心理教师和学校管理层保持联络。</p>
+    </div>
+
+    <h3 class="section-h3">4.4 安全计划技术</h3>
+    <div class="intervention-card">
+      <div class="intervention-card-header">
+        <span class="intervention-card-icon">📋</span>
+        <span class="intervention-card-title">安全计划 · 个性化危机管理方案</span>
+      </div>
+      <p><strong>技术目标：</strong>与危机学生共同制定个性化安全计划，明确危机再发时的应对策略、求助渠道和支持资源，帮助学生从被动接受保护转向主动管理风险。</p>
+      <p><strong>安全计划六要素：</strong></p>
+      <ul class="section-ul">
+        <li><strong>识别预警信号：</strong>与学生一起回顾危机发生前的信号（情绪、想法、身体感受、情境），帮助其学会自我识别"我可能要进入危机状态了"。</li>
+        <li><strong>自我应对策略：</strong>列出学生可以自行使用的应对方法（听音乐、散步、写日记、呼吸练习、绘画等），在预警信号出现时第一时间使用。</li>
+        <li><strong>社会支持名单：</strong>明确列出3—5位学生信任的人（朋友、家人、老师），包括联系方式和可求助时段，确保学生知道"我可以找谁"。</li>
+        <li><strong>专业求助渠道：</strong>提供学校心理教师联系方式、当地心理援助热线、24小时危机干预热线，确保学生在任何时间都能获得专业支持。</li>
+        <li><strong>环境安全措施：</strong>与家长协商移除或保管家中的危险物品（药物、刀具等），在学校安排安全监护人员，确保环境安全。</li>
+        <li><strong>紧急情况预案：</strong>明确当自我应对和社会支持均无法控制危机时的紧急处置流程——立即拨打120/110、联系家长、送往专科医院急诊。</li>
+      </ul>
+      <p><strong>安全计划使用要求：</strong>安全计划应以书面形式记录，学生、家长、心理教师各执一份。安全计划不是一次性的文件，需根据学生状态变化定期修订（建议每两周回顾一次），确保其始终适应当前风险水平。</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- 第五章：检测软件+预警 -->
+<section class="content-section" id="ch5">
+  <div class="container">
+    <div class="section-num">PART 05</div>
+    <h2 class="section-h2">检测软件与预警系统</h2>
+    <p class="section-p">传统的心理危机识别主要依赖教师人工观察，覆盖面有限、效率低、主观性强。本方案引入"心理测评系统 + 行为预警平台 + AI辅助筛查"三位一体的技术手段，结合三级预警机制和标准化响应流程，实现学生心理风险的动态监测、智能识别和快速响应，构建"人防+技防"双重保障的校园心理安全网络。</p>
+
+    <h3 class="section-h3">5.1 心理测评系统：定期筛查学生心理状态</h3>
+    <div class="software-card">
+      <div class="software-card-header">
+        <span class="software-card-icon">📊</span>
+        <span class="software-card-title">标准化心理测评平台</span>
+      </div>
+      <p>心理测评系统是校园心理风险筛查的基础工具。通过定期使用标准化心理量表对学生进行全员心理测评，系统化掌握学生心理健康基线水平，及时发现抑郁、焦虑、自杀意念等高风险心理状态，为危机识别提供客观数据支撑。</p>
+      <h4 class="section-h4">核心测评量表</h4>
+      <div class="data-table">
+        <table>
+          <thead><tr><th style="width:22%;">量表名称</th><th style="width:14%;">测评维度</th><th style="width:14%;">适用对象</th><th style="width:50%;">功能说明</th></tr></thead>
+          <tbody>
+            <tr><td>PHQ-9</td><td>抑郁筛查</td><td>初中及以上</td><td>患者健康问卷抑郁模块，9个条目快速筛查抑郁症状严重程度，灵敏度高达88%</td></tr>
+            <tr><td>GAD-7</td><td>焦虑筛查</td><td>初中及以上</td><td>广泛性焦虑量表，7个条目评估焦虑症状，适用于焦虑风险的快速识别</td></tr>
+            <tr><td>SSI</td><td>自杀意念</td><td>高中</td><td>自杀意念量表，评估自杀意念的强度、持续性和计划性，高风险学生必测</td></tr>
+            <tr><td>SCL-90</td><td>综合症状</td><td>初中及以上</td><td>90项症状自评量表，覆盖躯体化、强迫、人际敏感、抑郁、焦虑等9个维度</td></tr>
+            <tr><td>MHT</td><td>心理健康</td><td>小学高年级</td><td>中小学生心理健康测验，针对小学阶段设计的综合心理测评工具</td></tr>
+            <tr><td>SES</td><td>自我评价</td><td>全学段</td><td>自尊量表，评估学生自我价值感，低自尊是心理危机的重要风险因子</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h4 class="section-h4">测评实施机制</h4>
+      <ul class="section-ul">
+        <li><strong>全员普查：</strong>每学期开学初开展一次全员心理健康测评，建立全校学生心理健康基线数据库。</li>
+        <li><strong>重点复测：</strong>对测评中筛查出的高风险学生，2—4周内进行复测确认，避免假阳性误判。</li>
+        <li><strong>动态追踪：</strong>对中高风险学生每月进行一次追踪测评，监测心理状态变化趋势，评估干预效果。</li>
+        <li><strong>数据安全：</strong>所有测评数据加密存储于校内服务器，仅授权心理教师可查阅，严格遵守心理数据保密原则。</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">5.2 行为预警平台：多维度数据分析</h3>
+    <div class="software-card">
+      <div class="software-card-header">
+        <span class="software-card-icon">📈</span>
+        <span class="software-card-title">学生行为数据预警系统</span>
+      </div>
+      <p>行为预警平台整合学生在校期间的多维度行为数据，通过数据挖掘和趋势分析，自动识别行为模式异常的学生，弥补人工观察的盲区，实现"数据驱动的早期预警"。</p>
+      <h4 class="section-h4">数据采集维度</h4>
+      <ul class="section-ul">
+        <li><strong>课堂表现：</strong>课堂出勤率、课堂互动频次、作业提交及时率、课堂专注度评分，对比历史数据识别异常下滑趋势。</li>
+        <li><strong>学业成绩：</strong>考试成绩变化曲线、单科成绩突变、排名大幅波动，当成绩在短期内下降超过预设阈值时自动触发预警。</li>
+        <li><strong>考勤记录：</strong>迟到、早退、旷课频次变化、请假天数增加、请假理由模式分析，识别出勤行为异常模式。</li>
+        <li><strong>住宿行为：</strong>晚归、夜不归宿、作息紊乱、寝室冲突记录等住宿行为异常（适用于寄宿制学校）。</li>
+        <li><strong>社交行为：</strong>社团活动参与度变化、同伴关系变化（通过 sociometric 同伴提名法）、校园卡消费行为变化等。</li>
+        <li><strong>网络行为：</strong>校园网络使用异常（如深夜长时间在线、频繁搜索敏感关键词等），在合规前提下辅助识别风险。</li>
+      </ul>
+      <h4 class="section-h4">智能预警机制</h4>
+      <p>平台采用多维度数据融合分析技术，当学生在2个及以上维度同时出现异常变化时，系统自动生成预警工单推送给班主任和心理教师，提示关注该学生。预警信息包括异常维度、变化幅度、历史对比和关注建议，帮助教师精准定位需要关注的学生。</p>
+    </div>
+
+    <h3 class="section-h3">5.3 人工智能筛查：AI辅助识别高风险学生</h3>
+    <div class="software-card">
+      <div class="software-card-header">
+        <span class="software-card-icon">🤖</span>
+        <span class="software-card-title">AI心理风险智能筛查系统</span>
+      </div>
+      <p>依托北京师范大学心理学部寻心理课题组的AI+心理融合技术，本方案引入人工智能辅助筛查系统，通过自然语言处理、情感计算和风险预测模型，对学生的文本表达、语音特征和行为数据进行智能分析，辅助识别传统测评难以发现的高风险学生。</p>
+      <h4 class="section-h4">AI筛查技术模块</h4>
+      <ul class="section-ul">
+        <li><strong>文本情感分析：</strong>对学生的作文、日记、周记、心理课作业等文本材料进行自然语言处理分析，识别负面情绪倾向、绝望性表达、自伤/轻生关联词汇等高风险语言特征，当文本风险评分超过阈值时自动预警。</li>
+        <li><strong>语音情感识别：</strong>在心理咨询对话或课堂发言录音中（经知情同意），通过语音情感计算技术分析语调、语速、停顿等声学特征，识别抑郁性语音模式（如语速减慢、音调扁平、停顿增多），辅助心理教师评估学生情绪状态。</li>
+        <li><strong>风险预测模型：</strong>整合心理测评数据、行为数据、历史干预记录等多源数据，构建基于机器学习的心理危机风险预测模型，对全校学生进行风险概率排序，帮助学校将有限的干预资源精准投放给最需要的学生。</li>
+        <li><strong>智能聊天机器人：</strong>提供7×24小时匿名心理对话服务，学生可随时与AI心理助手交流。系统在对话中实时监测高风险表达（如轻生念头、自伤计划），一旦触发风险规则，立即转接人工心理教师并启动应急响应。</li>
+      </ul>
+      <div class="guarantee" style="margin-top: 16px;">
+        <h4>AI伦理与数据安全</h4>
+        <p>AI筛查系统仅作为辅助工具，不替代专业心理教师的临床判断。所有AI分析均基于匿名化数据，学生个人身份信息与AI分析结果分离存储。AI筛查产生的预警信息仅推送给授权心理教师，严格遵守《个人信息保护法》和教育数据安全规范。系统使用前须经学生及家长知情同意，并明确告知数据使用范围和保护措施。</p>
+      </div>
+    </div>
+
+    <h3 class="section-h3">5.4 三级预警机制：蓝→黄→红分级响应</h3>
+    <p class="section-p">基于心理测评、行为预警和AI筛查的综合评估结果，本方案建立蓝色（关注）、黄色（预警）、红色（危机）三级预警机制，不同等级对应不同的响应级别和干预措施，确保资源配置与风险程度匹配。</p>
+
+    <div class="alert-card alert-blue">
+      <div class="alert-card-header">
+        <div class="alert-card-badge">蓝</div>
+        <div class="alert-card-title">蓝色预警 · 关注级别</div>
+      </div>
+      <p><strong>触发条件：</strong>心理测评显示轻度抑郁/焦虑症状、行为数据出现1—2个维度异常波动、AI文本分析发现轻度负面情绪倾向，但无明显自伤/轻生风险。</p>
+      <ul class="section-ul" style="margin-top: 8px;">
+        <li><strong>响应时限：</strong>3个工作日内</li>
+        <li><strong>负责人：</strong>班主任为主，心理教师顾问</li>
+        <li><strong>干预措施：</strong>班主任加强日常关注和关怀谈话、增加家校沟通频次、安排同伴支持、4周后复测评估</li>
+        <li><strong>档案管理：</strong>建立蓝色关注档案，每月更新状态</li>
+      </ul>
+    </div>
+
+    <div class="alert-card alert-yellow">
+      <div class="alert-card-header">
+        <div class="alert-card-badge">黄</div>
+        <div class="alert-card-title">黄色预警 · 预警级别</div>
+      </div>
+      <p><strong>触发条件：</strong>心理测评显示中度抑郁/焦虑症状、存在被动自杀意念（"有时候想不如算了"但无计划）、行为数据3个及以上维度异常、出现自伤行为但无生命危险、AI筛查风险评分处于高位。</p>
+      <ul class="section-ul" style="margin-top: 8px;">
+        <li><strong>响应时限：</strong>24小时内</li>
+        <li><strong>负责人：</strong>心理教师为主，班主任配合</li>
+        <li><strong>干预措施：</strong>心理教师一对一专业访谈、制定个体安全计划、通知家长并约谈、评估是否需要转介专科医院、每周一次心理辅导跟踪</li>
+        <li><strong>档案管理：</strong>建立黄色预警档案，每周更新状态，上报学校心理危机干预小组</li>
+      </ul>
+    </div>
+
+    <div class="alert-card alert-red">
+      <div class="alert-card-header">
+        <div class="alert-card-badge">红</div>
+        <div class="alert-card-title">红色预警 · 危机级别</div>
+      </div>
+      <p><strong>触发条件：</strong>心理测评显示重度抑郁/焦虑、存在主动自杀意念且有计划或准备行为、已发生自伤/自杀未遂、出现精神病性症状、AI对话机器人触发紧急风险规则。</p>
+      <ul class="section-ul" style="margin-top: 8px;">
+        <li><strong>响应时限：</strong>立即（1小时内）</li>
+        <li><strong>负责人：</strong>危机干预小组全员启动，分管校长统筹</li>
+        <li><strong>干预措施：</strong>立即启动安全监护（不离不弃陪伴）、紧急通知家长到校、联系专科医院绿色通道转介、必要时拨打120/110、危机解除后持续跟踪至少3个月</li>
+        <li><strong>档案管理：</strong>建立红色危机档案，每日更新状态直至危机解除，事后进行完整个案复盘</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">5.5 预警响应流程：发现→评估→干预→跟踪</h3>
+    <p class="section-p">三级预警机制的运转依赖标准化的响应流程。本方案设计了"发现—评估—干预—跟踪"四步闭环响应流程，确保每一次预警都有明确的处置路径和时限要求，避免预警信号"发了就完"的无效状态。</p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-step-num">1</div>
+        <div class="flow-step-title">发现</div>
+        <div class="flow-step-desc">测评系统、行为平台、AI筛查或人工观察发现异常，系统自动生成预警工单推送给班主任和心理教师，记录预警来源、触发维度和初始风险等级。</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">2</div>
+        <div class="flow-step-title">评估</div>
+        <div class="flow-step-desc">心理教师在规定时限内对预警学生进行专业评估（访谈+复测），确认风险等级（蓝/黄/红），出具评估结论并决定干预方案，升级或降级预警等级。</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">3</div>
+        <div class="flow-step-title">干预</div>
+        <div class="flow-step-desc">根据风险等级启动相应干预措施：蓝色=班主任关怀+复测；黄色=心理辅导+安全计划+家长约谈；红色=安全监护+紧急转介+应急响应。</div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-step-num">4</div>
+        <div class="flow-step-title">跟踪</div>
+        <div class="flow-step-desc">干预后持续跟踪学生状态，定期复测评估干预效果。风险降级后维持观察期（蓝色4周/黄色8周/红色12周），确认稳定后关闭预警工单并归档。</div>
+      </div>
+    </div>
+
+    <div class="guarantee" style="margin-top: 20px;">
+      <h4>闭环管理要求</h4>
+      <p>预警响应流程强调"闭环管理"——每一个预警工单都必须经过完整的"发现→评估→干预→跟踪"四步流程后才能关闭，中途不得跳过任何环节。所有流程节点均需在系统中留痕记录，学校管理层可随时查看预警处置进度和平均响应时长，确保流程执行到位。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 第六章：转介与资源网络 -->
+<section class="content-section-alt" id="ch6">
+  <div class="container">
+    <div class="section-num">PART 06</div>
+    <h2 class="section-h2">转介与资源网络</h2>
+    <p class="section-p">学校心理危机干预的边界是明确的——学校负责识别、预警、初步干预和跟踪支持，但严重心理危机的诊治需要专业精神卫生机构介入。建立高效的转介通道和多方资源协作网络，是确保危机学生获得持续专业救治的关键。</p>
+
+    <h3 class="section-h3">6.1 校内心理中心：第一道支持</h3>
+    <div class="referral-card">
+      <div class="referral-card-header">
+        <span class="referral-card-icon">🏫</span>
+        <span class="referral-card-title">学校心理健康教育中心</span>
+      </div>
+      <p>学校心理中心是学生心理支持的第一站，承担日常心理咨询、心理测评、危机初步评估和校内跟踪干预等职能。心理中心应配备至少1名专职心理教师（师生比不低于1:1000），建立标准化咨询流程、预约机制和危机转介制度。对于校内可处理的心理困扰（学业压力、人际冲突、情绪波动等），由心理教师提供个体咨询或团体辅导；对于超出校内处理能力的情况，及时启动转介流程。</p>
+    </div>
+
+    <h3 class="section-h3">6.2 专科医院转介：专业诊治通道</h3>
+    <div class="referral-card">
+      <div class="referral-card-header">
+        <span class="referral-card-icon">🏥</span>
+        <span class="referral-card-title">精神专科医院 / 综合医院心理科</span>
+      </div>
+      <p>对于评估为黄色及以上预警等级的学生，特别是存在中重度抑郁/焦虑、自杀意念/计划、自伤行为、精神病性症状等情况，学校应在获得家长知情同意后，转介至专业精神卫生机构进行诊治。学校应与当地精神卫生中心或综合医院心理科建立绿色转介通道，缩短就医等待时间。转介时需提供完整的心理评估报告和行为观察记录，帮助医院快速了解学生情况。转介后学校心理教师应与主治医生保持沟通，配合治疗方案开展校内跟踪支持。</p>
+    </div>
+
+    <h3 class="section-h3">6.3 危机热线：24小时应急支持</h3>
+    <div class="referral-card">
+      <div class="referral-card-header">
+        <span class="referral-card-icon">📞</span>
+        <span class="referral-card-title">心理危机干预热线</span>
+      </div>
+      <p>危机热线是学生在校外、夜间、假期等非在校时段获取紧急心理支持的重要渠道。学校应将以下热线信息纳入安全计划，并在校园显著位置公示：</p>
+      <ul class="section-ul" style="margin-top: 8px;">
+        <li><strong>全国24小时心理援助热线：</strong>400-161-9995（希望24热线）</li>
+        <li><strong>北京心理危机研究与干预中心：</strong>010-82951332（24小时）</li>
+        <li><strong>教育部华中师范大学心理援助热线：</strong>4001-888-976（24小时）</li>
+        <li><strong>当地心理援助热线：</strong>各省市精神卫生中心均设有心理援助热线，学校应收集并公示本地热线号码</li>
+        <li><strong>紧急情况：</strong>120（急救）/ 110（报警）</li>
+      </ul>
+    </div>
+
+    <h3 class="section-h3">6.4 家校协作：家庭支持网络</h3>
+    <div class="referral-card">
+      <div class="referral-card-header">
+        <span class="referral-card-icon">👨‍👩‍👧</span>
+        <span class="referral-card-title">家校协同干预机制</span>
+      </div>
+      <p>家庭是学生心理支持的重要基础。在危机干预全过程中，学校应与家长保持紧密沟通协作，确保家校干预方向一致、信息互通：</p>
+      <ul class="section-ul" style="margin-top: 8px;">
+        <li><strong>及时告知：</strong>黄色及以上预警等级必须及时通知家长，告知风险情况、评估结论和干预建议，必要时约请家长到校面谈。</li>
+        <li><strong>知情同意：</strong>转介专科医院、实施心理测评等涉及学生权益的事项，须取得家长知情同意并签署书面文件。</li>
+        <li><strong>家庭指导：</strong>向家长提供家庭照护指导，包括环境安全（移除危险物品）、沟通方式（不指责、不追问、多倾听）、陪伴技巧和用药监督等。</li>
+        <li><strong>定期沟通：</strong>干预期间班主任和心理教师与家长保持每周至少一次沟通，同步学生在家校两端的状况变化。</li>
+        <li><strong>复学协商：</strong>学生经专科医院治疗后返校复学，需出具医院诊断证明，学校与家长协商制定复学后的学习安排和心理支持计划。</li>
+      </ul>
+    </div>
+
+    <div class="card-hero" style="margin-top: 30px;">
+      <div class="card-hero-icon">🌐</div>
+      <div class="card-hero-title">四位一体资源网络</div>
+      <div class="card-hero-text">
+        校内心理中心（日常支持）+ 专科医院（专业诊治）+ 危机热线（应急响应）+ 家校协作（持续照护）构成四位一体的转介资源网络，确保危机学生在任何时间、任何场景下都能获得适当级别的专业支持，实现从识别到诊治到康复的无缝衔接。
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 第七章：专家团队 -->
+<section class="content-section" id="ch7">
+  <div class="container">
+    <div class="section-num">PART 07</div>
+    <h2 class="section-h2">专家团队</h2>
+    <p class="section-p">本方案专家团队以北京师范大学心理学部寻心理课题组为核心学术依托，汇聚临床心理学、教育心理学领域的专业力量，在心理危机识别与干预领域兼具深厚学术造诣和丰富一线实战经验，为学校心理危机干预体系建设提供强有力的专业保障。</p>
+
+    <div class="expert">
+      <div class="expert-header">
+        <img src="images/teacher-yaoweiwei.jpg" alt="姚伟伟" class="expert-avatar-img" style="object-position: 50% 20%;">
+        <div><div class="expert-name">姚伟伟</div><span class="expert-title-name">应用心理博士</span></div>
+      </div>
+      <div class="expert-role">项目统筹 · 北京师范大学心理学部课程运营主管</div>
+      <p><strong>专业方向：</strong>教育心理学、教育类与成长类心理团体。从事教育教学与管理12年，参与国家自然科学基金项目，研究成果发表于《教师教育研究》和《Frontiers in Psychology》等国内外核心期刊。受训团体带领者，擅长青少年情绪管理、压力缓释、工作倦怠等相关主题的团体辅导与危机干预。</p>
+      <p><strong>项目统筹：</strong>负责本方案的项目整体统筹与质量保障，协调专家团队、技术团队和学校三方资源，确保方案按时、按质、按量交付。参编北师大出版社《教师的六节心理课》系列丛书；主持长三角社会救助援助公共服务课题——基于SEL团辅模型下的身心交互智能课程"数字药"研究与开发。<strong>联系电话：17710721070</strong></p>
+    </div>
+
+    <div class="expert">
+      <div class="expert-header">
+        <img src="images/teacher-jinnan.png" alt="金楠" class="expert-avatar-img" style="object-position: 50% 20%;">
+        <div><div class="expert-name">金楠</div><span class="expert-title-name">临床心理学博士</span></div>
+      </div>
+      <div class="expert-role">危机干预专家 · 北京师范大学应用心理博士</div>
+      <p><strong>专业方向：</strong>临床心理学、儿童青少年心理危机识别与干预。深耕儿童青少年心理健康领域，对心理危机信号识别、风险评估、即时干预技术和安全计划制定有深入研究和丰富实践经验。长期担任宋庆龄基金会社会情感团辅合作带领老师，与慈弘基金会合作开展线下亲子沟通心理团辅、社区儿童SEL心理团辅及教师心理赋能活动。</p>
+      <p><strong>技术特长：</strong>具备十余年一线大厂技术研发经验，善于将结构化思维融入危机干预方案设计与执行。主导AI心理测评系统、AI心理风险智能筛查系统的研发工作，将自然语言处理、情感计算等人工智能技术应用于学生心理危机早期识别，实现"技术+心理"融合创新。曾获第四届CMAU全国大学生市场研究与商业策划大赛全国特等奖、第八届全国应用心理专业学位研究生实践技能大赛全国三等奖。</p>
+    </div>
+
+    <div class="expert">
+      <div class="expert-header">
+        <img src="images/teacher-qinqi.png" alt="秦齐" class="expert-avatar-img" style="object-position: 50% 30%;">
+        <div><div class="expert-name">秦齐</div><span class="expert-title-name">教育心理学硕士</span></div>
+      </div>
+      <div class="expert-role">学校心理服务顾问 · 教育心理学硕士</div>
+      <p><strong>专业方向：</strong>教育心理学、学校心理健康服务体系搭建。专注中小学心理健康教育实践，拥有丰富的学校心理服务项目设计与落地经验，熟悉校园心理危机干预流程设计、教师心理危机识别能力培训和家校协同机制建设。</p>
+      <p><strong>项目经历：</strong>深度参与多地教育主管部门中小学心理健康服务体系搭建项目，负责心理测评方案设计、三级预警机制建设、教师危机识别培训课程开发和转介流程标准化等工作。擅长将心理学理论转化为学校可操作、教师可执行、学生可感知的实操方案，帮助学校建立"能用、好用、管用"的心理危机干预体系。</p>
+    </div>
+  </div>
+</section>
+
+<!-- 联系我们 -->
+<section class="contact-section" id="contact">
+  <div class="container">
+    <div class="section-intro" style="max-width:700px;margin:0 auto 40px;text-align:center;">
+      <div class="section-num" style="display:inline-block;margin-bottom:12px;">CONTACT</div>
+      <h2 class="section-h2" style="margin-bottom:12px;">联系我们</h2>
+      <p class="section-p" style="text-align:center;">如需进一步了解学生心理危机识别与干预方案详情，或希望进行项目合作洽谈，欢迎通过以下方式与我们取得联系。</p>
+    </div>
+
+    <div class="contact-grid-4">
+      <div class="contact-card-item">
+        <div class="contact-card-avatar"><img src="images/qr-yao.png" alt="姚老师"></div>
+        <div class="contact-card-name">姚老师</div>
+        <div class="contact-card-tel">17710721070</div>
+        <div class="contact-card-email">yaoweiwei@laolilaodao.com.cn</div>
+      </div>
+      <div class="contact-card-item">
+        <div class="contact-card-avatar"><img src="images/qr-jin.jpg" alt="金老师"></div>
+        <div class="contact-card-name">金老师</div>
+        <div class="contact-card-tel">13910799452</div>
+        <div class="contact-card-email">liaoliao@laolilaodao.com.cn</div>
+      </div>
+      <div class="contact-card-item">
+        <div class="contact-card-avatar"><img src="images/qr-ma.jpg" alt="马老师"></div>
+        <div class="contact-card-name">马老师</div>
+        <div class="contact-card-tel">16619841215</div>
+        <div class="contact-card-email">vip@laolilaodao.com.cn</div>
+      </div>
+      <div class="contact-card-item">
+        <div class="contact-card-avatar"><img src="images/qr-qin.png" alt="秦老师"></div>
+        <div class="contact-card-name">秦老师</div>
+        <div class="contact-card-tel">17310917890</div>
+        <div class="contact-card-email">qinqi@laolilaodao.com.cn</div>
+      </div>
+    </div>
+
+    <div class="contact-invite">
+      诚挚期待与各地教育主管部门、各中小学校深度协作<br>
+      共建科学高效的学生心理危机识别与干预体系<br>
+      以专业之力守护每一个学生的生命安全与心理健康
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer class="footer">
+  <img src="logo-white.png" alt="寻心理" style="width:48px;height:48px;margin-bottom:12px;opacity:0.9">
+  <div class="footer-brand">寻心理</div>
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-en">InnerSeed</div>
+  <div class="footer-copy">© 寻心理 · 用心理学的方式，过有温度的生活</div>
+</footer>
+
+</body>
+</html>

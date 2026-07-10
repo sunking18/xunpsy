@@ -84,9 +84,9 @@ body{
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
 
 /* 标语含义 — 白色圆角卡片，顶部边线风格 */
-.tagline-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;max-width:760px;margin-left:auto;margin-right:auto}
+.tagline-cards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px}
 .tagline-card{
-  background:#fff;border-radius:20px;padding:44px 32px 36px;
+  background:#fff;border-radius:20px;padding:36px 32px 28px;
   text-align:center;box-shadow:var(--shadow-sm);transition:var(--transition);
   position:relative;overflow:hidden;
 }
@@ -97,37 +97,37 @@ body{
 .tagline-card.inward::before{background:var(--green)}
 .tagline-card.outward::before{background:var(--gold)}
 .tagline-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
-.tagline-icon{font-size:42px;margin-bottom:20px}
+.tagline-icon{font-size:32px;margin-bottom:16px}
 .tagline-card h3{
   font-size:26px;font-weight:800;color:var(--green-dark);margin-bottom:16px;
   font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:2px
 }
 .tagline-card .quote-main{
-  font-size:16px;font-weight:700;color:var(--text);line-height:1.8;margin-bottom:10px
+  font-size:17px;font-weight:700;color:var(--text);line-height:1.8;margin-bottom:10px
 }
 .tagline-card .quote-sub{
-  font-size:13px;font-style:italic;color:var(--text-muted);line-height:1.7
+  font-size:14px;font-style:italic;color:var(--text-muted);line-height:1.7
 }
 
 .origin-quote{
-  max-width:680px;margin:0 auto;background:var(--card-bg);border-radius:var(--radius);
+  background:var(--card-bg);border-radius:var(--radius);
   padding:28px 32px;text-align:center;box-shadow:var(--shadow-sm);
   border-left:4px solid var(--gold)
 }
-.origin-quote p{font-size:15px;color:var(--text-light);line-height:1.9;font-family:"Songti SC","STSong","SimSun",serif}
+.origin-quote p{font-size:16px;color:var(--text-light);line-height:1.9;font-family:"Songti SC","STSong","SimSun",serif}
 .origin-quote .highlight{color:var(--green);font-weight:700}
 
 /* 品牌故事 — 按截图风格：散文式排版 */
-.story-content{max-width:680px;margin:0 auto}
+.story-content{}
 
 /* 故事副标题 */
 .story-subtitle{
-  text-align:center;font-size:22px;font-weight:800;color:var(--green-dark);
+  text-align:center;font-size:24px;font-weight:800;color:var(--green-dark);
   font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:2px;
   margin-bottom:36px;margin-top:-8px
 }
 .story-subtitle-en{
-  font-family:"Georgia","Times New Roman",serif;font-size:15px;color:var(--gold);
+  font-family:"Georgia","Times New Roman",serif;font-size:16px;color:var(--gold);
   letter-spacing:3px;font-style:italic;font-weight:400;margin-left:8px
 }
 
@@ -144,7 +144,7 @@ body{
   content:'"';position:absolute;bottom:4px;right:24px;font-size:60px;line-height:1;color:rgba(255,255,255,.15);font-family:Georgia,serif;
 }
 .story-quote-box p{
-  font-size:18px;font-weight:600;line-height:2;position:relative;z-index:1;
+  font-size:19px;font-weight:600;line-height:2;position:relative;z-index:1;
   font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:1px;
 }
 
@@ -153,7 +153,7 @@ body{
   margin-bottom:48px
 }
 .story-paragraph{
-  font-size:15px;line-height:2.6;color:var(--text-light);
+  font-size:16px;line-height:2.6;color:var(--text);
   font-family:"Songti SC","STSong","SimSun",serif;
   margin-bottom:24px;text-align:justify
 }
@@ -181,37 +181,38 @@ body{
   color:var(--green);margin-right:4px
 }
 .psy-card-slogan{
-  display:block;font-size:15px;color:var(--green-dark);font-weight:700;
-  letter-spacing:1px;margin-top:4px
+  display:inline;font-size:16px;color:var(--green-dark);font-weight:700;
+  letter-spacing:1px;margin-left:8px
 }
 .psy-card-grid{
   display:grid;grid-template-columns:1fr 1fr;gap:28px
 }
 .psy-card-item{
-  line-height:2.2;font-size:15px;color:var(--text-light);
+  line-height:2.2;font-size:16px;color:var(--text-light);
   font-family:"Songti SC","STSong","SimSun",serif
 }
 .psy-card-item .label{
-  font-weight:700;color:var(--green-dark);display:block;margin-bottom:6px;font-size:16px
+  font-weight:700;color:var(--green-dark);display:block;margin-bottom:6px;font-size:17px
 }
 .psy-card-item .desc{
   color:var(--text-light)
 }
 
-/* 服务对象 */
-.service-title{text-align:center;font-size:20px;font-weight:800;color:var(--green-dark);margin:40px 0 20px;font-family:"Songti SC","STSong","SimSun",serif}
-.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:660px;margin:0 auto 20px}
+/* 服务项目 */
+.service-title{text-align:center;font-size:22px;font-weight:800;color:var(--green-dark);margin:48px 0 24px;font-family:"Songti SC","STSong","SimSun",serif}
+.service-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:0 auto 24px}
 .service-item{
-  background:var(--card-bg);border-radius:var(--radius-sm);padding:16px 12px;
-  text-align:center;font-size:14px;font-weight:600;color:var(--text-light);
-  box-shadow:var(--shadow-sm);transition:var(--transition)
+  background:var(--card-bg);border-radius:var(--radius-sm);padding:22px 18px;
+  text-align:center;font-size:16px;font-weight:600;color:var(--text-light);
+  box-shadow:var(--shadow-sm);transition:var(--transition);text-decoration:none;display:block;
+  cursor:pointer;
 }
-.service-item:hover{box-shadow:var(--shadow-md);color:var(--green)}
-.emoji{font-size:22px;margin-right:4px;vertical-align:middle}
+.service-item:hover{box-shadow:var(--shadow-md);color:var(--green);transform:translateY(-2px)}
+.emoji{font-size:28px;margin-right:6px;vertical-align:middle;display:inline-block}
 
 /* 故事结尾 */
 .story-close{
-  text-align:center;font-size:18px;color:var(--text-light);margin-top:40px;line-height:2;
+  text-align:center;font-size:19px;color:var(--text-light);margin-top:40px;line-height:2;
   font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:1px;
   background:linear-gradient(135deg,var(--green-dark),var(--green));
   border-radius:var(--radius);padding:40px 32px;color:#fff
@@ -256,25 +257,23 @@ body{
 .product-card:hover .product-btn{color:var(--green-dark)}
 .product-card:hover .product-btn::after{transform:translateX(4px)}
 
-/* 联系我们 — 按截图风格 */
-.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:760px;margin:0 auto}
-.contact-box{background:var(--card-bg);border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-sm)}
-.contact-box-header{background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;padding:16px 24px;font-size:16px;font-weight:700;letter-spacing:1px;text-align:center}
-.contact-box-body{padding:24px}
-.contact-item{display:flex;align-items:flex-start;gap:14px;margin-bottom:20px}
-.contact-item:last-child{margin-bottom:0}
-.contact-item-icon{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
-.contact-item-icon.phone{background:#E8F0ED}
-.contact-item-icon.email{background:#FBF5ED}
-.contact-item-icon.person{background:#E8EDF2}
-.contact-item-label{font-size:12px;color:var(--text-muted);margin-bottom:2px}
-.contact-item-value{font-size:15px;font-weight:600;color:var(--text);letter-spacing:.5px}
-.contact-item-value.phone{font-family:"SF Mono","Menlo","Consolas",monospace;font-size:14px}
-
-.weixin-area{display:flex;align-items:center;justify-content:center;padding:16px 0}
-.weixin-qr{width:200px;height:200px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.08)}
-.weixin-text{text-align:center;font-size:14px;color:var(--text-muted);margin-top:8px}
-.weixin-text strong{color:var(--green-dark);font-weight:600}
+/* 联系我们 — 四列联系人卡片 */
+.contact-layout{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.contact-card{
+  background:var(--card-bg);border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow-sm);transition:var(--transition);text-align:center
+}
+.contact-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px)}
+.contact-card-header{
+  background:linear-gradient(135deg,var(--green-dark),var(--green));color:#fff;
+  padding:14px 16px;font-size:15px;font-weight:700;letter-spacing:1px
+}
+.contact-qr-wrap{padding:20px 16px 12px}
+.contact-qr{width:140px;height:140px;border-radius:8px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin:0 auto;display:block}
+.contact-info{padding:0 16px 20px}
+.contact-name{font-size:16px;font-weight:700;color:var(--green-dark);margin-bottom:8px}
+.contact-phone{font-size:14px;color:var(--text);font-family:"SF Mono","Menlo","Consolas",monospace;letter-spacing:.5px;margin-bottom:4px}
+.contact-email{font-size:12px;color:var(--text-muted);word-break:break-all}
 
 .contact-desc{
   text-align:center;font-size:14px;color:var(--text-muted);max-width:600px;margin:32px auto 0;line-height:2;
@@ -303,23 +302,25 @@ body{
   .tagline-cards{grid-template-columns:1fr}
   .meaning-cards{grid-template-columns:1fr}
   .product-grid{grid-template-columns:1fr;max-width:420px;margin-left:auto;margin-right:auto}
-  .contact-layout{grid-template-columns:1fr}
+  .contact-layout{grid-template-columns:repeat(2,1fr)}
+  .contact-qr{width:120px;height:120px}
   .service-grid{grid-template-columns:repeat(2,1fr)}
   .hero-logo{width:64px;height:64px}
   .hero-tagline{font-size:15px;letter-spacing:4px}
   .story-block{padding:20px 20px 20px 28px}
   .story-block p{line-height:2}
   .story-quote-box{padding:32px 24px}
-  .story-quote-box p{font-size:16px}
+  .story-quote-box p{font-size:17px}
   .story-highlight{padding:32px 24px}
-  .story-subtitle{font-size:18px}
-  .story-paragraph{font-size:14px;line-height:2.4}
   .psy-card{padding:32px 24px}
-  .psy-card-header{font-size:14px}
-  .psy-card-header .greek{font-size:18px}
-  .psy-card-slogan{font-size:14px}
+  .story-subtitle{font-size:20px}
+  .story-paragraph{font-size:15px;line-height:2.4}
+  .psy-card-header{font-size:15px}
+  .psy-card-item{font-size:15px}
+  .psy-card-item .label{font-size:16px}
   .psy-card-grid{grid-template-columns:1fr;gap:20px}
-  .psy-card-item{font-size:14px}
+  .service-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .service-item{font-size:15px;padding:18px 14px}
 }
 </style>
 </head>
@@ -390,7 +391,7 @@ body{
 
       <!-- 金句框 -->
       <div class="story-quote-box">
-        <p>「你不需要完美，你正在被爱着——<br>这本身就是生长的力量。」</p>
+        <p>「你不需要完美，你正在被爱着——这本身就是生长的力量。」</p>
       </div>
 
       <!-- 散文正文 -->
@@ -417,8 +418,7 @@ body{
       <!-- 词根卡片 -->
       <div class="psy-card">
         <div class="psy-card-header">
-          <span class="greek">ψυχή</span>（Psyche，灵魂）<br>
-          <span class="psy-card-slogan">心理学，是一场寻找灵魂的旅程　　向内探索内心，向外生长力量</span>
+          <span class="greek">ψυχή</span>（Psyche，灵魂）——心理学，是一场寻找灵魂的旅程，向内探索内心，向外生长力量
         </div>
         <div class="psy-card-grid">
           <div class="psy-card-item">
@@ -435,12 +435,12 @@ body{
       <!-- 服务对象 -->
       <h3 class="service-title">我们的服务项目</h3>
       <div class="service-grid">
-        <div class="service-item"><span class="emoji">🧒</span>青少年心理团辅</div>
-        <div class="service-item"><span class="emoji">💼</span>职场心理团辅</div>
-        <div class="service-item"><span class="emoji">👨‍👩‍👧</span>家庭关系团辅</div>
-        <div class="service-item"><span class="emoji">🏫</span>教师心理培训</div>
-        <div class="service-item"><span class="emoji">👵</span>老年心理关怀</div>
-        <div class="service-item"><span class="emoji">💑</span>亲密关系团体</div>
+        <a href="tuanfu-qing.html" class="service-item"><span class="emoji">👧</span>青少年心理团辅</a>
+        <a href="tuanfu-zhichang.html" class="service-item"><span class="emoji">💼</span>职场心理团辅</a>
+        <a href="tuanfu-jiating.html" class="service-item"><span class="emoji">👨‍👩‍👧</span>家庭关系团辅</a>
+        <a href="tuanfu-jiaoshi.html" class="service-item"><span class="emoji">🏫</span>教师心理培训</a>
+        <a href="tuanfu-laonian.html" class="service-item"><span class="emoji">👵</span>老年心理关怀</a>
+        <a href="tuanfu-qinmi.html" class="service-item"><span class="emoji">💑</span>亲密关系团体</a>
       </div>
       <p style="text-align:center; font-size:14px; color:var(--text-muted); max-width:600px; margin:0 auto 32px; line-height:1.8;">
         不同的人群，不同的主题，但都有一个共同点——<strong>在团体中找到力量，在连接中获得成长</strong>。通过结构化的教育成长团体辅导，让参与者在团体中被看见、被支持、被赋能。
@@ -520,42 +520,48 @@ body{
       <p class="section-subtitle">无论是课程咨询、产品合作，还是想聊聊心理学，都欢迎找到我们</p>
     </div>
     <div class="contact-layout">
-      <div class="contact-box">
-        <div class="contact-box-header">联系方式</div>
-        <div class="contact-box-body">
-          <div class="contact-item">
-            <div class="contact-item-icon phone">📞</div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">咨询热线</div>
-              <div class="contact-item-value phone">17710721070 / 17310917890</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon email">✉️</div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">电子邮箱</div>
-              <div class="contact-item-value">jinnan000@126.com</div>
-            </div>
-          </div>
-          <div class="contact-item">
-            <div class="contact-item-icon person">👤</div>
-            <div class="contact-item-text">
-              <div class="contact-item-label">项目对接联系人</div>
-              <div class="contact-item-value">姚老师</div>
-            </div>
-          </div>
+      <div class="contact-card">
+        <div class="contact-card-header">姚老师</div>
+        <div class="contact-qr-wrap">
+          <img src="images/qr-yao.png" class="contact-qr" alt="姚老师微信">
+        </div>
+        <div class="contact-info">
+          <div class="contact-name">姚老师</div>
+          <div class="contact-phone">17710721070</div>
+          <div class="contact-email">yaoweiwei@laolilaodao.com.cn</div>
         </div>
       </div>
-      <div class="contact-box">
-        <div class="contact-box-header">微信咨询</div>
-        <div class="contact-box-body">
-          <div class="weixin-area">
-            <img src="weixin-qr.png" class="weixin-qr" alt="微信二维码">
-          </div>
-          <div class="weixin-text">
-            <strong>微信扫码咨询</strong><br>
-            添加客服 · 一对一沟通
-          </div>
+      <div class="contact-card">
+        <div class="contact-card-header">金老师</div>
+        <div class="contact-qr-wrap">
+          <img src="images/qr-jin.jpg" class="contact-qr" alt="金老师微信">
+        </div>
+        <div class="contact-info">
+          <div class="contact-name">金老师</div>
+          <div class="contact-phone">13910799452</div>
+          <div class="contact-email">liaoliao@laolilaodao.com.cn</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-header">马老师</div>
+        <div class="contact-qr-wrap">
+          <img src="images/qr-ma.jpg" class="contact-qr" alt="马老师微信">
+        </div>
+        <div class="contact-info">
+          <div class="contact-name">马老师</div>
+          <div class="contact-phone">16619841215</div>
+          <div class="contact-email">vip@laolilaodao.com.cn</div>
+        </div>
+      </div>
+      <div class="contact-card">
+        <div class="contact-card-header">秦老师</div>
+        <div class="contact-qr-wrap">
+          <img src="images/qr-qin.png" class="contact-qr" alt="秦老师微信">
+        </div>
+        <div class="contact-info">
+          <div class="contact-name">秦老师</div>
+          <div class="contact-phone">17310917890</div>
+          <div class="contact-email">qinqi@laolilaodao.com.cn</div>
         </div>
       </div>
     </div>

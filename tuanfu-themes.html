@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>心理团体辅导主题梳理方案 · 寻心理 InnerSeed</title>
+<link rel="icon" href="favicon.png">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green-dark:#2D4A42;--green:#4A7C6F;--green-light:#6B9E8A;
+  --gold:#D4A574;--gold-light:#F0E0CC;--cream:#FDF8F2;
+  --bg:#FFFBF5;--text:#3D3028;--text-light:#6B5E52;--text-muted:#9B8D80;
+  --border:#E8DDD0;--card-bg:#fff;
+  --radius:16px;--radius-sm:10px;
+  --shadow-sm:0 2px 8px rgba(0,0,0,.04);--shadow-md:0 4px 24px rgba(0,0,0,.08);
+  --transition:all .3s ease;--max-w:1080px;
+}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Helvetica Neue",sans-serif;
+  color:var(--text);background:var(--bg);line-height:1.8;-webkit-font-smoothing:antialiased
+}
+.container{max-width:var(--max-w);margin:0 auto;padding:0 24px}
+
+/* 导航栏 */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:14px 32px;background:rgba(255,255,255,.92);backdrop-filter:blur(12px);
+  transition:var(--transition);border-bottom:1px solid transparent;
+}
+.navbar.scrolled{border-bottom-color:var(--border);box-shadow:var(--shadow-sm)}
+.nav-brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.nav-logo{width:38px;height:38px}
+.nav-name{font-size:18px;font-weight:700;color:var(--green-dark);font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:2px}
+.nav-links{display:flex;list-style:none;gap:32px;white-space:nowrap}
+.nav-links a{text-decoration:none;color:var(--text-light);font-size:15px;font-weight:500;transition:var(--transition);padding-bottom:4px;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--green);border-bottom-color:var(--green)}
+.nav-cta{text-decoration:none;background:var(--green);color:#fff;padding:10px 24px;border-radius:24px;font-size:14px;font-weight:600;transition:var(--transition)}
+.nav-cta:hover{background:var(--green-dark);box-shadow:0 4px 16px rgba(74,124,111,.3)}
+
+/* Hero */
+.hero{
+  min-height:60vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;background:linear-gradient(160deg,var(--green-dark) 0%,var(--green) 50%,var(--green-light) 100%);
+  padding:120px 24px 80px;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:360px;height:360px;background:radial-gradient(circle,rgba(212,165,116,.15) 0%,transparent 70%);border-radius:50%}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(107,158,138,.12) 0%,transparent 70%);border-radius:50%}
+.hero-content{position:relative;z-index:1}
+.hero h1{font-size:2.4rem;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:2px;font-family:"Songti SC","STSong","SimSun",serif}
+.hero p{font-size:1.1rem;color:rgba(255,255,255,.85);max-width:600px;margin:0 auto}
+.hero-stats{
+  display:flex;justify-content:center;gap:48px;margin-top:36px;flex-wrap:wrap;position:relative;z-index:1;
+}
+.hero-stat{text-align:center}
+.hero-stat .num{font-size:2.2rem;font-weight:800;color:#fff}
+.hero-stat .label{font-size:.85rem;color:rgba(255,255,255,.7);margin-top:4px}
+
+/* 导航锚点 */
+.nav-sticky{
+  position:sticky;top:0;background:rgba(255,251,245,.95);backdrop-filter:blur(10px);
+  box-shadow:0 1px 8px rgba(0,0,0,.06);z-index:90;padding:12px 0;
+}
+.nav-sticky-inner{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.nav-sticky a{
+  text-decoration:none;font-size:.85rem;padding:6px 16px;border-radius:20px;
+  color:var(--text-light);transition:all .2s;font-weight:500;
+}
+.nav-sticky a:hover{background:var(--gold-light);color:var(--green-dark)}
+.nav-sticky a.active-teacher{background:var(--gold-light);color:var(--green-dark)}
+.nav-sticky a.active-enterprise{background:var(--cream);color:var(--green-dark)}
+.nav-sticky a.active-family{background:var(--gold-light);color:var(--green-dark)}
+
+/* 内容区 */
+.section{padding:60px 0}
+.section-alt{background:var(--cream)}
+.section-header{text-align:center;margin-bottom:48px}
+.section-num{font-size:12px;letter-spacing:4px;color:var(--green);font-weight:600;margin-bottom:8px}
+.section-h2{font-size:32px;font-weight:900;color:var(--green-dark);margin-bottom:12px;font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:2px}
+.section-desc{font-size:16px;color:var(--text-muted);max-width:700px;margin:0 auto}
+
+/* Group Section */
+.group-section{margin-bottom:56px}
+.group-header{
+  display:flex;align-items:center;gap:12px;padding:16px 24px;
+  border-radius:var(--radius);margin-bottom:28px;color:#fff;font-size:1.25rem;font-weight:700;
+}
+.group-header .icon{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:1.1rem}
+.group-teacher .group-header{background:linear-gradient(135deg,var(--green-dark),var(--green))}
+.group-enterprise .group-header{background:linear-gradient(135deg,#4A6FA5,#5B8DB8)}
+.group-family .group-header{background:linear-gradient(135deg,var(--gold),#C4946A)}
+
+/* Theme Cards */
+.themes-wrapper{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media(max-width:768px){.themes-wrapper{grid-template-columns:1fr}}
+
+.theme-card{
+  background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-sm);overflow:hidden;transition:var(--transition);
+  border:1px solid var(--border);
+}
+.theme-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+
+.theme-header{padding:20px 24px 16px;border-bottom:1px solid var(--border)}
+.theme-header .tag{
+  display:inline-block;font-size:.75rem;padding:2px 10px;border-radius:20px;margin-bottom:8px;font-weight:600;
+}
+.group-teacher .theme-header .tag{background:rgba(74,124,111,.1);color:var(--green)}
+.group-enterprise .theme-header .tag{background:rgba(91,141,184,.1);color:#4A6FA5}
+.group-family .theme-header .tag{background:rgba(212,165,116,.12);color:var(--gold)}
+
+.theme-header h3{font-size:1.15rem;font-weight:700;margin-bottom:6px;color:var(--text)}
+.theme-header .desc{font-size:.88rem;color:var(--text-light)}
+
+.theme-body{padding:16px 24px}
+
+.section-label{
+  font-size:.8rem;font-weight:700;color:var(--text-light);margin:12px 0 8px;
+  display:flex;align-items:center;gap:6px;
+}
+.section-label::before{content:'';width:3px;height:14px;border-radius:2px}
+.group-teacher .section-label::before{background:var(--green)}
+.group-enterprise .section-label::before{background:#4A6FA5}
+.group-family .section-label::before{background:var(--gold)}
+
+/* Activity list */
+.activity-list{list-style:none}
+.activity-item{
+  display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px dashed var(--border);font-size:.87rem;
+}
+.activity-item:last-child{border-bottom:none}
+.activity-item .badge{
+  flex-shrink:0;font-size:.7rem;padding:1px 7px;border-radius:4px;font-weight:600;white-space:nowrap;margin-top:2px;
+}
+.badge-new{background:var(--gold-light);color:#B8860B}
+.badge-ppt{background:var(--cream);color:var(--green)}
+.activity-item .name{font-weight:600;color:var(--text)}
+.activity-item .stage{font-size:.72rem;color:var(--text-muted);margin-left:auto;white-space:nowrap}
+.activity-item .info{color:var(--text-light)}
+
+/* Theme stats */
+.theme-stats{
+  display:flex;gap:16px;padding:10px 24px;background:var(--cream);font-size:.8rem;color:var(--text-light);
+}
+.theme-stats span{display:flex;align-items:center;gap:4px}
+
+/* Overview */
+.overview{
+  background:var(--card-bg);border-radius:var(--radius);box-shadow:var(--shadow-sm);padding:32px;margin:40px 0;
+  border:1px solid var(--border);
+}
+.overview h2{font-size:1.3rem;margin-bottom:20px;color:var(--green-dark);font-family:"Songti SC","STSong","SimSun",serif}
+.overview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media(max-width:768px){.overview-grid{grid-template-columns:1fr}}
+.overview-item{text-align:center;padding:24px 20px;border-radius:var(--radius-sm)}
+.overview-item .icon{font-size:2rem;margin-bottom:8px}
+.overview-item h4{font-size:.95rem;margin-bottom:4px;font-weight:700}
+.overview-item p{font-size:.82rem;color:var(--text-light);line-height:1.7}
+
+/* Footer */
+.footer-section{
+  background:var(--green-dark);padding:60px 24px 24px;text-align:center;
+}
+.footer-tagline{font-size:1.2rem;font-weight:700;color:var(--gold);margin-bottom:20px;font-family:"Songti SC","STSong","SimSun",serif;letter-spacing:2px}
+.footer-copy{font-size:13px;color:rgba(255,255,255,.5);margin-top:16px}
+
+/* 响应式 */
+@media(max-width:768px){
+  .hero h1{font-size:1.8rem}
+  .hero-stats{gap:24px}
+  .hero-stat .num{font-size:1.8rem}
+  .section-h2{font-size:26px}
+  .nav-links{display:none}
+  .nav-cta{padding:8px 16px;font-size:13px}
+  .navbar{padding:12px 20px}
+  .group-header{font-size:1.1rem}
+}
+</style>
+</head>
+<body>
+
+<!-- 导航栏 -->
+<nav class="navbar" id="navbar">
+  <a href="index.html" class="nav-brand">
+    <img src="favicon.png" class="nav-logo" alt="寻心理">
+    <span class="nav-name">寻心理</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">首页</a></li>
+    <li><a href="tuanfu.html">心理团辅</a></li>
+    <li><a href="wenchuang.html">文创产品</a></li>
+    <li><a href="peixun.html">培训者培训</a></li>
+  </ul>
+  <a href="index.html#contact" class="nav-cta">联系我们</a>
+</nav>
+
+<!-- Hero -->
+<div class="hero">
+  <div class="hero-content">
+    <h1>心理团体辅导主题梳理方案</h1>
+    <p>基于慈弘卡牌项目活动资源，围绕三大目标群体梳理的六大核心议题</p>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="num">3</div><div class="label">目标群体</div></div>
+    <div class="hero-stat"><div class="num">6</div><div class="label">核心主题</div></div>
+    <div class="hero-stat"><div class="num">58</div><div class="label">卡牌活动</div></div>
+    <div class="hero-stat"><div class="num">24</div><div class="label">扩展活动</div></div>
+  </div>
+</div>
+
+<!-- 锚点导航 -->
+<div class="nav-sticky">
+  <div class="container">
+    <div class="nav-sticky-inner">
+      <a href="#group-teacher" class="active-teacher">教师与教育管理者</a>
+      <a href="#group-enterprise" class="active-enterprise">企业员工与管理者</a>
+      <a href="#group-family" class="active-family">青少年与家长</a>
+      <a href="#overview">方案总览</a>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="padding-top:40px;">
+
+<!-- 方案总览 -->
+<div class="overview" id="overview">
+  <h2>方案总览</h2>
+  <div class="overview-grid">
+    <div class="overview-item" style="background:var(--cream);">
+      <div class="icon">🎓</div>
+      <h4 style="color:var(--green);">教师群体与教育管理者</h4>
+      <p>主题一：职业倦怠预防与情绪管理<br>主题二：团队协作与沟通效能</p>
+    </div>
+    <div class="overview-item" style="background:var(--cream);">
+      <div class="icon">💼</div>
+      <h4 style="color:#4A6FA5;">企业员工与管理者</h4>
+      <p>主题三：职场人际关系与冲突化解<br>主题四：自我认知与职业成长</p>
+    </div>
+    <div class="overview-item" style="background:var(--cream);">
+      <div class="icon">🌱</div>
+      <h4 style="color:var(--gold);">青少年与家长群体</h4>
+      <p>主题五：青少年自我意识与情绪调节<br>主题六：亲子沟通与家庭关系</p>
+    </div>
+  </div>
+</div>
+
+<!-- 群体一：教师 -->
+<div class="group-section group-teacher" id="group-teacher">
+  <div class="group-header">
+    <div class="icon">🎓</div>
+    <span>教师群体与教育管理者</span>
+  </div>
+  <div class="themes-wrapper">
+
+    <!-- Theme 1 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <span class="tag">主题一</span>
+        <h3>职业倦怠预防与情绪管理</h3>
+        <div class="desc">帮助教师觉察情绪状态，建立健康情绪疏导机制，预防职业倦怠</div>
+      </div>
+      <div class="theme-stats">
+        <span>📦 10个卡牌活动</span>
+        <span>➕ 4个扩展活动</span>
+      </div>
+      <div class="theme-body">
+        <div class="section-label">卡牌活动</div>
+        <ul class="activity-list">
+          <li class="activity-item"><div><span class="name">十指相扣</span> <span class="info">— 习惯与反向动作对比，引出接纳主题</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">情绪气球</span> <span class="info">— 气球大小可视化情绪状态</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪温度计</span> <span class="info">— 测量自己和他人的情绪温度</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪垃圾桶</span> <span class="info">— 写消极事件揉团扔掉，释放负面情绪</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪盲盒思辨赛</span> <span class="info">— 场景识别+天平思辨，理解情绪积极面</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪冷静大闯关</span> <span class="info">— 呼吸定心+十秒刹车+松紧体验</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">身心充电站</span> <span class="info">— 肌肉收紧放松+海浪冥想</span></div><span class="stage">结束</span></li>
+          <li class="activity-item"><div><span class="name">温暖视界</span> <span class="info">— 跟随引导语进行正念练习</span></div><span class="stage">结束</span></li>
+          <li class="activity-item"><div><span class="name">感受当下</span> <span class="info">— 正念练习，关注当下感受</span></div><span class="stage">结束</span></li>
+          <li class="activity-item"><div><span class="name">呼吸四元素</span> <span class="info">— 四元素正念呼吸法，快速平复</span></div><span class="stage">结束</span></li>
+        </ul>
+        <div class="section-label">扩展活动建议</div>
+        <ul class="activity-list">
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">压力气球爆破</span> <span class="info">— 写压力事件踩爆气球释放压力</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">教师情绪日记</span> <span class="info">— 连续记录一周情绪，分享规律</span></div><span class="stage">延伸</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">情绪急救包</span> <span class="info">— 制作个人快速缓解负面情绪清单</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">倦怠信号灯</span> <span class="info">— 红黄绿三色自评倦怠程度</span></div><span class="stage">工作</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Theme 2 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <span class="tag">主题二</span>
+        <h3>团队协作与沟通效能</h3>
+        <div class="desc">增强团队凝聚力，提升沟通效率，培养教育管理者与教师间的信任</div>
+      </div>
+      <div class="theme-stats">
+        <span>📦 7个卡牌活动</span>
+        <span>➕ 4个扩展活动</span>
+      </div>
+      <div class="theme-body">
+        <div class="section-label">卡牌活动</div>
+        <ul class="activity-list">
+          <li class="activity-item"><div><span class="name">大风吹</span> <span class="info">— 根据特征互换位置，破冰活跃气氛</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">滚雪球</span> <span class="info">— 重复前面所有人的自我介绍</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">同舟共济</span> <span class="info">— 报纸减半站人，团队协作挑战</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">传声筒</span> <span class="info">— 信息依次传递，体验沟通损耗</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">背地起身</span> <span class="info">— 背对背挽臂站起，体验协作力量</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">盲行引路</span> <span class="info">— 蒙眼由向导引路，体验信任</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">我们的拼图</span> <span class="info">— 拼图交换完成，体验合作沟通</span></div><span class="stage">结束</span></li>
+        </ul>
+        <div class="section-label">扩展活动建议</div>
+        <ul class="activity-list">
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">团队愿景画布</span> <span class="info">— 绘制"理想教研组"愿景画布</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">沟通风格测评</span> <span class="info">— 了解自己和同事的沟通风格差异</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">协作接力挑战</span> <span class="info">— 多人协作接力任务体验分工</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">教研场景模拟</span> <span class="info">— 常见教研冲突角色扮演</span></div><span class="stage">工作</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 群体二：企业 -->
+<div class="group-section group-enterprise" id="group-enterprise">
+  <div class="group-header">
+    <div class="icon">💼</div>
+    <span>企业员工与管理者</span>
+  </div>
+  <div class="themes-wrapper">
+
+    <!-- Theme 3 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <span class="tag">主题三</span>
+        <h3>职场人际关系与冲突化解</h3>
+        <div class="desc">理解人际动态，提升同理心，学会在冲突中寻找共赢方案</div>
+      </div>
+      <div class="theme-stats">
+        <span>📦 10个卡牌活动</span>
+        <span>➕ 4个扩展活动</span>
+      </div>
+      <div class="theme-body">
+        <div class="section-label">卡牌活动</div>
+        <ul class="activity-list">
+          <li class="activity-item"><div><span class="name">碰拳找朋友</span> <span class="info">— 音乐中碰拳交友，快速破冰</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">我们会夸夸</span> <span class="info">— 传球夸奖同伴，营造温暖氛围</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">人物关系网</span> <span class="info">— 画出人际关系网，觉察亲疏</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪猜谜</span> <span class="info">— 表演情绪让他人猜，训练共情</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">接力作画</span> <span class="info">— 接力作画体验合作创造</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">优点轰炸</span> <span class="info">— 轮流坐中央接受优点反馈</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">很高兴认识你</span> <span class="info">— 内外圈轮换分享，深度了解</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">我的百宝箱</span> <span class="info">— 梳理人际支持资源</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">人际舒适圈</span> <span class="info">— 画同心圈标注人际舒适度</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">想要靠近你</span> <span class="info">— 符合描述向前迈步，体验靠近</span></div><span class="stage">结束</span></li>
+        </ul>
+        <div class="section-label">扩展活动建议</div>
+        <ul class="activity-list">
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">冲突场景角色扮演</span> <span class="info">— 职场冲突场景模拟与化解</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">职场边界探索</span> <span class="info">— 画"我的边界圈"识别健康边界</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">同理心地图</span> <span class="info">— 绘制同理心地图提升换位思考</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">赞美接力赛</span> <span class="info">— 用具体事例赞美同事形成赞美链</span></div><span class="stage">热身</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Theme 4 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <span class="tag">主题四</span>
+        <h3>自我认知与职业成长</h3>
+        <div class="desc">深入了解自我，明确职业方向，激发内在成长动力</div>
+      </div>
+      <div class="theme-stats">
+        <span>📦 8个卡牌活动</span>
+        <span>➕ 4个扩展活动</span>
+      </div>
+      <div class="theme-body">
+        <div class="section-label">卡牌活动</div>
+        <ul class="activity-list">
+          <li class="activity-item"><div><span class="name">相识接龙</span> <span class="info">— 握手自我介绍+猜拳接龙</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">趣味哈哈镜</span> <span class="info">— 内外圈模仿动作，镜像觉察</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">相似圈</span> <span class="info">— 寻找相似伙伴，发现归属感</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">自画像</span> <span class="info">— 画自画像探索自我表达</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">我的五样</span> <span class="info">— 五样宝贝逐一舍弃，澄清价值观</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">我是谁？</span> <span class="info">— 固定句式自我评价，探讨一致性</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">我的小档案</span> <span class="info">— 填写个人档案全面梳理认知</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">独特的我</span> <span class="info">— 画轮廓特点，画廊式分享</span></div><span class="stage">工作</span></li>
+        </ul>
+        <div class="section-label">扩展活动建议</div>
+        <ul class="activity-list">
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">职业价值观排序</span> <span class="info">— 价值观卡片排序澄清核心驱动力</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">SWOT自我分析</span> <span class="info">— 分析职业优劣势制定成长计划</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">生命线绘制</span> <span class="info">— 画人生生命线分享成长故事</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">未来名片</span> <span class="info">— 设计5年后名片分享职业愿景</span></div><span class="stage">结束</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- 群体三：家庭 -->
+<div class="group-section group-family" id="group-family">
+  <div class="group-header">
+    <div class="icon">🌱</div>
+    <span>青少年与家长群体</span>
+  </div>
+  <div class="themes-wrapper">
+
+    <!-- Theme 5 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <span class="tag">主题五</span>
+        <h3>青少年自我意识与情绪调节</h3>
+        <div class="desc">帮助青少年认识独特的自己，学会觉察和表达情绪，建立健康自我概念</div>
+      </div>
+      <div class="theme-stats">
+        <span>📦 13个卡牌活动</span>
+        <span>➕ 4个扩展活动</span>
+      </div>
+      <div class="theme-body">
+        <div class="section-label">卡牌活动</div>
+        <ul class="activity-list">
+          <li class="activity-item"><div><span class="name">情绪炸弹接力赛</span> <span class="info">— 音乐传递球趣味回答情绪问题</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">自画像</span> <span class="info">— 画自画像探索自我</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">我的五样</span> <span class="info">— 价值澄清活动</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">我是谁？</span> <span class="info">— 自我评价句式促进反思</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪气球</span> <span class="info">— 气球可视化情绪，直观有趣</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪温度计</span> <span class="info">— 测量情绪温度学会觉察</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪垃圾桶</span> <span class="info">— 写负面情绪扔掉释放压力</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪盲盒思辨赛</span> <span class="info">— 场景识别+天平思辨</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">情绪蜕变礼盒</span> <span class="info">— 装饰改造写有烦恼的纸盒</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">我的小档案</span> <span class="info">— 填写档案梳理自我认知</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">独特的我</span> <span class="info">— 画轮廓特点发现独特价值</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">集体心愿树</span> <span class="info">— 写未来期待贴心愿树</span></div><span class="stage">结束</span></li>
+          <li class="activity-item"><div><span class="name">能量拍拍圈</span> <span class="info">— 围圈搭肩传递鼓励温暖收尾</span></div><span class="stage">结束</span></li>
+        </ul>
+        <div class="section-label">扩展活动建议</div>
+        <ul class="activity-list">
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">情绪天气预报</span> <span class="info">— 用天气描述今天情绪轮流分享</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">自信心盾牌</span> <span class="info">— 制作个人自信盾牌四区域</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">青春期身份卡</span> <span class="info">— 设计身份卡探索自我认同</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">情绪红绿灯</span> <span class="info">— 三色卡片对应情绪应对策略</span></div><span class="stage">工作</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Theme 6 -->
+    <div class="theme-card">
+      <div class="theme-header">
+        <span class="tag">主题六</span>
+        <h3>亲子沟通与家庭关系</h3>
+        <div class="desc">增进亲子理解，改善沟通模式，构建温暖支持的家庭氛围</div>
+      </div>
+      <div class="theme-stats">
+        <span>📦 10个卡牌活动</span>
+        <span>➕ 4个扩展活动</span>
+      </div>
+      <div class="theme-body">
+        <div class="section-label">卡牌活动</div>
+        <ul class="activity-list">
+          <li class="activity-item"><div><span class="name">碰拳找朋友</span> <span class="info">— 碰拳交友，亲子共同破冰</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">我们会夸夸</span> <span class="info">— 传球夸奖营造家庭欣赏氛围</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">滚雪球</span> <span class="info">— 亲子互相介绍加深认识</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">桃花朵朵开</span> <span class="info">— 抱团牵手增进亲子亲近感</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">心有千千结</span> <span class="info">— 手拉手编网再解开，亲子协作</span></div><span class="stage">热身</span></li>
+          <li class="activity-item"><div><span class="name">人物关系网</span> <span class="info">— 画家庭关系网觉察亲疏</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">优点轰炸</span> <span class="info">— 亲子互相说优点增进欣赏</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">人际舒适圈</span> <span class="info">— 画人际舒适圈觉察家庭关系</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><div><span class="name">心意诉说</span> <span class="info">— 互相写反馈鼓励传递温暖</span></div><span class="stage">结束</span></li>
+          <li class="activity-item"><div><span class="name">想要靠近你</span> <span class="info">— 向前迈步体验靠近家人</span></div><span class="stage">结束</span></li>
+        </ul>
+        <div class="section-label">扩展活动建议</div>
+        <ul class="activity-list">
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">亲子角色互换</span> <span class="info">— 互换角色表演增进理解</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">家庭优点日</span> <span class="info">— 轮流当主角接受家人夸奖</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">爱的语言测试</span> <span class="info">— 了解彼此感受爱的方式</span></div><span class="stage">工作</span></li>
+          <li class="activity-item"><span class="badge badge-new">新增</span><div><span class="name">家庭时光胶囊</span> <span class="info">— 亲子共同制作约定未来开启</span></div><span class="stage">结束</span></li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+</div>
+
+<!-- Footer -->
+<div class="footer-section">
+  <div class="footer-tagline">向内寻，向外生</div>
+  <div class="footer-copy">© 寻心理 InnerSeed · 心理团体辅导主题梳理方案</div>
+</div>
+
+<script>
+// 导航栏滚动效果
+document.addEventListener('scroll',()=>{
+  const nav=document.getElementById('navbar');
+  if(window.scrollY>50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+// 平滑滚动
+document.querySelectorAll('.nav-sticky a').forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(link.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+</script>
+
+</body>
+</html>
