@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寻心理 Logo 设计方案</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#f5f0eb 0%,#ede7df 100%);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:40px 20px
+  }
+  h1{font-family:'Songti SC','STSong','SimSun',serif;font-size:32px;color:#2D4A42;margin-bottom:8px;font-weight:900}
+  .subtitle{font-size:15px;color:#6B5E52;margin-bottom:40px}
+  .designs{
+    display:flex;
+    gap:40px;
+    flex-wrap:wrap;
+    justify-content:center;
+    align-items:flex-start
+  }
+  .design-card{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:16px
+  }
+  .label{
+    font-size:13px;
+    color:#6B5E52;
+    font-weight:600;
+    letter-spacing:2px
+  }
+  .label span{
+    display:inline-block;
+    background:#2D4A42;
+    color:#fff;
+    padding:2px 10px;
+    border-radius:12px;
+    font-size:11px;
+    margin-right:6px
+  }
+
+  /* ===== 方案1：经典圆章 ===== */
+  .logo-1{
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:#FFFBF5;
+    border:4px solid #4A7C6F;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    box-shadow:0 8px 32px rgba(45,74,66,0.12)
+  }
+  .logo-1::before{
+    content:'';
+    position:absolute;
+    top:8px;left:8px;right:8px;bottom:8px;
+    border-radius:50%;
+    border:2px dashed #D4A574;
+    opacity:0.5
+  }
+  .logo-1 img{width:90px;height:90px;object-fit:contain;margin-bottom:10px}
+  .logo-1 .name{font-family:'Songti SC','STSong','SimSun',serif;font-size:32px;font-weight:900;color:#2D4A42;letter-spacing:6px}
+  .logo-1 .en{font-family:Georgia,serif;font-size:14px;color:#4A7C6F;font-style:italic;letter-spacing:4px;margin:6px 0}
+  .logo-1 .tagline{font-family:'Songti SC','STSong','SimSun',serif;font-size:12px;color:#6B5E52;letter-spacing:4px;margin-top:4px}
+
+  /* ===== 方案2：现代拼接 ===== */
+  .logo-2{
+    width:280px;
+    height:280px;
+    border-radius:24px;
+    background:#2D4A42;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:16px;
+    padding:0 24px;
+    box-shadow:0 8px 32px rgba(45,74,66,0.25)
+  }
+  .logo-2 img{width:100px;height:100px;object-fit:contain}
+  .logo-2 .text-group{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    justify-content:center;
+    width:130px
+  }
+  .logo-2 .name{font-family:'Songti SC','STSong','SimSun',serif;font-size:36px;font-weight:900;color:#FFFBF5;letter-spacing:6px;line-height:1;white-space:nowrap}
+  .logo-2 .en{font-family:Georgia,serif;font-size:14px;color:#D4A574;font-style:italic;letter-spacing:4px;margin:6px 0;white-space:nowrap}
+  .logo-2 .divider{width:50px;height:1.5px;background:#D4A574;opacity:0.5;margin:4px 0}
+  .logo-2 .tagline-wrap{
+    display:flex;
+    justify-content:flex-start;
+    width:100%
+  }
+  .logo-2 .tagline{
+    font-family:'Songti SC','STSong','SimSun',serif;
+    font-size:13px;
+    color:#97C459;
+    letter-spacing:3px;
+    white-space:nowrap
+  }
+
+  /* ===== 方案3：印章风格 ===== */
+  .logo-3{
+    width:280px;
+    height:280px;
+    border-radius:50%;
+    background:#2D4A42;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    box-shadow:0 8px 32px rgba(45,74,66,0.25)
+  }
+  .logo-3::before{
+    content:'';
+    position:absolute;
+    top:16px;left:16px;right:16px;bottom:16px;
+    border-radius:50%;
+    border:2px solid #6B9E8A;
+    opacity:0.4
+  }
+  .logo-3::after{
+    content:'';
+    position:absolute;
+    top:28px;left:28px;right:28px;bottom:28px;
+    border-radius:50%;
+    border:1px solid #D4A574;
+    opacity:0.3
+  }
+  .logo-3 .inner-content{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:14px
+  }
+  .logo-3 .arc-text{
+    font-family:'Songti SC','STSong','SimSun',serif;
+    font-size:12px;
+    color:#97C459;
+    letter-spacing:4px
+  }
+  .logo-3 img{width:70px;height:70px;object-fit:contain}
+  .logo-3 .name{font-family:'Songti SC','STSong','SimSun',serif;font-size:38px;font-weight:900;color:#FFFBF5;letter-spacing:8px}
+  .logo-3 .en{font-family:Georgia,serif;font-size:14px;color:#D4A574;font-style:italic;letter-spacing:4px}
+</style>
+</head>
+<body>
+<h1>寻心理 Logo 设计方案</h1>
+<div class="subtitle">整合官网图标 · 寻心理中文 · InnerSeed英文 · 向内寻向外生</div>
+
+<div class="designs">
+
+  <!-- ========== 方案1 ========== -->
+  <div class="design-card">
+    <div class="label"><span>方案1</span>经典圆章</div>
+    <div class="logo-1">
+      <img src="logo.png" alt="寻心理">
+      <div class="name">寻心理</div>
+      <div class="en">InnerSeed</div>
+      <div class="tagline">向内寻 · 向外生</div>
+    </div>
+  </div>
+
+  <!-- ========== 方案2（寻心理一行+向内寻向外生左对齐一行）========== -->
+  <div class="design-card">
+    <div class="label"><span>方案2</span>现代拼接</div>
+    <div class="logo-2">
+      <img src="logo-white.png" alt="寻心理">
+      <div class="text-group">
+        <div class="name">寻心理</div>
+        <div class="en">InnerSeed</div>
+        <div class="divider"></div>
+        <div class="tagline-wrap">
+          <div class="tagline">向内寻 · 向外生</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== 方案3（logo下移，间距均衡）========== -->
+  <div class="design-card">
+    <div class="label"><span>方案3</span>印章风格</div>
+    <div class="logo-3">
+      <div class="inner-content">
+        <div class="arc-text">向内寻 · 向外生</div>
+        <img src="logo-white.png" alt="寻心理">
+        <div class="name">寻心理</div>
+        <div class="en">InnerSeed</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
